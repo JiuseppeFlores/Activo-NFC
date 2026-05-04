@@ -75,6 +75,14 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
+            <label class="col-form-label">UID NFC</label>
+        </div>
+        <div class="col-9">
+            <input type="text" id="uidTag" name="uidTag" autocomplete="off" class="form-control" placeholder="Escriba el UID NFC...">
+        </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
             <label class="col-form-label">Marca</label>
         </div>
         <div class="col-9">
