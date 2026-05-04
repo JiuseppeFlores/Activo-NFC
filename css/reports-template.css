@@ -1,0 +1,56 @@
+.carga {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #1f9cd6;
+    padding: 10px 0;
+    font-size: 12px;
+    display: none;
+    border-radius: 10px;
+}
+.centrar {
+    text-align: center;
+    margin: 20px
+}
+
+.bordes {
+    padding: 10px;
+    background-color: #d6c2cc;
+    border-radius: 5px;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.send-list {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+.bordes {
+    text-decoration: none;
+}
+
+.display-caja {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+}
+
+.display-caja .sub-div {
+
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.main-box {
+    box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+    margin: 30px;
+    padding: 15px;
+    border-radius: 10px;
+}

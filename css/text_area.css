@@ -1,0 +1,672 @@
+div.comentario {
+    background-color: green;
+    height: 100px;
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  textarea {
+      height: 28px;
+      width: 400px;
+  }
+
+/*   textarea:focus {
+    background-color: yellow;
+} */
+
+  #textarea1 {
+      -moz-appearance: textfield-multiline;
+      -webkit-appearance: textarea;
+      border: 1px solid gray;
+      font: medium -moz-fixed;
+      font: -webkit-small-control;
+      height: 28px;
+      overflow: auto;
+      padding: 2px;
+      resize: resize;
+      width: 100%;
+      height:300px;
+      border: 1px solid #ced4da;
+      outline:0px;
+  }
+
+    #textarea1_editar {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+
+    input {
+     /*    margin-top: 5px; */
+      /*   width: 400px; */
+    }
+
+    #input {
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
+        background-color: white;
+        background-color: -moz-field;
+        border: 1px solid darkgray;
+        box-shadow: 1px 1px 1px 0 lightgray inset;  
+        font: -moz-field;
+        font: -webkit-small-control;
+        margin-top: 5px;
+        padding: 2px 3px;
+        width: 398px;    
+    }
+
+    .format_text {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+        resize:none;
+    }
+
+
+    #textarea2 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea3 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea4 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea5 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea6 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea7 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea8 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea9 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea10 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea11 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea12 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea13 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea14 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea15 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea16 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea17 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea18 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea19 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea20 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea21 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea22 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea23 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea24 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea25 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea26 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea27 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea28 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea29 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea30 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea31 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea32 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea33 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea34 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea35 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea36 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea37 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea38 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea39 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    #textarea40 {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        border: 1px solid gray;
+        font: medium -moz-fixed;
+        font: -webkit-small-control;
+        height: 28px;
+        overflow: auto;
+        padding: 2px;
+        resize: resize;
+        width: 100%;
+        height:300px;
+        border: 1px solid #ced4da;
+        outline:0px;
+    }
+    /*              */

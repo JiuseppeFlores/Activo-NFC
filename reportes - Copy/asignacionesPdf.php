@@ -1,0 +1,82 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    include("../conexion.php");
+    include("../tcpdf/tcpdf.php");
+    date_default_timezone_set("America/La_Paz");
+    $fechaImpresion = date("d/m/Y H:i");
+    // para la consulta a la base de datos
+    $listaAsignaciones = array();
+    $sql = "SELECT tp.producto, tp.codigoBarras, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tu.ci, tas.* FROM tblAsignacion tas LEFT JOIN tblProducto tp ON tp.idProducto = tas.idProducto LEFT JOIN tblUsuario tu ON tu.idUsuario = tas.idUsuario ORDER BY tas.idAsignacion ASC;";
+    $query = sqlsrv_query($con, $sql);
+    while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
+        $listaAsignaciones[] = $row;
+    }
+    // para la generacion del pdf
+    class MYPDF extends TCPDF
+    {
+        public function Header() {
+
+        }
+        public function Footer() {
+            $this->SetY(-10);
+            $this->SetFont('times', 'I', 8);
+            $this->Cell(0, 10, 'Pag. ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
+        }
+    }
+    $autor = "STIS-BOLIVIA";
+    $width = 216;
+    $height = 270.9;
+    $pageLayout = array($width, $height);
+
+    $pdf = new MYPDF ('P', 'mm', $pageLayout, true, 'UTF-8', false);
+    $pdf->SetCreator($autor);
+    $pdf->SetAuthor($autor);
+    $pdf->SetTitle("Reporte de asignaciones");
+    $pdf->SetMargins(10, 10, 10, true);
+    $pdf->SetAutoPageBreak(true, 10);
+    $pdf->SetFont('times', '', 10);
+    $pdf->AddPage();
+    $table = '
+    <table border="0" cellpadding="1" cellspacing="2">
+    <tr>
+    <td colspan="20" align="center"><b>REPORTE DE ASIGNACIONES</b></td>
+    </tr>
+    <tr>
+    <td colspan="20" align="left">Fecha de impresión: ' . $fechaImpresion . '</td>
+    </tr>
+    </table>';
+    $pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, '', true);
+    $pdf->SetFont('times', '', 9);
+    $table = '
+    <table border="0.5" cellpadding="2" cellspacing="0">
+    <tr>
+    <td colspan="2" align="center"><b>#</b></td>
+    <td colspan="10" align="center"><b>Producto</b></td>
+    <td colspan="7" align="center"><b>Cód. Barras</b></td>
+    <td colspan="10" align="center"><b>Usuario</b></td>
+    <td colspan="5" align="center"><b>CI</b></td>
+    <td colspan="5" align="center"><b>Inicio</b></td>
+    <td colspan="5" align="center"><b>Fin</b></td>
+    </tr>';
+    $nro = 1;
+    foreach ($listaAsignaciones as $key => $value) {
+        $fechaInicial = isset($value['fechaInicial']) ? $value['fechaInicial']->format("d/m/y") : "Sin definir";
+        $fechaFinal = isset($value['fechaFinal']) ? $value['fechaFinal']->format("d/m/y") : "Sin definir";
+        $table .= '
+        <tr>
+        <td colspan="2" align="center">' . $nro . '</td>
+        <td colspan="10" align="left">' . $value['producto'] . '</td>
+        <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
+        <td colspan="10" align="left">' . $value['apellidoPaterno'] . ' ' . $value['apellidoMaterno'] . ' ' . $value['nombre'] . '</td>
+        <td colspan="5" align="center">' . $value['ci'] . '</td>
+        <td colspan="5" align="center">' . $fechaInicial. '</td>
+        <td colspan="5" align="center">' . $fechaFinal . '</td>
+        </tr>';
+        $nro++;
+    }
+    $table .= '</table>';
+    $pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, '', true);
+    $pdf->Output("reporte_asignaciones.pdf", "I");
+} else {
+    header("Location: ../index.php");
+}

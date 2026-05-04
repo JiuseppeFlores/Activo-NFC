@@ -1,0 +1,442 @@
+* {
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    /* background: url(https://subtlepatterns.com/patterns/sativa.png) repeat fixed; */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+  }
+  .fieldset {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+  }
+
+  .bodyLogin {
+      background-image: url(../images/background.jpg);
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden; /* Para manejar efectos de desbordamiento */
+  }
+  
+  /* Agregando efectos de animación y transición */
+  .bodyLogin::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,   
+          /* rgba(55, 195, 250, 0.8), 
+          rgba(0, 168, 255, 0.8),
+          rgba(0, 120, 255, 0.8) */
+          #004d40,
+          #26a69a,
+          #b2dfdb 
+      );
+      z-index: -1;
+      animation: gradientShift 15s ease infinite;
+  }
+  
+  /* Agregando elementos decorativos */
+  @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+  }
+  
+  /* Efecto de partículas */
+  .bodyLogin::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      animation: particleMove 12s linear infinite;
+  }
+  
+  @keyframes particleMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+  }
+  
+  /* Agregando efectos de iluminación */
+  .bodyLogin::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+      z-index: -1;
+      animation: lightPulse 8s ease-in-out infinite;
+  }
+  
+  @keyframes lightPulse {
+      0% { opacity: 0.1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 0.1; }
+  }
+  
+  /* Agregando efectos de sombras y profundidad */
+  .bodyLogin {
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      transition: all 0.3s ease-in-out;
+  }
+  
+  /* Agregando efecto de hover en el contenedor */
+  .loginContainer {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      /* padding: 1rem; */
+      width: 100%;
+      max-width: 400px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease-in-out;
+      transform: translateY(0);
+  }
+  
+  .loginContainer:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.98);
+  }
+  
+  /* Agregando efectos de animación en los inputs */
+  .loginContainer input {
+      width: 100%;
+      padding: 10px 5px 10px 40px;
+      display: block;
+      border: 1px solid #EDEDED;
+      border-radius: 4px;
+      transition: all 0.3s ease-out;
+      color: #a1a1a1;
+      background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .loginContainer input:focus {
+      border-color: #00a8ff;
+      box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+      color: #333;
+      background: white;
+  }
+  
+  /* Agregando efectos de animación en el botón */
+  .submit {
+      background: linear-gradient(135deg, #00a8ff, #007bff);
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
+      /* width: 50%; */
+
+  }
+  
+  .submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.4);
+      background: linear-gradient(135deg, #0095e8, #0069d9);
+  }
+  
+  /* Agregando efectos de animación en el legend */
+  .legend {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00a8ff;
+      text-shadow: 0 2px 4px rgba(0, 168, 255, 0.3);
+      transition: all 0.3s ease;
+      padding-bottom: 1rem;
+  }
+  
+  .legend:hover {
+      color: #007bff;
+      text-shadow: 0 3px 6px rgba(0, 168, 255, 0.4);
+  }
+
+  .mensajeLogin {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #2ecc71;
+    padding: 10px 0;
+    font-size: 12px;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+/* Estilos para los mensajes */
+.mensajeLogin {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  padding: 0px 0;
+  font-size: 12px;
+  border-radius: 10px;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+/* Estilos mejorados para el mensaje */
+.mensajeLogin {
+  position: relative;
+  /* margin: 1rem 0; */
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  display: none;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.mensajeLogin.show {
+  display: block;
+}
+
+.mensaje-success {
+  background: linear-gradient(135deg, #38cc76, #38cc76);
+  color: white;
+  box-shadow: 0 4px 6px rgba(46, 204, 113, 0.2);
+  font-size: 15px;
+}
+
+.mensaje-error {
+  background: linear-gradient(135deg, #e74c3c, #e74c3c);
+  color: white;
+  box-shadow: 0 4px 6px rgba(231, 76, 60, 0.2);
+}
+
+.mensaje-loading {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+/* Botón de submit durante el proceso */
+.submit:disabled {
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  cursor: not-allowed;
+}
+
+  .input {
+    position: relative;
+    width: 100%;
+    margin: 15px auto;
+  }
+  .input span {
+    position: absolute;
+    display: block;
+    color: #d4d4d4;
+    left: 10px;
+    top: 8px;
+    font-size: 20px;
+  }
+  .input input {
+    width: 100%;
+    padding: 10px 5px 10px 40px;
+    display: block;
+    border: 1px solid #EDEDED;
+    border-radius: 4px;
+    transition: 0.2s ease-out;
+    color: #a1a1a1;
+  }
+  .input input:focus {
+    padding: 10px 5px 10px 40px;
+    outline: 0;
+    border-color: #52f3ff;
+  }
+
+  .submit {
+    width: 100%;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #00a8ff, #007bff);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 168, 255, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.submit:hover {
+    background: linear-gradient(135deg, #0095e8, #0069d9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 168, 255, 0.4);
+}
+
+.submit:hover i {
+    transform: translateX(5px);
+}
+
+.submit:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 168, 255, 0.3);
+}
+
+.submit:disabled {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.submit:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0, 168, 255, 0.2);
+}
+
+
+  .feedback {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #2ecc71;
+    padding: 10px 0;
+    font-size: 12px;
+    display: none;
+    opacity: 0;
+  }
+  .feedback:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(46, 204, 113, 0);
+    border-bottom-color: #2ecc71;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+
+
+  .feedback-wrong {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #e90505;
+    padding: 10px 0;
+    font-size: 12px;
+    display: none;
+    opacity: 0;
+  }
+  .feedback-wrong:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(46, 204, 113, 0);
+    border-bottom-color: #e90505;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+
+
+  .carga {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #1f9cd6;
+    padding: 10px 0;
+    font-size: 12px;
+    display: none;
+    border-radius: 10px;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    z-index: 2;
+  }
+
+  .password-toggle:hover {
+    color: #333;
+  }
+
+  .password-toggle:focus {
+    outline: none;
+  }

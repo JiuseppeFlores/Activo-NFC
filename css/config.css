@@ -1,0 +1,21 @@
+.popup {
+    position: fixed;
+    width: 100%;
+    opacity: 0.6;
+    top: 0px;
+    min-height: 200px;
+    height: 100%;
+    z-index: 2000;
+    background: #FFFFFF;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+  }
+
+  .box-area {
+    display: inline-block;
+    margin: 10px;
+    background-color: #343a40;
+    border-radius: 10px;
+    color: white;
+  }

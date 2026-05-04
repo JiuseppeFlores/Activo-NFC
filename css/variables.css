@@ -1,0 +1,37 @@
+:root {
+    /* Paleta de colores principal */
+    --primary-color: #00a8ff;      /* Azul claro principal */
+    --primary-dark: #007bff;      /* Azul oscuro */
+    --primary-light: #0095e8;     /* Azul intermedio */
+    --primary-hover: #0069d9;     /* Azul oscuro para hover */
+
+    /* Neutros */
+    --background: #ffffff;        /* Fondo blanco */
+    --background-light: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente */
+    --text-primary: #333333;      /* Texto principal */
+    --text-secondary: #a1a1a1;    /* Texto secundario */
+    --border-color: #EDEDED;      /* Color de bordes */
+    
+    /* Estados */
+    --success-color: #2ecc71;     /* Verde para éxito */
+    --warning-color: #f39c12;     /* Naranja para advertencia */
+    --error-color: #e74c3c;       /* Rojo para error */
+    
+    /* Sombras */
+    --shadow-primary: rgba(0, 168, 255, 0.3);
+    --shadow-hover: rgba(0, 168, 255, 0.4);
+    --shadow-dark: rgba(0, 0, 0, 0.15);
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    --gradient-primary-hover: linear-gradient(135deg, var(--primary-light), var(--primary-hover));
+    
+    /* Estados de feedback */
+    --success-gradient: linear-gradient(135deg, var(--success-color), #27ae60);
+    --warning-gradient: linear-gradient(135deg, var(--warning-color), #d35400);
+    --error-gradient: linear-gradient(135deg, var(--error-color), #c0392b);
+
+    /* para las alertas */
+    --color-alerta: #f9f73475;
+    --color-alerta-hover: #f9f734;
+}
