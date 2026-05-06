@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $image_file = '../images/logoStisHorizontal.png';
             if (file_exists($image_file)) {
                 // Ajustar los parámetros de la imagen
-                $this->Image($image_file, 20, 13, 15, 15, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+                // $this->Image($image_file, 20, 13, 15, 15, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
             } else {
                 // Si el archivo no existe, agregar un mensaje de error
-                $this->SetFont('times', 'B', 10);
-                $this->Cell(0, 10, '¡Logo no encontrado!', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+                // $this->SetFont('times', 'B', 10);
+                // $this->Cell(0, 10, '¡Logo no encontrado!', 0, false, 'C', 0, '', 0, false, 'M', 'M');
             }
         }
 

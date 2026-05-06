@@ -219,7 +219,8 @@ function countBien() {
           } else {
             count = '00' + count + '';
           }
-          $('#codigoBarras').val('STS-' + idDepreciacion + '-' + idDepreciacionDetalle + '-' + count);
+          // $('#codigoBarras').val('STS-' + idDepreciacion + '-' + idDepreciacionDetalle + '-' + count);
+          $('#codigoBarras').val('MD-' + idDepreciacion + '-' + idDepreciacionDetalle + '-' + count);
         }
       })
   }

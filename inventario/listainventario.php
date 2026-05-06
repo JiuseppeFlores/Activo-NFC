@@ -21,7 +21,7 @@ if ($count_row === false) {
     <table style="text-align:center" class="table table-hover">
     <th>Información</th>
     <th>Usuario</th>
-    <th>Producto</th>
+    <th>Bien</th>
     <th>Cód. Barras</th>
     <th>Revisor</th>
     <th>Observación</th>

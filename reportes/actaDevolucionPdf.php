@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $this->SetY(-15);
             $this->SetFont('times', 'I', 8);
             // $this->Cell(0, 10, 'Pag. ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
-            $this->Cell(0, 10, 'Oficina Central STIS, El Prado, edificio "16 de Julio", piso 17 oficina 1707, La Paz - Bolivia.', 'T', 1, 'C', 0, '', 0, true, 'T', 'M');
+            // $this->Cell(0, 10, 'Oficina Central STIS, El Prado, edificio "16 de Julio", piso 17 oficina 1707, La Paz - Bolivia.', 'T', 1, 'C', 0, '', 0, true, 'T', 'M');
         }
     }
 

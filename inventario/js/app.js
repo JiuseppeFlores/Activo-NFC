@@ -178,3 +178,21 @@ function borrar_inventario(id) {
     },
   });
 }
+
+function getUsuario() {
+  var idAsignacion = $("#idAsignacion").val();
+  var parametros = {
+    idAsignacion: idAsignacion,
+  };
+
+  $.ajax({
+    data: parametros,
+    url: "../inventario/get_usuario.php",
+    type: "post",
+    dataType: "json",
+    success: function (response) {
+      // console.log(response);
+      $("#usuario").val(response.nombreCompleto + " - CI: " + response.ci);
+    },
+  });
+}
