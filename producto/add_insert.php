@@ -10,11 +10,12 @@ $costoAdquisicion = floatval($_POST['costoAdquisicion']);
 $fechaIngreso = $_POST['fechaIngreso'];
 $marca = $_POST['marca'];
 $tipoAdquisicion = $_POST['tipoAdquisicion'];
+$valoracion = $_POST['valoracion'];
 $idUsuario = $_SESSION['idUsuario'];
 $estado = 'ACTIVO';
 $id = guidv4();
-$sql = "INSERT INTO tblProducto (producto,codigoBarras,uidTag,idUsuarioCreador,idDepreciacion,idDepreciacionDetalle,costoAdquisicion,fechaIngreso,marca,tipoAdquisicion,estado) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-$params = array($producto, $codigoBarras, $uidTag, $idUsuario, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $estado);
+$sql = "INSERT INTO tblProducto (producto,codigoBarras,uidTag,idUsuarioCreador,idDepreciacion,idDepreciacionDetalle,costoAdquisicion,fechaIngreso,marca,tipoAdquisicion,valoracion,estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+$params = array($producto, $codigoBarras, $uidTag, $idUsuario, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $valoracion, $estado);
 
 $sql_rep = "SELECT * FROM tblProducto WHERE codigoBarras=?";
 $params_rep = array($codigoBarras);

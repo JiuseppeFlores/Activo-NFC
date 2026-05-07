@@ -84,7 +84,7 @@ if (file_exists("../sistem_images/logo.png")) {
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-desktop"></i>
             <p>
-              Bien
+              Activos
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>

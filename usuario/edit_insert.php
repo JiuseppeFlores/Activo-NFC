@@ -12,7 +12,8 @@ $ci = $_POST["ci"];
 $correo = $_POST["correo"];
 $idRol = $_POST["idRol"];
 $idArea = $_POST["idArea"];
-$update = " UPDATE tblUsuario set  usuario = '$usuario' , password = '$password' , nombre = '$nombre' , apellidoPaterno = '$apellidoPaterno' , apellidoMaterno = '$apellidoMaterno' , ci = '$ci' , correo = '$correo' , idRol = '$idRol' , idArea = '$idArea'  WHERE idUsuario=$id; ";
+$cargo = $_POST["cargo"];
+$update = " UPDATE tblUsuario set  usuario = '$usuario' , password = '$password' , nombre = '$nombre' , apellidoPaterno = '$apellidoPaterno' , apellidoMaterno = '$apellidoMaterno' , ci = '$ci' , correo = '$correo' , idRol = '$idRol' , idArea = '$idArea' , cargo = '$cargo'  WHERE idUsuario=$id; ";
 
 $query = sqlsrv_query($con, $update);
 if ($query) {

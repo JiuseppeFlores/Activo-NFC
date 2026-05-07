@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     // para la consulta a la base
     $listaUsuarios = array();
-    $sql = "SELECT tu.usuario, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tu.ci, tu.fechaCreacion, tr.rol, ta.area FROM tblUsuario tu LEFT JOIN tblRol tr ON tr.idRol = tu.idRol LEFT JOIN tblArea ta ON ta.idArea = tu.idArea WHERE tu.fechaCreacion BETWEEN '$fechaInicio' AND '$fechaFin' $sqlArea ORDER BY tu.apellidoPaterno;";
+    $sql = "SELECT tu.usuario, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tu.ci, tu.fechaCreacion, tu.cargo, tr.rol, ta.area FROM tblUsuario tu LEFT JOIN tblRol tr ON tr.idRol = tu.idRol LEFT JOIN tblArea ta ON ta.idArea = tu.idArea WHERE tu.fechaCreacion BETWEEN '$fechaInicio' AND '$fechaFin' $sqlArea ORDER BY tu.apellidoPaterno, tu.apellidoMaterno, tu.nombre;";
     $query = sqlsrv_query($con, $sql);
     while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         $listaUsuarios[] = $row;
@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <td colspan="10" align="center"><b>Nombre</b></td>
     <td colspan="6" align="center"><b>CI</b></td>
     <td colspan="10" align="center"><b>Rol</b></td>
+    <td colspan="10" align="center"><b>Cargo</b></td>
     <td colspan="10" align="center"><b>Área</b></td>
     <td colspan="6" align="center"><b>Creación</b></td>
     </tr>';
@@ -99,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <td colspan="10" align="left">' . $value['nombre'] . '</td>
         <td colspan="6" align="center">' . $value['ci'] . '</td>
         <td colspan="10" align="center">' . $value['rol'] . '</td>
+        <td colspan="10" align="center">' . $value['cargo'] . '</td>
         <td colspan="10" align="center">' . $value['area'] . '</td>
         <td colspan="6" align="center">' . $fechaCreacion . '</td>
         </tr>';

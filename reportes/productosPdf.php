@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $table = '
     <table border="0" cellpadding="1" cellspacing="2">
     <tr>
-    <td colspan="20" align="center"><b>REPORTE DE BIENES</b></td>
+    <td colspan="20" align="center"><b>REPORTE DE ACTIVOS</b></td>
     </tr>
     <tr>
     <td colspan="10">' . $fechaFormato . '</td>
@@ -88,17 +88,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $pdf->SetFont('times', '', 8);
     $table = '
     <table border="0.5" cellpadding="2" cellspacing="0">
+    <thead>
     <tr>
-    <td colspan="2" align="center"><b>#</b></td>
-    <td colspan="10" align="center"><b>Tipo de Bien</b></td>
-    <td colspan="10" align="center"><b>Bien</b></td>
-    <td colspan="10" align="center"><b>Descripción</b></td>
-    <td colspan="8" align="center"><b>Código</b></td>
-    <td colspan="6" align="center"><b>Fecha de Ingreso</b></td>
-    <td colspan="7" align="center"><b>Costo de Adquisición</b></td>
-    <td colspan="7" align="center"><b>Depreciación Anual</b></td>
-    <td colspan="7" align="center"><b>Costo Ajustado</b></td>
-    </tr>';
+    <th colspan="2" align="center"><b>#</b></th>
+    <th colspan="8" align="center"><b>Código</b></th>
+    <th colspan="10" align="center"><b>Tipo de Activo</b></th>
+    <th colspan="10" align="center"><b>Activo</b></th>
+    <th colspan="10" align="center"><b>Descripción</b></th>
+    <th colspan="6" align="center"><b>Fecha de Ingreso</b></th>
+    <th colspan="7" align="center"><b>Costo de Adquisición</b></th>
+    <th colspan="7" align="center"><b>Depreciación Anual</b></th>
+    <th colspan="7" align="center"><b>Costo Ajustado</b></th>
+    </tr>
+    </thead>
+    <tbody>';
     $nro = 1;
     if (count($listaProductos) == 0) {
         $table .= '
@@ -121,10 +124,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $table .= '
         <tr>
         <td colspan="2" align="center">' . $nro . '</td>
+        <td colspan="8" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="10" align="left">' . $tipoBien . '</td>
         <td colspan="10" align="left">' . $bien . '</td>
         <td colspan="10" align="left">' . $value['producto'] . '</td>
-        <td colspan="8" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="6" align="center">' . $fechaIngreso . '</td>
         <td colspan="7" align="right">' . number_format($value['costoAdquisicion'], 2) . '</td>
         <td colspan="7" align="right">' . number_format($value['costoAdquisicion'] * $coeficiente, 2) . '</td>
@@ -133,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $nro++;
     }
 
-    $table .= '</table>';
+    $table .= '</tbody></table>';
     $pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, '', true);
     $pdf->lastPage();
     // $pdf->Output("reporte_productos.pdf", "I");

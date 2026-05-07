@@ -52,7 +52,7 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                                             <option value="actaDevolucion">Acta de Devolución</option>
                                             <option value="asignacion">Asignación</option>
                                             <option value="depreciacion">Depreciación</option>
-                                            <option value="producto">Bien</option>
+                                            <option value="producto">Activos</option>
                                             <option value="inventario">Inventario</option>
                                             <option value="usuario">Usuario</option>
                                         </select>
@@ -101,7 +101,7 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                                 </div>
                                 <div class="col-md-3" id="divTipoBien">
                                     <div class="form-group">
-                                        <label>Tipo de Bien</label>
+                                        <label>Tipo de Activo</label>
                                         <select class="form-control" id="tipoProducto" name="tipo_bien" onchange="getBien()">
                                             <option value="">Todos</option>
                                             <?php
@@ -114,7 +114,7 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                                 </div>
                                 <div class="col-md-3" id="divBien">
                                     <div class="form-group">
-                                        <label>Bien</label>
+                                        <label>Activo</label>
                                         <select class="form-control" id="bien" name="bien">
                                             <option value="">Todos</option>
                                         </select>

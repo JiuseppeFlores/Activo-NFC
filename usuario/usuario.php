@@ -32,7 +32,7 @@ $idRol = $_SESSION['idRol'];
 
                         <div class="form-inline" style="float: left;">
                             <div class="input-group" data-widget="sidebar-search">
-                                <?php if ($idRol != 3) { ?>}
+                                <?php if ($idRol != 3) { ?>
                                 <input class="form-control" id="busqueda_usuario" onkeyup="listar_usuario(1)" type="search" placeholder="Buscar" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-sidebar">

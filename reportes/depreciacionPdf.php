@@ -65,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <table border="0.5" cellpadding="2" cellspacing="0">
     <tr>
     <td colspan="2" align="center"><b>#</b></td>
-    <td colspan="8" align="center"><b>Bien</b></td>
-    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="7" align="center"><b>Código</b></td>
+    <td colspan="8" align="center"><b>Activo</b></td>
+    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="5" align="center"><b>Costo Adq.</b></td>
     <td colspan="5" align="center"><b>Año Ingreso</b></td>
     <td colspan="5" align="center"><b>Vida Útil</b></td>
@@ -80,9 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $table .= '
         <tr>
         <td colspan="2" align="center">' . $nro . '</td>
+        <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="8" align="left">' . $value['bienDetalle'] . '</td>
         <td colspan="11" align="left">' . $value['producto'] . '</td>
-        <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="5" align="center">' . number_format($value['costoAdquisicion'], 2) . '</td>
         <td colspan="5" align="center">' . $value['gestion'] . '</td>
         <td colspan="5" align="center">' . $value['vidaUtil'] . ' años</td>

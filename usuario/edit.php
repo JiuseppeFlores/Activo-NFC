@@ -15,6 +15,7 @@ $ci = $row["ci"];
 $correo = $row["correo"];
 $idRol = $row["idRol"];
 $idArea = $row["idArea"];
+$cargo = $row["cargo"];
 $t = time();
 
 ?>
@@ -105,6 +106,14 @@ $t = time();
         </div>
         <div class="col-9">
             <input type="email" name="correo" id="correo" required autocomplete="off" class="form-control" placeholder="ejemplo@dominio.com" value="<?php echo $correo ?>">
+        </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
+            <label class="col-form-label">Cargo</label>
+        </div>
+        <div class="col-9">
+            <input type="text" name="cargo" id="cargo" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $cargo ?>">
         </div>
     </div><br>
     <div class="row g-3 align-items-center">

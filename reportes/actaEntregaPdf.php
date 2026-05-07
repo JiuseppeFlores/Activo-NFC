@@ -142,8 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <table border="0" cellpadding="3">
             <tr>
             <th style="text-align: left; border-bottom: 0.2px solid black;">#</th>
-            <th colspan="4" style="text-align: left; border-bottom: 0.2px solid black;"><b>Bien</b></th>
             <th colspan="3" style="text-align: left; border-bottom: 0.2px solid black;"><b>Código</b></th>
+            <th colspan="4" style="text-align: left; border-bottom: 0.2px solid black;"><b>Activo</b></th>
             <th colspan="4" style="text-align: left; border-bottom: 0.2px solid black;"><b>Descripción</b></th>
             </tr>';
             $cont = 1;
@@ -156,8 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $html .= '
                 <tr>
                     <td>' . $cont . '</td>
-                    <td colspan="4">' . $asignacion['bienDetalle'] . '</td>
                     <td colspan="3">' . $asignacion['codigoBarras'] . '</td>
+                    <td colspan="4">' . $asignacion['bienDetalle'] . '</td>
                     <td colspan="4">' . $asignacion['producto'] . '</td>
                 </tr>';
                 $cont++;

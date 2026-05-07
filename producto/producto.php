@@ -7,9 +7,9 @@ $idRol = $_SESSION['idRol'];
         <div class="row mb-2">
             <div class="col-12">
                 <input type="hidden" class="form-control" id="pagina" value="1">
-                <h1 class="m-0" style="display:inline-block">Bienes</h1>
+                <h1 class="m-0" style="display:inline-block">Activos</h1>
                 <?php if ($idRol == 1) { ?>
-                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_producto()"> <i class="fas fa-plus"></i> Añadir Bien</button>
+                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_producto()"> <i class="fas fa-plus"></i> Añadir Activo</button>
                 <!-- <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="reporteProductos()"><i class="fas fa-file"></i> Generar reporte</button> -->
                 <?php } ?>
             </div><!-- /.col -->

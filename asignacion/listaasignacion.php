@@ -17,6 +17,11 @@ if (isset($_POST['texto']) && !empty($_POST['texto'])) {
     $search_in_sql .= " WHERE (tu.nombre like '%" . $texto . "%'  OR tu.apellidoPaterno like '%" . $texto . "%'  OR tu.apellidoMaterno like '%" . $texto . "%'  OR tp.producto like '%" . $texto . "%'  OR tp.codigoBarras like '%" . $texto . "%'  OR ta.fechaInicial like '%" . $texto . "%'  OR ta.fechaFinal like '%" . $texto . "%' ) ";
 }
 
+if (isset($_POST['area']) && !empty($_POST['area'])) {
+    $area = $_POST['area'];
+    $search_in_sql = $search_in_sql == "" ? " WHERE tu.idArea = " . $area : $search_in_sql . " AND tu.idArea = " . $area;
+}
+
 // if(strlen(trim($search_in_sql)) == 0){
 //     $search_in_sql .= " WHERE ".tblAsignacion.idUsuario = tblUsuario.idUsuario AND tblAsignacion.idProducto = tblProducto.idProducto
 // }else{
@@ -38,7 +43,7 @@ if ($count_row === false) {
     <input type="checkbox" id="selectAll" class="checkbox-lg" onclick="toggleAllCheckboxes(this)">
     </div></th>
     <th>Información</th>
-    <th>Bien</th>
+    <th>Activo</th>
     <th>Código</th>
     <th>Usuario</th>
     <th>Fecha Inicial</th>
@@ -96,7 +101,7 @@ if ($count_row === false) {
             <div class='table-responsive'>
             <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
             <tr>
-            <td >Producto</td>
+            <td >Activo</td>
             <td >" . $row["producto"] . "</td>
             </tr>
             <tr>
@@ -201,7 +206,7 @@ if ($count_row === false) {
             <div class='table-responsive'>
             <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
             <tr>
-            <td >Producto</td>
+            <td >Activo</td>
             <td >" . $row["producto"] . "</td>
             </tr>
             <tr>

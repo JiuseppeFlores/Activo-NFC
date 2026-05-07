@@ -6,9 +6,11 @@ function listar_asignacion(pag) {
 
   var start = (pag - 1) * 10;
   var texto = $("#busqueda_asignacion").val();
+  var area = $("#area_filter").val();
   var parametros = {
     start: start,
     texto: texto,
+    area: area,
   };
 
   var result1 = "";

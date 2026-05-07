@@ -29,10 +29,11 @@ if ($count_row === false) {
     <table style="text-align:center" class="table table-hover">
     <tr>
     <th>Información</th>
-    <th>Bien</th>
+    <th>Activo</th>
     <th>Descripción</th>
     <th>Código</th>
     <th>Fecha de Ingreso</th>
+    <th>Valoración</th>
     <th>Estado</th>
     <th>Opciones</th>
     </tr>';
@@ -77,7 +78,7 @@ if ($count_row === false) {
         <div class='table-responsive'>
         <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
         <tr>
-        <td >Bien</td>
+        <td >Activo</td>
         <td >" . ($row['bienDetalle'] ?? "Sin definir") . "</td>
         </tr>
         <tr>
@@ -91,6 +92,10 @@ if ($count_row === false) {
         <tr>
         <td >Fecha de Ingreso</td>
         <td >" . $fechaIngreso . "</td>
+        </tr>
+        <tr>
+        <td>Valoración</td>
+        <td>" . $row['valoracion'] . "</td>
         </tr>
         <tr>
         <td>Estado</td>
@@ -110,6 +115,7 @@ if ($count_row === false) {
         <td>' . $row['producto'] . '</td>
         <td>' . $row['codigoBarras'] . '</td>
         <td>' . $fechaIngreso . '</td>
+        <td>' . $row['valoracion'] . '</td>
         <td>' . $row['estado'] . '</td>
         <td>';
         // <button class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_producto" data-id="' . $row['idProducto'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>

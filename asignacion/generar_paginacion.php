@@ -9,6 +9,11 @@ if (!empty($texto)) {
     $search_in_sql = " WHERE (tu.nombre like '%" . $texto . "%'  OR tu.apellidoPaterno like '%" . $texto . "%'  OR tu.apellidoMaterno like '%" . $texto . "%'  OR tp.producto like '%" . $texto . "%'  OR tp.codigoBarras like '%" . $texto . "%'  OR ta.fechaInicial like '%" . $texto . "%'  OR ta.fechaFinal like '%" . $texto . "%' )";
 }
 
+if (isset($_POST['area']) && !empty($_POST['area'])) {
+    $area = $_POST['area'];
+    $search_in_sql = $search_in_sql == "" ? " WHERE tu.idArea = " . $area : $search_in_sql . " AND tu.idArea = " . $area;
+}
+
 $sql = "SELECT COUNT(ta.idAsignacion) FROM tblAsignacion ta LEFT JOIN tblUsuario tu ON tu.idUsuario = ta.idUsuario LEFT JOIN tblProducto tp ON tp.idProducto = ta.idProducto $search_in_sql";
 
 

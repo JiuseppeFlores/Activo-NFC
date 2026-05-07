@@ -74,9 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <table border="0.5" cellpadding="2" cellspacing="0">
     <tr>
     <td colspan="2" align="center"><b>#</b></td>
-    <td colspan="8" align="center"><b>Bien</b></td>
-    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="7" align="center"><b>Código</b></td>
+    <td colspan="8" align="center"><b>Activo</b></td>
+    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="11" align="center"><b>Usuario</b></td>
     <td colspan="5" align="center"><b>CI</b></td>
     <td colspan="5" align="center"><b>Inicio</b></td>
@@ -97,9 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $table .= '
         <tr>
         <td colspan="2" align="center">' . $nro . '</td>
+        <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="8" align="left">' . $bienDetalle . '</td>
         <td colspan="11" align="left">' . $value['producto'] . '</td>
-        <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
         <td colspan="11" align="left">' . $value['apellidoPaterno'] . ' ' . $value['apellidoMaterno'] . ' ' . $value['nombre'] . '</td>
         <td colspan="5" align="center">' . $value['ci'] . '</td>
         <td colspan="5" align="center">' . $fechaInicial. '</td>

@@ -38,7 +38,7 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     <br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
-            <label class="col-form-label">Tipo de Bien</label>
+            <label class="col-form-label">Tipo de Activo</label>
         </div>
         <div class="col-9">
             <select id="tipoProducto" name="tipoProducto" required autocomplete="off" class="form-control" onchange="getBien()">
@@ -50,7 +50,7 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
-            <label class="col-form-label">Bien</label>
+            <label class="col-form-label">Activo</label>
         </div>
         <div class="col-9">
             <select id="bien" name="bien" required autocomplete="off" class="form-control" onchange="countBien()">
@@ -103,6 +103,18 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
         </div>
         <div class="col-9">
             <input type="number" name="costoAdquisicion" required autocomplete="off" class="form-control" placeholder="Escriba..." min="1">
+        </div>        
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
+            <label class="col-form-label">Valoración</label>
+        </div>
+        <div class="col-9">
+            <select name="valoracion" class="form-control" required>
+                <option value="BUENO">Bueno</option>
+                <option value="REGULAR">Regular</option>
+                <option value="MALO">Malo</option>
+            </select>
         </div>        
     </div><br>
     <div class="row g-3 align-items-center">

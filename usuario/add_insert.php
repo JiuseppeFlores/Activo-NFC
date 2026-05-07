@@ -11,8 +11,10 @@ $correo = $_POST["correo"];
 $idRol = $_POST["idRol"];
 $idArea = $_POST["idArea"];
 $idUsuario = $_SESSION['idUsuario'];
+$cargo = $_POST["cargo"];
+
 $id = guidv4();
-$sql = "  INSERT INTO tblUsuario (usuario,password,nombre,apellidoPaterno,apellidoMaterno,ci,correo,idRol,idArea,idUsuarioCreador) VALUES ('$usuario','$password','$nombre','$apellidoPaterno','$apellidoMaterno','$ci','$correo','$idRol','$idArea','$idUsuario');";
+$sql = "  INSERT INTO tblUsuario (usuario,password,nombre,apellidoPaterno,apellidoMaterno,ci,correo,idRol,idArea,idUsuarioCreador,cargo) VALUES ('$usuario','$password','$nombre','$apellidoPaterno','$apellidoMaterno','$ci','$correo','$idRol','$idArea','$idUsuario','$cargo');";
 // echo $sql;
 $query = sqlsrv_query($con, $sql);
 

@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         Información
         </th>
         <th>
-        Bien
+        Activo
         </th>
         <th>
         Vida útil (años)
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class='table-responsive'>
             <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
             <tr>
-            <td >Bien</td>
+            <td >Activo</td>
             <td >" . $row["bien"] . "</td>
             </tr>
             <tr>

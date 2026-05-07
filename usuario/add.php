@@ -86,6 +86,14 @@ include("../conexion.php");
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
+            <label class="col-form-label">Cargo</label>
+        </div>
+        <div class="col-9">
+            <input type="text" name="cargo" id="cargo" required autocomplete="off" class="form-control" placeholder="Escriba...">
+        </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
             <label class="col-form-label">Rol</label>
         </div>
         <div class="col-9">

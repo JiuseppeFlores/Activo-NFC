@@ -14,11 +14,12 @@ $idRol = $_SESSION['idRol'];
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <?php if ($idRol != 3) { ?>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3 id="total_bienes">0</h3>
-                        <p>Total de Bienes</p>
+                        <p>Total de Activos</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-box"></i>
@@ -28,12 +29,12 @@ $idRol = $_SESSION['idRol'];
                     <?php } ?>
                 </div>
             </div>
-
+            <?php } ?>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3 id="bienes_asignados">0</h3>
-                        <p>Bienes asignados</p>
+                        <p>Activos asignados</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-check-circle"></i>
@@ -43,12 +44,12 @@ $idRol = $_SESSION['idRol'];
                     <?php } ?>
                 </div>
             </div>
-
+            <?php if ($idRol != 3) { ?>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3 id="bienes_no_asignados">0</h3>
-                        <p>Bienes no asignados</p>
+                        <p>Activos no asignados</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-tools"></i>
@@ -58,12 +59,12 @@ $idRol = $_SESSION['idRol'];
                     <?php } ?>
                 </div>
             </div>
-
+            <?php } ?>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3 id="bienes_depreciados">0</h3>
-                        <p>Bienes depreciados</p>
+                        <p>Activos depreciados</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-exclamation-circle"></i>

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // para la consulta a la base de datos
     $listaAsignaciones = array();
     $sql = "SELECT tas.*, tp.producto, tp.codigoBarras, tdd.bienDetalle FROM tblAsignacion tas LEFT JOIN tblUsuario tu ON tu.idUsuario = tas.idUsuario LEFT JOIN tblProducto tp ON tas.idProducto = tp.idProducto LEFT JOIN tblDepreciacionDetalle tdd ON tdd.idDepreciacionDetalle = tp.idDepreciacionDetalle WHERE tu.idUsuario = $idUsuario ORDER BY tas.idAsignacion ASC;";
-    $sqlUsuario = "SELECT tu.idUsuario, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tu.ci FROM tblUsuario tu WHERE tu.idUsuario = $idUsuario;";
+    $sqlUsuario = "SELECT tu.idUsuario, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tu.ci, tu.cargo FROM tblUsuario tu WHERE tu.idUsuario = $idUsuario;";
     $query = sqlsrv_query($con, $sql);
     $queryUsuario = sqlsrv_query($con, $sqlUsuario);
     while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $rowUsuario = sqlsrv_fetch_array($queryUsuario, SQLSRV_FETCH_ASSOC);
     $ciUsuario = $rowUsuario['ci'];
     $nombreUsuario = $rowUsuario['nombre'] . " " . $rowUsuario['apellidoPaterno'] . " " . $rowUsuario['apellidoMaterno'];
+    $cargoUsuario = $rowUsuario['cargo'];
     // para la generacion del pdf
     class MYPDF extends TCPDF
     {
@@ -53,6 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <td colspan="20" align="left">CI: ' . $ciUsuario . '</td>
     </tr>
     <tr>
+    <td colspan="20" align="left">Cargo: ' . $cargoUsuario . '</td>
+    </tr>
+    <tr>
     <td colspan="20" align="left">Fecha de impresión: ' . $fechaImpresion . '</td>
     </tr>
     </table>';
@@ -62,15 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <table border="0.5" cellpadding="2" cellspacing="0">
     <tr>
     <td colspan="2" align="center"><b>#</b></td>
-    <td colspan="8" align="center"><b>Bien</b></td>
-    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="7" align="center"><b>Código</b></td>
+    <td colspan="8" align="center"><b>Activo</b></td>
+    <td colspan="11" align="center"><b>Descripción</b></td>
     <td colspan="5" align="center"><b>Inicio</b></td>
     <td colspan="5" align="center"><b>Fin</b></td>
     </tr>';
     $nro = 1;
     if (count($listaAsignaciones) == 0) {
-        $table .= '<tr><td colspan="38" align="center">El usuario no tiene productos asignados.</td></tr>';
+        $table .= '<tr><td colspan="38" align="center">El usuario no tiene activos asignados.</td></tr>';
     } else {
         foreach ($listaAsignaciones as $key => $value) {
             $bienDetalle = $value['bienDetalle'] ?? "Sin definir";
@@ -79,9 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $table .= '
             <tr>
             <td colspan="2" align="center">' . $nro . '</td>
+            <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
             <td colspan="8" align="left">' . $bienDetalle . '</td>
             <td colspan="11" align="left">' . $value['producto'] . '</td>
-            <td colspan="7" align="center">' . $value['codigoBarras'] . '</td>
             <td colspan="5" align="center">' . $fechaInicial. '</td>
             <td colspan="5" align="center">' . $fechaFinal . '</td>
             </tr>';

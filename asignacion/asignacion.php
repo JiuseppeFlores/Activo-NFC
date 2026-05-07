@@ -1,6 +1,13 @@
 <?php
-session_start();
+// session_start();
+include("../conexion.php");
 $idRol = $_SESSION['idRol'];
+$sqlArea = "SELECT * FROM tblArea ORDER BY area";
+$stmt = sqlsrv_query($con, $sqlArea);
+$listaArea = array();
+while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    $listaArea[] = $row;
+}
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -33,12 +40,20 @@ $idRol = $_SESSION['idRol'];
                         <div class="form-inline" style="float:left">
                             <div class="input-group" data-widget="sidebar-search">
                                 <?php if ($idRol != 3) { ?>
+                                <label style="margin-right:10px">Buscar:</label>    
                                 <input class="form-control" id="busqueda_asignacion" onkeyup="listar_asignacion(1)" type="search" placeholder="Buscar" aria-label="Search">
-                                <div class="input-group-append">
+                                <!-- <div class="input-group-append">
                                     <button class="btn btn-sidebar">
                                         <i class="fas fa-search fa-fw"></i>
                                     </button>
-                                </div>
+                                </div> -->
+                                <label style="margin-right:10px;margin-left:10px">Área:</label>
+                                <select id="area_filter" style="display:inline-block;margin-left:10px" class="form-control" onchange="listar_asignacion(1)">
+                                    <option value="">Todas las áreas</option>
+                                    <?php foreach ($listaArea as $area) { ?>
+                                        <option value="<?php echo $area['idArea']; ?>"><?php echo $area['area']; ?></option>
+                                    <?php } ?>
+                                </select>
                                 <?php } ?>
                             </div>
                         </div>

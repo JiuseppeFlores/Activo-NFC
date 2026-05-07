@@ -8,7 +8,7 @@ if (isset($_POST['texto']) && !empty($_POST['texto'])) {
     $search_in_sql .= " WHERE (tu.nombre LIKE '%$texto%' OR tu.apellidoPaterno LIKE '%$texto%' OR tu.apellidoMaterno LIKE '%$texto%' OR tp.producto LIKE '%$texto%' OR tp.codigoBarras LIKE '%$texto%' OR tu2.nombre LIKE '%$texto%' OR tu2.apellidoPaterno LIKE '%$texto%' OR tu2.apellidoMaterno LIKE '%$texto%') ";
 }
 
-$sql = "SELECT ti.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.producto, tp.codigoBarras, tu2.nombre AS nombreCreador, tu2.apellidoPaterno AS apellidoPaternoCreador, tu2.apellidoMaterno AS apellidoMaternoCreador FROM tblInventario ti LEFT JOIN tblAsignacion ta ON ti.idAsignacion = ta.idAsignacion LEFT JOIN tblProducto tp ON ta.idProducto = tp.idProducto LEFT JOIN tblUsuario tu ON ta.idUsuario = tu.idUsuario LEFT JOIN tblUsuario tu2 ON ti.idUsuarioCreador = tu2.idUsuario ORDER BY ti.idInventario DESC offset $start_from ROWS FETCH NEXT 10 ROWS ONLY;";
+$sql = "SELECT ti.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.producto, tp.codigoBarras, tu2.nombre AS nombreCreador, tu2.apellidoPaterno AS apellidoPaternoCreador, tu2.apellidoMaterno AS apellidoMaternoCreador FROM tblInventario ti LEFT JOIN tblAsignacion ta ON ti.idAsignacion = ta.idAsignacion LEFT JOIN tblProducto tp ON ta.idProducto = tp.idProducto LEFT JOIN tblUsuario tu ON ta.idUsuario = tu.idUsuario LEFT JOIN tblUsuario tu2 ON ti.idUsuarioCreador = tu2.idUsuario $search_in_sql ORDER BY ti.idInventario DESC offset $start_from ROWS FETCH NEXT 10 ROWS ONLY;";
 // echo $sql;
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
@@ -21,8 +21,8 @@ if ($count_row === false) {
     <table style="text-align:center" class="table table-hover">
     <th>Información</th>
     <th>Usuario</th>
-    <th>Bien</th>
-    <th>Cód. Barras</th>
+    <th>Activo</th>
+    <th>Código</th>
     <th>Revisor</th>
     <th>Observación</th>
     <th>Fecha</th>';
@@ -67,11 +67,11 @@ if ($count_row === false) {
         <td>" . $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'] . "</td>
         </tr>
         <tr>
-        <td>Producto</td>
+        <td>Activo</td>
         <td>" . $row['producto'] . "</td>
         </tr>
         <tr>
-        <td>Cód. Barras</td>
+        <td>Código</td>
         <td>" . $row['codigoBarras'] . "</td>
         </tr>
         <tr>

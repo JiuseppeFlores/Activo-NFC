@@ -1,10 +1,17 @@
+<?php
+session_start();
+$idRol = $_SESSION['idRol'];
+?>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-12">
                 <input type="hidden" class="form-control" id="pagina" value="1">
                 <h1 class="m-0" style="display:inline-block">Inventario</h1>
+
+                <?php if ($idRol == 1) { ?>
                 <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_inventario()"> <i class="fas fa-plus"></i> Añadir Registro</button>
+                <?php } ?>
                 <!-- <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="reporteInventario()"><i class="fas fa-file"></i> Generar reporte</button> -->
             </div><!-- /.col -->
         </div><!-- /.row -->

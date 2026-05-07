@@ -35,6 +35,7 @@ if ($count_row === false) {
     <th>Nombre</th>
     <th>CI</th>
     <th>Rol</th>
+    <th>Cargo</th>
     <th>Área</th>
     <th>Opciones</th>
     </tr>';
@@ -104,6 +105,10 @@ if ($count_row === false) {
             <td >" . $row["rol"] . "</td>
             </tr>
             <tr>
+            <td >Cargo</td>
+            <td >" . $row["cargo"] . "</td>
+            </tr>
+            <tr>
             <td >Area</td>
             <td >" . $row["area"] . "</td>
             </tr>
@@ -121,6 +126,7 @@ if ($count_row === false) {
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
             <td>' . $row['ci'] . '</td>
             <td>' . $row['rol'] . '</td>
+            <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
             <td>
             <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
@@ -191,6 +197,10 @@ if ($count_row === false) {
             <td >" . $row["rol"] . "</td>
             </tr>
             <tr>
+            <td >Cargo</td>
+            <td >" . $row["cargo"] . "</td>
+            </tr>
+            <tr>
             <td >Area</td>
             <td >" . $row["area"] . "</td>
             </tr>
@@ -208,6 +218,7 @@ if ($count_row === false) {
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
             <td>' . $row['ci'] . '</td>
             <td>' . $row['rol'] . '</td>
+            <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
             <td>
             <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
