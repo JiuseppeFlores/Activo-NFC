@@ -48,6 +48,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.css">
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="../js_lib/plugins/jquery/jquery.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -101,15 +102,13 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
 
     <div id="shadow" class="popup"></div>
 
-    <script src="../js_lib/plugins/jquery/jquery.min.js"></script>
     <script src="../js_lib/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script src="../js_lib/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js_lib/plugins/jquery-knob/jquery.knob.min.js"></script>
     <script src="../js_lib/plugins/chart.js/Chart.min.js"></script>
     <script src="../js_lib/plugins/sparklines/sparkline.js"></script>
-    <script src="../js_lib/plugins/jquery-knob/jquery.knob.min.js"></script>
     <script src="../js_lib/plugins/moment/moment.min.js"></script>
     <script src="../js_lib/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../js_lib/plugins/summernote/summernote-bs4.min.js"></script>
