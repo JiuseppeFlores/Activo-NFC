@@ -45,7 +45,10 @@ $sql = "SELECT
             tu.apellidoMaterno, 
             tu.ci, 
             tu.idRol, 
-            tu.idArea 
+            tu.idArea,
+            (SELECT COUNT(*) FROM tblInventario i2 
+             INNER JOIN tblAsignacion a2 ON i2.idAsignacion = a2.idAsignacion 
+             WHERE a2.idProducto = tp.idProducto) as inventariado
         FROM tblProducto tp 
         LEFT JOIN tblAsignacion tas ON tp.idProducto = tas.idProducto AND tas.estado = 'ASIGNADO'
         LEFT JOIN tblUsuario tu ON tas.idUsuario = tu.idUsuario 
@@ -72,6 +75,9 @@ if (sqlsrv_has_rows($consulta)) {
     if (intval($activo['idAsignacion']) === 0) {
         Respuesta::json(null, 403, "El activo se encuentra registrado pero no tiene una asignación vigente.");
     }
+    
+    // Formatear datos para la respuesta
+    $activo['inventariado'] = (intval($activo['inventariado']) > 0);
     
     // Formatear fechas
     foreach ($activo as $llave => $valor) {

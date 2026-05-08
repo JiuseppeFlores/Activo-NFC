@@ -2,7 +2,7 @@
 
 /**
  * Endpoint: GET /api/v1/activos/obtener.php?id={id}
- * Descripción: Obtiene los datos de un ACTIVO a través de su ID.
+ * Descripción: Obtiene los datos de un ACTIVO a través de su ID, incluyendo estado de inventario.
  */
 
 // 1. Incluir dependencias
