@@ -25,6 +25,10 @@ $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
     echo "<div style='text-align:center'><h2>Lista de Producto vacia!</h2></div>";
 } else {
+    // Verificar que el cliente utiliza un dispositivo móvil
+    $agente = $_SERVER['HTTP_USER_AGENT'];
+    $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
+    
     $resultado = '<div class="table-responsive">
     <table style="text-align:center" class="table table-hover">
     <tr>
@@ -122,6 +126,7 @@ if ($count_row === false) {
         $resultado .= '<button class="btn btn-primary" onclick="edit_producto(\'' . $row['idProducto'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
         <button class="btn btn-info" title="Cambiar estado" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"><i class="fas fa-lock"></i></button>
         <button class="btn btn-warning" onclick="generarReporteBien(\'' . $row['idProducto'] . '\')"> <i class="fas fa-file-pdf"></i></button>
+        '.($esDispositivoMovil ? '<button class="btn btn-success" type="button" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\')" title="Asignar código NFC" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"> <i class="fas fa-microchip"></i></button>' : '').'
         </td>
         </tr>';
     }
