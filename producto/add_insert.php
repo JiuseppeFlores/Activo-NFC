@@ -13,9 +13,10 @@ $tipoAdquisicion = $_POST['tipoAdquisicion'];
 $valoracion = $_POST['valoracion'];
 $idUsuario = $_SESSION['idUsuario'];
 $estado = 'ACTIVO';
+$idUsuarioResponsable = $_POST['idUsuario'];
 $id = guidv4();
-$sql = "INSERT INTO tblProducto (producto,codigoBarras,uidTag,idUsuarioCreador,idDepreciacion,idDepreciacionDetalle,costoAdquisicion,fechaIngreso,marca,tipoAdquisicion,valoracion,estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
-$params = array($producto, $codigoBarras, $uidTag, $idUsuario, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $valoracion, $estado);
+$sql = "INSERT INTO tblProducto (producto,codigoBarras,uidTag,idUsuarioCreador,idDepreciacion,idDepreciacionDetalle,costoAdquisicion,fechaIngreso,marca,tipoAdquisicion,valoracion,estado,idUsuarioResponsable) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+$params = array($producto, $codigoBarras, $uidTag, $idUsuario, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $valoracion, $estado, $idUsuarioResponsable);
 
 $sql_rep = "SELECT * FROM tblProducto WHERE codigoBarras=?";
 $params_rep = array($codigoBarras);

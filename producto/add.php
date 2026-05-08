@@ -13,6 +13,13 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     $listaDepreciacionDetalle[$rowDetalle['idDepreciacion']][] = $rowDetalle;
 }
 
+$sqlUsuarios = "SELECT * FROM tblUsuario ORDER BY apellidoPaterno, apellidoMaterno, nombre ASC;";
+$queryUsuarios = sqlsrv_query($con, $sqlUsuarios);
+$listaUsuarios = array();
+while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
+    $listaUsuarios[$rowUsuarios['idUsuario']] = $rowUsuarios;
+}
+
 ?>
 
 <form style="padding:10px" id="add_producto">
@@ -107,7 +114,7 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
-            <label class="col-form-label">Valoración</label>
+            <label class="col-form-label">Estado del Activo</label>
         </div>
         <div class="col-9">
             <select name="valoracion" class="form-control" required>
@@ -124,6 +131,18 @@ while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
         <div class="col-9">
             <input type="date" name="fechaIngreso" required autocomplete="off" class="form-control" value="<?php echo date('Y-m-d') ?>" max="<?php echo date('Y-m-d') ?>">
         </div>
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
+            <label class="col-form-label">Usuario Responsable</label>
+        </div>
+        <div class="col-9">
+            <select name="idUsuario" class="form-control" required>
+                <?php foreach($listaUsuarios as $usuario): ?>
+                    <option value="<?php echo $usuario['idUsuario']; ?>"><?php echo $usuario['apellidoPaterno'] . ' ' . $usuario['apellidoMaterno'] . ' ' . $usuario['nombre'] . ' (CI: ' . $usuario['ci'] . ')'; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>        
     </div><br>
 </form>
 

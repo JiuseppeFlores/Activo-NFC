@@ -33,8 +33,8 @@ if ($count_row === false) {
     <th>Descripción</th>
     <th>Código</th>
     <th>Fecha de Ingreso</th>
-    <th>Valoración</th>
     <th>Estado</th>
+    <th>Disponibilidad</th>
     <th>Opciones</th>
     </tr>';
 
@@ -94,11 +94,11 @@ if ($count_row === false) {
         <td >" . $fechaIngreso . "</td>
         </tr>
         <tr>
-        <td>Valoración</td>
+        <td>Estado</td>
         <td>" . $row['valoracion'] . "</td>
         </tr>
         <tr>
-        <td>Estado</td>
+        <td>Disponibilidad</td>
         <td>" . $row['estado'] . "</td>
         </tr>
         </table>

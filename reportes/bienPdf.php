@@ -6,14 +6,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fechaImpresion = date("d/m/Y H:i");
     $idBien = $_POST['idBien'];
     if ($idBien == 0) {
-        $sql = "SELECT TOP 1 * FROM tblProducto tp LEFT JOIN tblDepreciacion td ON tp.idDepreciacion = td.idDepreciacion LEFT JOIN tblDepreciacionDetalle tdd ON tp.idDepreciacionDetalle = tdd.idDepreciacionDetalle ORDER BY idProducto DESC;";
+        $sql = "SELECT TOP 1 * FROM tblProducto tp LEFT JOIN tblDepreciacion td ON tp.idDepreciacion = td.idDepreciacion LEFT JOIN tblDepreciacionDetalle tdd ON tp.idDepreciacionDetalle = tdd.idDepreciacionDetalle LEFT JOIN tblUsuario tu ON tu.idUsuario = tp.idUsuarioResponsable ORDER BY idProducto DESC;";
     } else {
-        $sql = "SELECT * FROM tblProducto tp LEFT JOIN tblDepreciacion td ON tp.idDepreciacion = td.idDepreciacion LEFT JOIN tblDepreciacionDetalle tdd ON tp.idDepreciacionDetalle = tdd.idDepreciacionDetalle WHERE tp.idProducto = $idBien;";
+        $sql = "SELECT * FROM tblProducto tp LEFT JOIN tblDepreciacion td ON tp.idDepreciacion = td.idDepreciacion LEFT JOIN tblDepreciacionDetalle tdd ON tp.idDepreciacionDetalle = tdd.idDepreciacionDetalle LEFT JOIN tblUsuario tu ON tu.idUsuario = tp.idUsuarioResponsable WHERE tp.idProducto = $idBien;";
     }
     $query = sqlsrv_query($con, $sql);
     $row = sqlsrv_fetch_array($query);
     $marca = isset($row['marca']) ? $row['marca'] : '';
     $tipoAdquisicion = isset($row['tipoAdquisicion']) ? $row['tipoAdquisicion'] : '';
+    $usuarioResponsable = isset($row['nombre']) ? strtoupper($row['nombre']) . ' ' . strtoupper($row['apellidoPaterno']) . ' ' . strtoupper($row['apellidoMaterno']) . '<br>CI: ' . $row['ci'] : '';
     class MYPDF extends TCPDF {
         public function Header() {
             $image_file = '../images/logoStisHorizontal.png';
@@ -64,47 +65,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $html = '
     <table border="0" cellpadding="3">
     <tr>
-    <td colspan="5"></td>
+    <td colspan="4"></td>
     <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">LUGAR:</td>
-    <td colspan="5" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">STIS</td>
-    <td colspan="5"></td>
+    <td colspan="6" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">EMPRESA</td>
+    <td colspan="4"></td>
     </tr>
     <tr>
-    <td colspan="5"></td>
+    <td colspan="4"></td>
     <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">FECHA:</td>
-    <td colspan="5" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['fechaIngreso']->format('d/m/Y') . '</td>
-    <td colspan="5"></td>
+    <td colspan="6" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['fechaIngreso']->format('d/m/Y') . '</td>
+    <td colspan="4"></td>
     </tr>
     <tr>
-    <td colspan="5"></td>
+    <td colspan="4"></td>
     <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">RESPONSABLE:</td>
-    <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;"></td>
-    <td colspan="5"></td>
+    <td colspan="6" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $usuarioResponsable . '</td>
+    <td colspan="4"></td>
     </tr>
     <tr>
     <td colspan="20" style="font-size: 5px;"></td>
     </tr>
     <tr>
-    <td colspan="20">En fecha ' . $row['fechaIngreso']->format('d/m/Y') . ', se realizó el ingreso de bienes para la empresa, ya culminando con el informa de conformidad del área solicitante.</td>
+    <td colspan="20">En fecha ' . $row['fechaIngreso']->format('d/m/Y') . ', se realizó el ingreso de activos para la empresa, ya culminando con el informa de conformidad del área solicitante.</td>
     </tr>
     <tr>
     <td colspan="20" style="font-size: 3px;"></td>
     </tr>
     <tr>
-    <td colspan="20">Se realizó el ingreso del bien bajo el siguiente detalle:</td>
+    <td colspan="20">Se realizó el ingreso del activo bajo el siguiente detalle:</td>
     </tr>
     <tr>
     <td colspan="20" style="font-size: 5px;"></td>
     </tr>
     <tr>
     <td colspan="3"></td>
-    <td colspan="6" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">TIPO DE BIEN:</td>
+    <td colspan="6" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">TIPO DE ACTIVO:</td>
     <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['bien'] . '</td>
     <td colspan="3"></td>
     </tr>
     <tr>
     <td colspan="3"></td>
-    <td colspan="6" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">BIEN:</td>
+    <td colspan="6" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">ACTIVO:</td>
     <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['bienDetalle'] . '</td>
     <td colspan="3"></td>
     </tr>
@@ -149,8 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </tr>
     <tr>
     <td colspan="2"></td>
-    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Responsable de registro de activo</td>
-    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Encargado de activos fijos</td>
+    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Entregué el activo a conformidad<br>' . $usuarioResponsable . '</td>
+    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Recibí el activo en conformidad<br>Nombre:</td>
     <td colspan="2"></td>
     </tr>
     <tr>
@@ -184,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         array(),              // Estilo (array vacío = por defecto)
         'N'                   // Tipo de celda (N = no imprimir texto)
     );
-    $pdf->multiCell(0, 10, 'Recortar desde la línea punteada y pegar el código QR en los sitios autorizados del bien.', 0, 'L', false, 1, $pdf->GetX() + 60, $pdf->GetY() - 30);
+    $pdf->multiCell(0, 10, 'Recortar desde la línea punteada y pegar el código QR en los sitios autorizados del activo.', 0, 'L', false, 1, $pdf->GetX() + 60, $pdf->GetY() - 30);
     $pdf->Output('bien.pdf', 'I');
     
 } else {
