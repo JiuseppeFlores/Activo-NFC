@@ -3,9 +3,12 @@ function listar_inventario(pag) {
 
   var start = (pag - 1) * 10;
   var texto = $("#busqueda_inventario").val();
+  var gestion = $("#gestion_filter").val();
+  
   var parametros = {
     start: start,
     texto: texto,
+    gestion: gestion,
   };
 
   var result1 = "";

@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = sqlsrv_query($con, $sql);
     $row = sqlsrv_fetch_array($query);
     $marca = isset($row['marca']) ? $row['marca'] : '';
+    $fechaModificacion = isset($row['fechaModificacion']) ? $row['fechaModificacion']->format('d/m/Y') : '-';
     $tipoAdquisicion = isset($row['tipoAdquisicion']) ? $row['tipoAdquisicion'] : '';
     $usuarioResponsable = isset($row['nombre']) ? strtoupper($row['nombre']) . ' ' . strtoupper($row['apellidoPaterno']) . ' ' . strtoupper($row['apellidoMaterno']) . '<br>CI: ' . $row['ci'] : '';
     class MYPDF extends TCPDF {
@@ -37,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->setCreator(PDF_CREATOR);
     $pdf->setAuthor('Activo Empresa');
-    $pdf->setTitle('Reporte de Bien');
-    $pdf->setSubject('Reporte de Bien');
-    $pdf->setKeywords('Reporte, Bien');
+    $pdf->setTitle('Reporte de Disponibilidad');
+    $pdf->setSubject('Reporte de Disponibilidad');
+    $pdf->setKeywords('Reporte, Disponibilidad');
     $pdf->setPrintHeader(true);
     $pdf->setPrintFooter(false);
     $pdf->SetMargins(20, 20, 20);
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $html = '
     <table border="0" cellpadding="1" cellspacing="2">
     <tr>
-    <td colspan="20" align="center"><b>ACTA DE REGISTRO</b></td>
+    <td colspan="20" align="center"><b>REPORTE DE DISPONIBILIDAD DE ACTIVO</b></td>
     </tr>
     <tr>
     <td colspan="20" style="border-bottom: 0.3px solid #000; font-size: 5px;"></td>
@@ -72,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </tr>
     <tr>
     <td colspan="4"></td>
-    <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">FECHA:</td>
+    <td colspan="5" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">FECHA INGRESO:</td>
     <td colspan="6" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['fechaIngreso']->format('d/m/Y') . '</td>
     <td colspan="4"></td>
     </tr>
@@ -86,13 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <td colspan="20" style="font-size: 5px;"></td>
     </tr>
     <tr>
-    <td colspan="20">En fecha ' . $row['fechaIngreso']->format('d/m/Y') . ', se realizó el ingreso de activos para la empresa, ya culminando con el informa de conformidad del área solicitante.</td>
+    <td colspan="20">En fecha ' . $fechaModificacion . ', se realizó el cambio de disponibilidad del activo a "INACTIVO".</td>
     </tr>
     <tr>
     <td colspan="20" style="font-size: 3px;"></td>
     </tr>
     <tr>
-    <td colspan="20">Se realizó el ingreso del activo bajo el siguiente detalle:</td>
+    <td colspan="20">Se realizó el cambio de disponibilidad del activo bajo el siguiente detalle:</td>
     </tr>
     <tr>
     <td colspan="20" style="font-size: 5px;"></td>
@@ -140,52 +141,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <td colspan="3"></td>
     </tr>
     <tr>
+    <td colspan="3"></td>
+    <td colspan="6" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">OBSERVACIÓN:</td>
+    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000;">' . $row['observacion'] . '</td>
+    <td colspan="3"></td>
+    </tr>
+    <tr>
     <td colspan="20" style="font-size: 20px;"></td>
     </tr>
-    <tr>
-    <td colspan="2"></td>
-    <td colspan="8" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 80px;"></td>
-    <td colspan="8" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 80px;"></td>
-    <td colspan="2"></td>
-    </tr>
-    <tr>
-    <td colspan="2"></td>
-    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Entregué el activo en conformidad<div style="text-align: left;">Nombre:<br>CI:</div></td>
-    <td colspan="8" align="center" style="border-bottom: 0.3px solid #000; border-right: 0.3px solid #000; border-left: 0.3px solid #000; border-top: 0.3px solid #000; font-size: 10px;">Recibí el activo en conformidad<br>' . $usuarioResponsable . '</td>
-    <td colspan="2"></td>
-    </tr>
-    <tr>
-    <td colspan="20" style="font-size: 5px;" style="border-bottom: 0.3px dashed #000;"></td>
-    </tr>
     </table>';
-    // $html .='
-    // <tr>
-    // <td colspan="4" align="left"><b>Bien:</b></td>
-    // <td colspan="16" align="left">' . $row['producto'] . '</td>
-    // </tr>
-    // <tr>
-    // <td colspan="4" align="left"><b>Código:</b></td>
-    // <td colspan="6" align="left">' . $row['codigoBarras'] . '</td>
-    // <td colspan="6" align="left"><b>Fecha de Ingreso:</b></td>
-    // <td colspan="4" align="left">' . $row['fechaIngreso']->format('d/m/Y') . '</td>
-    // </tr>
-    // <tr>
-    // <td colspan="4" align="left"><b>Costo Adq.:</b></td>
-    // <td colspan="16" align="left">' . $row['costoAdquisicion'] . '</td>
-    // </tr>
-    // </table>';
     $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-    $pdf->write2DBarcode(
-        $row['codigoBarras'],           // Contenido del QR
-        'QRCODE,H',           // Tipo de código (QR con corrección H)
-        $pdf->GetX() + 10,                   // Posición X
-        $pdf->GetY() + 10,                   // Posición Y
-        40,                   // Ancho
-        40,                   // Alto
-        array(),              // Estilo (array vacío = por defecto)
-        'N'                   // Tipo de celda (N = no imprimir texto)
-    );
-    $pdf->multiCell(0, 10, 'Recortar desde la línea punteada y pegar el código QR en los sitios autorizados del activo.', 0, 'L', false, 1, $pdf->GetX() + 60, $pdf->GetY() - 30);
     $pdf->Output('bien.pdf', 'I');
     
 } else {

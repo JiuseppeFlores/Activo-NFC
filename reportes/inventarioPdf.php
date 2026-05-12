@@ -4,15 +4,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include("../tcpdf/tcpdf.php");
     date_default_timezone_set("America/La_Paz");
     $fechaImpresion = date("d/m/Y H:i");
-    $fechaInicio = $_POST['fechaInicio'];
-    $fechaFin = $_POST['fechaFin'];
+    $fechaInicio = $_POST['fechaInicio'] ? $_POST['fechaInicio'] . " 00:00" : "";
+    $fechaFin = $_POST['fechaFin'] ? $_POST['fechaFin'] . " 23:59" : "";
     $fechaFormato = "";
     if ($fechaInicio == "" || $fechaFin == "") {
-        $fechaInicio = "1900-01-01";
-        $fechaFin = date("Y-m-d");
+        $fechaInicio = "1900-01-01 00:00";
+        $fechaFin = date("Y-m-d H:i");
     } else {
-        $fechaInicio = date("Y-m-d", strtotime($fechaInicio));
-        $fechaFin = date("Y-m-d", strtotime($fechaFin));
+        $fechaInicio = date("Y-m-d H:i", strtotime($fechaInicio));
+        $fechaFin = date("Y-m-d H:i", strtotime($fechaFin));
         $fechaFormato = "Fecha: " . date("d/m/Y", strtotime($fechaInicio)) . " al " . date("d/m/Y", strtotime($fechaFin));
     }
     $listaBien = array();
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $table = '
     <table border="0" cellpadding="1" cellspacing="2">
     <tr>
-    <td colspan="20" align="center"><b>REPORTE DE INVENTARIO</b></td>
+    <td colspan="20" align="center"><b>REPORTE DE INSPECCIONES</b></td>
     </tr>
     <tr>
     <td colspan="10" align="left">' . $fechaFormato . '</td>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </tr>';
     }
     foreach ($listaInventario as $key => $value) {
-        $fechaInventario = $value['fecha']->format("d/m/y");
+        $fechaInventario = $value['fecha']->format("d/m/y H:i");
         $table .= '
         <tr>
         <td colspan="2" align="center">' . $nro . '</td>

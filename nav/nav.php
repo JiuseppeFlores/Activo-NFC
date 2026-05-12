@@ -122,7 +122,7 @@ if (file_exists("../sistem_images/logo.png")) {
             <a href="#inventario" onclick="inventario(1)" <?php echo $text_movil ?> id="nav_inventario" class="nav-link">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                Inventario
+                Inspecciones
               </p>
             </a>
           </li>

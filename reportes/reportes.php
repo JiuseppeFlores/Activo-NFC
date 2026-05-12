@@ -53,7 +53,7 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                                             <option value="asignacion">Asignación</option>
                                             <option value="depreciacion">Depreciación</option>
                                             <option value="producto">Activos</option>
-                                            <option value="inventario">Inventario</option>
+                                            <option value="inventario">Inspecciones</option>
                                             <option value="usuario">Usuario</option>
                                         </select>
                                     </div>

@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include("../conexion.php");
+    date_default_timezone_set('America/La_Paz');
     
     $idAsignacion = $_POST['idAsignacion'];
     $idUsuarioCreador = $_POST['revisor'];

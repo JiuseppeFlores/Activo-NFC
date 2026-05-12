@@ -18,8 +18,17 @@ $listaDepreciacionDetalle = array();
 while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
     $listaDepreciacionDetalle[] = $rowDetalle;
 }
+
+$sqlUsuarios = "SELECT * FROM tblUsuario ORDER BY apellidoPaterno, apellidoMaterno, nombre ASC;";
+$queryUsuarios = sqlsrv_query($con, $sqlUsuarios);
+$listaUsuarios = array();
+while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
+    $listaUsuarios[$rowUsuarios['idUsuario']] = $rowUsuarios;
+}
+
 $producto = $row["producto"];
 $codigoBarras = $row["codigoBarras"];
+// echo $row['idUsuarioResponsable']; die();
 $t = time();
 
 ?>
@@ -140,7 +149,7 @@ $t = time();
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
-            <label class="col-form-label">Valoración</label>
+            <label class="col-form-label">Estado del Activo</label>
         </div>
         <div class="col-9">
             <select name="valoracion" class="form-control" required>
@@ -160,7 +169,19 @@ $t = time();
     </div><br>
     <div class="row g-3 align-items-center">
         <div class="col-2">
-            <label class="col-form-label">Estado</label>
+            <label class="col-form-label">Usuario Responsable</label>
+        </div>
+        <div class="col-9">
+            <select name="idUsuario" class="form-control" required>
+                <?php foreach($listaUsuarios as $usuario): ?>
+                    <option value="<?php echo $usuario['idUsuario']; ?>" <?php echo $row['idUsuarioResponsable'] === $usuario['idUsuario'] ? 'selected' : '' ?>><?php echo $usuario['apellidoPaterno'] . ' ' . $usuario['apellidoMaterno'] . ' ' . $usuario['nombre'] . ' (CI: ' . $usuario['ci'] . ')'; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>        
+    </div><br>
+    <div class="row g-3 align-items-center">
+        <div class="col-2">
+            <label class="col-form-label">Disponibilidad</label>
         </div>
         <div class="col-9">
             <select id="estado" name="estado" required autocomplete="off" class="form-control">

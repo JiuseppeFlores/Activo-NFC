@@ -226,19 +226,34 @@ function countBien() {
   }
 }
 
-function generarReporteBien(idBien = 0) {
-  var form = document.createElement('form');
-  form.method = 'POST';
-  form.target = '_blank';
-  form.action = '../reportes/bienPdf.php';
-  var input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'idBien';
-  input.value = idBien;
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
+function generarReporteBien(idBien = 0, estado = 'ACTIVO') {
+  if (estado === 'ACTIVO') {
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = '../reportes/bienPdf.php';
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'idBien';
+    input.value = idBien;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  } else {
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = '../reportes/bienInactivoPdf.php';
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'idBien';
+    input.value = idBien;
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  }
 }
 
 function cambiarEstado(idBien, estado) {
@@ -253,35 +268,48 @@ function cambiarEstado(idBien, estado) {
       if (respuesta.success == true) {
         Swal.fire({
           title: 'Advertencia',
-          text: 'El bien se encuentra asignado a un usuario, no se puede cambiar su estado',
+          text: 'El activo se encuentra asignado a un usuario, no se puede cambiar su disponibilidad',
           icon: 'warning'
         })
         return;
       } else {
-        Swal.fire({
-          title: '¿Cambiar estado?',
-          text: '¿Deseas cambiar el estado de este bien?',
+        let estadoActivo = respuesta.estado || "ACTIVO";
+        let atributosSweetAlert = {
+          title: '¿Cambiar disponibilidad?',
+          text: '¿Deseas cambiar la disponibilidad de este activo?',
           icon: 'question',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Sí, cambiar estado',
+          confirmButtonText: 'Sí, cambiar disponibilidad',
           cancelButtonText: 'Cancelar'
-        }).then((result) => {
+        };
+        if (estadoActivo === "ACTIVO") {
+          atributosSweetAlert.input = 'textarea';
+          atributosSweetAlert.inputPlaceholder = 'Ingrese el motivo del cambio (observación)';
+          atributosSweetAlert.inputAttributes = {
+            'aria-label': 'Ingrese el motivo del cambio (observación)'
+          };
+          atributosSweetAlert.inputValue = respuesta.observacion || '';
+        }
+        Swal.fire(atributosSweetAlert).then((result) => {
           if (result.isConfirmed) {
+            const observacion = result.value === true ? null : result.value;
+            console.log('vemos la observacion', observacion);
             $.ajax({
               url: '../producto/cambiarEstado.php',
               type: 'post',
               dataType: 'json',
               data: {
                 idBien: idBien,
-                estado: estado
+                estado: estado,
+                observacion: observacion
               },
               success: function (response) {
                 if (response.success == true) {
                   Swal.fire({
                     title: 'Éxito',
-                    text: 'Estado cambiado correctamente',
+                    text: 'Disponibilidad cambiada correctamente',
                     icon: 'success',
                   })
                   listar_producto(1);

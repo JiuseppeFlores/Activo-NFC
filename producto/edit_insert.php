@@ -14,9 +14,10 @@ $marca = $_POST['marca'];
 $tipoAdquisicion = $_POST['tipoAdquisicion'];
 $estado = $_POST['estado'];
 $valoracion = $_POST['valoracion'];
+$idUsuarioResponsable = intval($_POST['idUsuario']);
 
-$update = "UPDATE tblProducto SET producto = ?, codigoBarras = ?, uidTag = ?, idDepreciacion = ?, idDepreciacionDetalle = ?, costoAdquisicion = ?, fechaIngreso = ?, marca = ?, tipoAdquisicion = ?, estado = ?, valoracion = ? WHERE idProducto = ?";
-$params_update = array($producto, $codigoBarras, $uidTag, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $estado, $valoracion, $id);
+$update = "UPDATE tblProducto SET producto = ?, codigoBarras = ?, uidTag = ?, idDepreciacion = ?, idDepreciacionDetalle = ?, costoAdquisicion = ?, fechaIngreso = ?, marca = ?, tipoAdquisicion = ?, estado = ?, valoracion = ?, idUsuarioResponsable = ? WHERE idProducto = ?";
+$params_update = array($producto, $codigoBarras, $uidTag, $idDepreciacion, $idDepreciacionDetalle, $costoAdquisicion, $fechaIngreso, $marca, $tipoAdquisicion, $estado, $valoracion, $idUsuarioResponsable, $id);
 
 $sql_rep = "SELECT * FROM tblProducto WHERE codigoBarras = ? AND idProducto <> ?";
 $params_rep = array($codigoBarras, $id);
