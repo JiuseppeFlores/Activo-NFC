@@ -53,7 +53,7 @@ if ($count_row === false) {
     <th>Fecha Inicial</th>
     <th>Fecha Final</th>
     <th>Estado</th>
-    '.($esDispositivoMovil && $idRol == 3 ? '' : '<th>Opciones</th>').'
+    '.(($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th>Opciones</th>').'
     </tr>';
 
     $t = time();

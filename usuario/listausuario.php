@@ -40,7 +40,7 @@ if ($count_row === false) {
     <th>Rol</th>
     <th>Cargo</th>
     <th>Área</th>'.(
-        ($esDispositivoMovil && $idRol == 3) ? '' : '<th>Opciones</th>'
+        ($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th>Opciones</th>'
     ).'
     </tr>';
 
