@@ -129,7 +129,7 @@ if ($count_row === false) {
         // <button class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_producto" data-id="' . $row['idProducto'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
         $resultado .= '<button class="btn btn-primary" onclick="edit_producto(\'' . $row['idProducto'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
         <button class="btn btn-info" title="Cambiar estado" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"><i class="fas fa-lock"></i></button>
-        <button class="btn btn-warning" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"> <i class="fas fa-file-pdf"></i></button>
+        '.($esDispositivoMovil ? '' : '<button class="btn btn-warning" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"> <i class="fas fa-file-pdf"></i></button>').'
         '.($esDispositivoMovil ? '<button class="btn btn-success" type="button" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\')" title="Asignar código NFC" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"> <i class="fas fa-microchip"></i></button>' : '').'
         </td>
         </tr>';

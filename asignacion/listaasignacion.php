@@ -28,6 +28,10 @@ if (isset($_POST['area']) && !empty($_POST['area'])) {
 //     $search_in_sql .= " AND ".tblAsignacion.idUsuario = tblUsuario.idUsuario AND tblAsignacion.idProducto = tblProducto.idProducto
 // }
 
+// Verificar que el cliente utiliza un dispositivo móvil
+$agente = $_SERVER['HTTP_USER_AGENT'];
+$esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
+
 $sql = " SELECT ta.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.producto, tp.codigoBarras, CASE WHEN ta.fechaFinal < GETDATE() THEN 'VENCIDO' ELSE 'VIGENTE' END AS estadoAsignacion FROM tblAsignacion ta LEFT JOIN tblUsuario tu ON tu.idUsuario = ta.idUsuario LEFT JOIN tblProducto tp ON tp.idProducto = ta.idProducto $search_in_sql ORDER BY ta.idAsignacion DESC offset $start_from ROWS FETCH NEXT 10 ROWS ONLY;";
 // echo $sql;
 $query = sqlsrv_query($con, $sql);
@@ -49,7 +53,7 @@ if ($count_row === false) {
     <th>Fecha Inicial</th>
     <th>Fecha Final</th>
     <th>Estado</th>
-    <th>Opciones</th>
+    '.($esDispositivoMovil && $idRol == 3 ? '' : '<th>Opciones</th>').'
     </tr>';
 
     $t = time();

@@ -25,6 +25,9 @@ $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
     echo "<div style='text-align:center'><h2>¡Lista de Usuario vacía!</h2></div>";
 } else {
+    // Verificar que el cliente utiliza un dispositivo móvil
+    $agente = $_SERVER['HTTP_USER_AGENT'];
+    $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
 
     $resultado = '
     <div class="table-responsive">
@@ -36,8 +39,9 @@ if ($count_row === false) {
     <th>CI</th>
     <th>Rol</th>
     <th>Cargo</th>
-    <th>Área</th>
-    <th>Opciones</th>
+    <th>Área</th>'.(
+        ($esDispositivoMovil && $idRol == 3) ? '' : '<th>Opciones</th>'
+    ).'
     </tr>';
 
     $t = time();
@@ -131,7 +135,7 @@ if ($count_row === false) {
             <td>
             <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
             <button title="Editar Usuario" class="btn btn-primary" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
-            <button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>
+            '.($esDispositivoMovil ? '': '<button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>').'
             </td>
             </tr>';
             }
@@ -223,7 +227,7 @@ if ($count_row === false) {
             <td>
             <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
             <button title="Editar Usuario" class="btn btn-primary" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
-            <button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>
+            '.($esDispositivoMovil ? '' : '<button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>').'
             </td>
             </tr>';
         }
