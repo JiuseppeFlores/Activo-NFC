@@ -1,6 +1,10 @@
 <?php
 session_start();
 $idRol = $_SESSION['idRol'];
+
+$agente = $_SERVER['HTTP_USER_AGENT'];
+$esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
+
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -77,18 +81,20 @@ $idRol = $_SESSION['idRol'];
         </div>
 
         <div class="row mt-4">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Distribución por Área</h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafico-area" style="height: 300px; width: 100%; position: relative;">
-                            <canvas id="graficoAreaAsignaciones"></canvas>
+            <?php if (!$esDispositivoMovil) { ?>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Distribución por Área</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="grafico-area" style="height: 300px; width: 100%; position: relative;">
+                                <canvas id="graficoAreaAsignaciones"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
 
             <div class="col-lg-6">
                 <div class="card">

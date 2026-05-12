@@ -46,9 +46,13 @@ $sql = "SELECT
             tu.ci, 
             tu.idRol, 
             tu.idArea,
-            (SELECT COUNT(*) FROM tblInventario i2 
-             INNER JOIN tblAsignacion a2 ON i2.idAsignacion = a2.idAsignacion 
-             WHERE a2.idProducto = tp.idProducto) as inventariado
+            (   
+                SELECT COUNT(*) 
+                FROM tblInventario i2 
+                INNER JOIN tblAsignacion a2 ON i2.idAsignacion = a2.idAsignacion 
+                WHERE a2.idProducto = tp.idProducto
+                    AND YEAR(i2.fecha) = YEAR(GETDATE())
+            ) as inventariado
         FROM tblProducto tp 
         LEFT JOIN tblAsignacion tas ON tp.idProducto = tas.idProducto AND tas.estado = 'ASIGNADO'
         LEFT JOIN tblUsuario tu ON tas.idUsuario = tu.idUsuario 

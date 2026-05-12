@@ -24,51 +24,54 @@ function dashboard() {
                         areas.push(listaAreaAsignaciones[i].area);
                         valores.push(listaAreaAsignaciones[i].total);
                     }
-                    var ctx = document.getElementById('graficoAreaAsignaciones').getContext('2d');
-                    // Generar colores diferentes para cada área
-                    var colores = [];
-                    for (var i = 0; i < areas.length; i++) {
-                        // Generar un color aleatorio
-                        colores.push('rgba(' + Math.floor(Math.random() * 256) + ',' + 
-                                    Math.floor(Math.random() * 256) + ',' + 
-                                    Math.floor(Math.random() * 256) + ',0.7)');
-                    }
-                    
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: areas,
-                            datasets: [{
-                                data: valores,
-                                backgroundColor: colores,
-                                borderColor: colores,
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            legend: {
-                                display: false
-                            },
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true,
-                                        callback: function(value) {
-                                            return value.toLocaleString();
-                                        },
-                                        stepSize: 1,
-                                        precision: 0
-                                    },
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Total de bienes'
-                                    }
-                                }]
-                            }
+                    const graficoCanvas = document.getElementById('graficoAreaAsignaciones');
+                    if(graficoCanvas){
+                        var ctx = graficoCanvas.getContext('2d');
+                        // Generar colores diferentes para cada área
+                        var colores = [];
+                        for (var i = 0; i < areas.length; i++) {
+                            // Generar un color aleatorio
+                            colores.push('rgba(' + Math.floor(Math.random() * 256) + ',' + 
+                                        Math.floor(Math.random() * 256) + ',' + 
+                                        Math.floor(Math.random() * 256) + ',0.7)');
                         }
-                    });
+                        
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: areas,
+                                datasets: [{
+                                    data: valores,
+                                    backgroundColor: colores,
+                                    borderColor: colores,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                legend: {
+                                    display: false
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            callback: function(value) {
+                                                return value.toLocaleString();
+                                            },
+                                            stepSize: 1,
+                                            precision: 0
+                                        },
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Total de bienes'
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    }
                     // para tiempo restante de vida util
                     let listaTiempoRestante = json.listaTiempoRestante;
                     listaTiempoRestante.sort((a, b) => b.porcentajeUtilRestante - a.porcentajeUtilRestante);

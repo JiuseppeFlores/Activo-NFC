@@ -19,6 +19,8 @@ use Api\Nucleo\Autenticacion;
 // 1. Validar Acceso y Roles (Middleware)
 Autenticacion::validarAcceso([1, 2]);
 
+date_default_timezone_set('America/La_Paz');
+
 // 2. Validar método
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     Respuesta::json(null, 405, "Método no permitido. Use POST.");
@@ -52,13 +54,15 @@ if (!sqlsrv_has_rows($queryAsignacion)) {
 
 $asignacion = sqlsrv_fetch_array($queryAsignacion, SQLSRV_FETCH_ASSOC);
 $idAsignacion = $asignacion['idAsignacion'];
+$gestion = date('Y');
 
 // 5. VALIDACIÓN DE UNICIDAD: El producto no puede ser inventariado por segunda ocasión
 // Verificamos si ya existe algún registro de inventario vinculado a este producto
 $sqlExiste = "SELECT COUNT(*) as total FROM tblInventario i 
               JOIN tblAsignacion a ON i.idAsignacion = a.idAsignacion 
-              WHERE a.idProducto = ?";
-$queryExiste = sqlsrv_query($con, $sqlExiste, array($idActivo));
+              WHERE a.idProducto = ?
+                AND YEAR(i.fecha) = ? ";
+$queryExiste = sqlsrv_query($con, $sqlExiste, array($idActivo, $gestion));
 $resultadoExiste = sqlsrv_fetch_array($queryExiste, SQLSRV_FETCH_ASSOC);
 
 if ($resultadoExiste['total'] > 0) {
