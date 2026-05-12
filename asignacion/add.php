@@ -4,7 +4,7 @@ date_default_timezone_set('America/La_Paz');
 $fechaActual = date('Y-m-d H:i');
 $anioActual = date("Y");
 $listaProductos = array();
-$sqlProductos = "SELECT DISTINCT tp.*, td.bien, td.coeficiente, td.vidaUtil FROM tblProducto tp LEFT JOIN tblAsignacion ta ON ta.idProducto = tp.idProducto LEFT JOIN tblDepreciacion td ON td.idDepreciacion = tp.idDepreciacion WHERE (ta.idAsignacion IS NULL OR ta.estado = 'DEVUELTO') ORDER BY tp.producto ASC;";
+$sqlProductos = "SELECT DISTINCT tp.*, td.bien, td.coeficiente, td.vidaUtil FROM tblProducto tp LEFT JOIN tblAsignacion ta ON ta.idProducto = tp.idProducto LEFT JOIN tblDepreciacion td ON td.idDepreciacion = tp.idDepreciacion WHERE (ta.idAsignacion IS NULL OR ta.estado = 'DEVUELTO') AND tp.estado = 'ACTIVO' ORDER BY tp.producto ASC;";
 $queryProductos = sqlsrv_query($con, $sqlProductos);
 while ($row = sqlsrv_fetch_array($queryProductos)) {
     $value = $row["idProducto"];

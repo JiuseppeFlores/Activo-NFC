@@ -16,7 +16,7 @@ $fechaInicial = $row["fechaInicial"];
 $fechaFinal = $row["fechaFinal"];
 $t = time();
 $listaProductos = array();
-$sqlProductos = "SELECT tp.*, td.bien, td.coeficiente, td.vidaUtil FROM tblProducto tp LEFT JOIN tblAsignacion ta ON ta.idProducto = tp.idProducto LEFT JOIN tblDepreciacion td ON td.idDepreciacion = tp.idDepreciacion WHERE ta.idAsignacion IS NULL OR ta.idProducto = '$idProducto' ORDER BY tp.producto ASC;";
+$sqlProductos = "SELECT tp.*, td.bien, td.coeficiente, td.vidaUtil FROM tblProducto tp LEFT JOIN tblAsignacion ta ON ta.idProducto = tp.idProducto LEFT JOIN tblDepreciacion td ON td.idDepreciacion = tp.idDepreciacion WHERE ta.idAsignacion IS NULL OR ta.idProducto = '$idProducto' AND tp.estado = 'ACTIVO' ORDER BY tp.producto ASC;";
 $queryProductos = sqlsrv_query($con, $sqlProductos);
 while ($row = sqlsrv_fetch_array($queryProductos)) {
     $value = $row["idProducto"];
@@ -85,6 +85,7 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
                 } else {
                     foreach ($listaProductos as $producto) {
                         $value = $producto["idProducto"];
+                        echo "<option value=''>Seleccione un producto</option>";
                         if ($idProducto == $value) {
                             echo  " <option value='" . $producto["idProducto"] . "' selected='selected' data-vida='" . $producto["restanteVida"] . "'>" . $producto["producto"] . " (Cód. Barras: " . $producto["codigoBarras"] . ")</option> ";
                         } else {
