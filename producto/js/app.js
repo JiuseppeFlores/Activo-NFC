@@ -126,7 +126,7 @@ function edit_producto(id) {
       let form = document.getElementById("edit_producto");
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        send_data("producto", "Actualizado", "edit_insert", "edit_producto");
+        send_data("producto", "Actualizado", "edit_insert", "edit_producto", [], "", id);
       });
     },
   });

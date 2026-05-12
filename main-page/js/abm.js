@@ -1,4 +1,4 @@
-function send_data(carpeta, msg, tipo, nombre_form, selecciones = [], accion = "") {
+function send_data(carpeta, msg, tipo, nombre_form, selecciones = [], accion = "", idBien = 0) {
   $("#shadow").fadeIn("normal");
   $("#spinner").html(`<div class='spinner-container'>
                                         <div class="spinner-path">
@@ -43,7 +43,7 @@ function send_data(carpeta, msg, tipo, nombre_form, selecciones = [], accion = "
         listar_usuario(1);
       } else if (carpeta_activa == "producto") {
         listar_producto(1);
-        generarReporteBien();
+        generarReporteBien(idBien);
       } else if (carpeta_activa == "asignacion") {
         if (accion == "entrega") {
           generarActa2('entrega', selecciones);
