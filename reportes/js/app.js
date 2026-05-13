@@ -4,14 +4,14 @@ function reportes(page) {
     document.getElementById("carpeta-activa").value = "reportes";
     $("#shadow").fadeIn("normal");
     $("#spinner").html(`<div class="container">
-                                                    <div class="loader-container">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
-                                                </div>`);
+        <div class="loader-container">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+        </div>`);
     $.ajax({
         url: "../reportes/reportes.php",
         type: "POST",
@@ -112,6 +112,7 @@ function generarReporte() {
     const usuario = $('#usuario').val();
     const fecha = $('#fecha').val();
     const anios = $('#anios').val();
+    const disponibilidad = $('#disponibilidad').val();
 
     if (!tipoReporte) {
         Swal.fire({
@@ -168,7 +169,8 @@ function generarReporte() {
             usuario: usuario,
             fecha: fecha,
             preview: 'SI',
-            anios: anios
+            anios: anios,
+            disponibilidad: disponibilidad
         },
         success: function(response) {
             try {
@@ -258,6 +260,7 @@ function cambiarFiltros() {
             $('#divUsuario').hide();
             $('#divFecha').hide();
             $('#divAnios').hide();
+            $('#divDisponibilidad').hide();
             $('#divFechaInicio').show();
             $('#divFechaFinal').show();
             break;
@@ -271,6 +274,7 @@ function cambiarFiltros() {
             $('#divAnios').hide();
             $('#divFechaInicio').show();
             $('#divFechaFinal').show();
+            $('#divDisponibilidad').show();
             break;
         case 'actaEntrega':
             $('#divArea').hide();
@@ -280,6 +284,7 @@ function cambiarFiltros() {
             $('#divFechaInicio').hide();
             $('#divFechaFinal').hide();
             $('#divAnios').hide();
+            $('#divDisponibilidad').hide();
             $('#divUsuario').show();
             $('#divFecha').show();
             break;
@@ -291,6 +296,7 @@ function cambiarFiltros() {
             $('#divFechaInicio').hide();
             $('#divFechaFinal').hide();
             $('#divAnios').hide();
+            $('#divDisponibilidad').hide();
             $('#divUsuario').show();
             $('#divFecha').show();
             break;
@@ -302,6 +308,7 @@ function cambiarFiltros() {
             $('#divFechaInicio').hide();
             $('#divFechaFinal').hide();
             $('#divUsuario').hide();
+            $('#divDisponibilidad').hide();
             $('#divFecha').hide();
             $('#divAnios').show();
             break;
@@ -312,6 +319,7 @@ function cambiarFiltros() {
             $('#divAnios').hide();
             $('#divUsuario').hide();
             $('#divFecha').hide();
+            $('#divDisponibilidad').hide();
             $('#divArea').show();
             $('#divFechaInicio').show();
             $('#divFechaFinal').show();
@@ -324,6 +332,7 @@ function cambiarFiltros() {
             $('#divUsuario').hide();
             $('#divFecha').hide();
             $('#divAnios').hide();
+            $('#divDisponibilidad').hide();
             $('#divFechaInicio').show();
             $('#divFechaFinal').show();
             break;

@@ -19,7 +19,7 @@ $idRol = $_SESSION['idRol'];
                 <h1 class="m-0" style="display:inline-block">Inspecciones</h1>
 
                 <?php if ($idRol == 1) { ?>
-                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_inventario()"> <i class="fas fa-plus"></i> Añadir Registro</button>
+                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_inventario()"> <i class="fas fa-plus"></i> Nueva Inspección</button>
                 <?php } ?>
                 <!-- <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="reporteInventario()"><i class="fas fa-file"></i> Generar reporte</button> -->
             </div><!-- /.col -->

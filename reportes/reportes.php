@@ -120,6 +120,16 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-3" id="divDisponibilidad">
+                                    <div class="form-group">
+                                        <label>Disponibilidad</label>
+                                        <select class="form-control" id="disponibilidad" name="disponibilidad">
+                                            <option value="">Todos</option>
+                                            <option value="ACTIVO">ACTIVO</option>
+                                            <option value="INACTIVO">INACTIVO</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-md-3" id="divUsuario">
                                     <div class="form-group">
                                         <label>Usuario</label>

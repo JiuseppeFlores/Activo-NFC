@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $fechaFin = $_POST['fechaFin'];
     $tipoBien = $_POST['tipoBien'];
     $bien = $_POST['bien'];
+    $disponibilidad = $_POST['disponibilidad'];
     if ($fechaInicio == "" || $fechaFin == "") {
         $fechaInicio = "1900-01-01";
         $fechaFin = date("Y-m-d");
@@ -29,19 +30,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     $sqlTipoBien = "";
     $sqlBien = "";
-    $tipoBienFormato = "Tipo de bien: Todos";
-    $bienFormato = "Bien: Todos";
+    $sqlDisponibilidad = "";
+    $tipoBienFormato = "Tipo de activo: Todos";
+    $bienFormato = "Activo: Todos";
+    $disponibilidadFormato = "Disponibilidad: Todos";
     if ($tipoBien != "") {
         $sqlTipoBien = " AND tp.idDepreciacion = '$tipoBien'";
-        $tipoBienFormato = "Tipo de bien: " . $listaTipoBien[$tipoBien];
+        $tipoBienFormato = "Tipo de activo: " . $listaTipoBien[$tipoBien];
     }
     if ($bien != "") {
         $sqlBien = " AND tp.idDepreciacionDetalle = '$bien'";
-        $bienFormato = "Bien: " . $listaBien[$bien];
+        $bienFormato = "Activo: " . $listaBien[$bien];
+    }
+    if ($disponibilidad != "") {
+        $sqlDisponibilidad = " AND tp.estado = '$disponibilidad'";
+        $disponibilidadFormato = "Disponibilidad: " . $disponibilidad;
     }
     // para la consulta a la base de datos
     $listaProductos = array();
-    $sql = "SELECT tp.*,dp.bien, dp.coeficiente FROM tblProducto tp LEFT JOIN tblDepreciacion dp ON tp.idDepreciacion = dp.idDepreciacion WHERE tp.fechaIngreso BETWEEN '$fechaInicio' AND '$fechaFin' $sqlTipoBien $sqlBien ORDER BY fechaIngreso ASC;";
+    $sql = "SELECT tp.*,dp.bien, dp.coeficiente FROM tblProducto tp LEFT JOIN tblDepreciacion dp ON tp.idDepreciacion = dp.idDepreciacion WHERE tp.fechaIngreso BETWEEN '$fechaInicio' AND '$fechaFin' $sqlTipoBien $sqlBien $sqlDisponibilidad ORDER BY fechaIngreso ASC;";
     $query = sqlsrv_query($con, $sql);
     while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
         $listaProductos[] = $row;
@@ -62,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $height = 270.9;
     $pageLayout = array($width, $height);
 
-    $pdf = new MYPDF('P', 'mm', $pageLayout, true, 'UTF-8', false);
+    $pdf = new MYPDF('L', 'mm', $pageLayout, true, 'UTF-8', false);
     $pdf->SetCreator($autor);
     $pdf->SetAuthor($autor);
     $pdf->SetTitle("Reporte de productos");
@@ -80,8 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <td colspan="10" align="right">Fecha de impresión: ' . $fechaImpresion . '</td>
     </tr>
     <tr>
-    <td colspan="8">' . $tipoBienFormato . '</td>
-    <td colspan="12" align="left">' . $bienFormato . '</td>
+    <td colspan="6">' . $tipoBienFormato . '</td>
+    <td colspan="6" align="left">' . $bienFormato . '</td>
+    <td colspan="6" align="left">' . $disponibilidadFormato . '</td>
+    <td colspan="2" align="left"></td>
     </tr>
     </table>';
     $pdf->writeHTMLCell(0, 0, '', '', $table, 0, 1, 0, true, '', true);
@@ -99,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <th colspan="7" align="center"><b>Costo de Adquisición</b></th>
     <th colspan="7" align="center"><b>Depreciación Anual</b></th>
     <th colspan="7" align="center"><b>Costo Ajustado</b></th>
+    <th colspan="5" align="center"><b>Disp.</b></th>
     </tr>
     </thead>
     <tbody>';
@@ -106,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (count($listaProductos) == 0) {
         $table .= '
         <tr>
-        <td colspan="67" align="center">No se encontraron resultados</td>
+        <td colspan="72" align="center">No se encontraron activos</td>
         </tr>';
     }
     foreach ($listaProductos as $key => $value) {
@@ -132,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <td colspan="7" align="right">' . number_format($value['costoAdquisicion'], 2) . '</td>
         <td colspan="7" align="right">' . number_format($value['costoAdquisicion'] * $coeficiente, 2) . '</td>
         <td colspan="7" align="right">' . number_format($costoAjustado, 2) . '</td>
+        <td colspan="5" align="center">' . $value['estado'] . '</td>
         </tr>';
         $nro++;
     }
