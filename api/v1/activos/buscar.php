@@ -40,6 +40,7 @@ $sql = "SELECT
             ISNULL(tas.idAsignacion, 0) AS idAsignacion, 
             tas.fechaInicial, 
             tas.fechaFinal, 
+            tu.idUsuario,
             tu.nombre, 
             tu.apellidoPaterno, 
             tu.apellidoMaterno, 
@@ -74,11 +75,6 @@ if ($consulta === false) {
 // 5. Procesar resultado
 if (sqlsrv_has_rows($consulta)) {
     $activo = sqlsrv_fetch_array($consulta, SQLSRV_FETCH_ASSOC);
-    
-    // VALIDACIÓN: El activo debe estar asignado para poder inventariarlo
-    if (intval($activo['idAsignacion']) === 0) {
-        Respuesta::json(null, 403, "El activo se encuentra registrado pero no tiene una asignación vigente.");
-    }
     
     // Formatear datos para la respuesta
     $activo['inventariado'] = (intval($activo['inventariado']) > 0);
