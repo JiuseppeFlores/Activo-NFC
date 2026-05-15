@@ -315,7 +315,7 @@ function generarActa2(tipo, seleccionados) {
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
-  $('#modal_documento').modal('hide');
+  // $('#modal_documento').modal('hide');
 }
 // ===================================
 function agregarSeleccion() {

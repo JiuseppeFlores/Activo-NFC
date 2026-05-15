@@ -45,12 +45,12 @@ function send_data(carpeta, msg, tipo, nombre_form, selecciones = [], accion = "
         listar_producto(1);
         generarReporteBien(idBien);
       } else if (carpeta_activa == "asignacion") {
+        listar_asignacion(1);
         if (accion == "entrega") {
           generarActa2('entrega', selecciones);
         } else if (accion == "devolucion") {
           generarActa2('devolucion', selecciones);
         }
-        listar_asignacion(1);
       } else if (carpeta_activa == "inventario") {
         listar_inventario(1);
       } else if (carpeta_activa == "depreciacion") {
