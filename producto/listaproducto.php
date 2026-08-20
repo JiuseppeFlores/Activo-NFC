@@ -23,14 +23,15 @@ $sql = " SELECT * FROM tblProducto tp LEFT JOIN tblDepreciacionDetalle tdd ON tp
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div style='text-align:center'><h2>Lista de Producto vacia!</h2></div>";
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Productos vacía!</p></div>";
 } else {
     // Verificar que el cliente utiliza un dispositivo móvil
     $agente = $_SERVER['HTTP_USER_AGENT'];
     $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
     
     $resultado = '<div class="table-responsive">
-    <table style="text-align:center" class="table table-hover">
+    <table class="table table-vcenter card-table table-hover text-center">
+    <thead>
     <tr>
     <th>Información</th>
     <th>Activo</th>
@@ -39,8 +40,10 @@ if ($count_row === false) {
     <th>Fecha de Ingreso</th>
     <th>Estado</th>
     <th>Disponibilidad</th>
-    <th>Opciones</th>
-    </tr>';
+    <th class="w-1">Opciones</th>
+    </tr>
+    </thead>
+    <tbody>';
 
     $t = time();
     while ($row = sqlsrv_fetch_array($query)) {
@@ -51,6 +54,13 @@ if ($count_row === false) {
             $url = "../Images/empty.jpg";
         }
         $url .= "?r=" . $t;
+
+        $valoracionClass = 'bg-secondary-subtle text-secondary';
+        if ($row['valoracion'] === 'BUENO') $valoracionClass = 'bg-success-subtle text-success';
+        else if ($row['valoracion'] === 'REGULAR') $valoracionClass = 'bg-warning-subtle text-warning';
+        else if ($row['valoracion'] === 'MALO') $valoracionClass = 'bg-danger-subtle text-danger';
+
+        $estadoClass = $row['estado'] === 'ACTIVO' ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary';
 
         $otro = "
         <details class='card border-0 shadow-none mb-0'>
@@ -79,41 +89,40 @@ if ($count_row === false) {
         </tr>
         <tr>
         <td>Estado</td>
-        <td>" . $row['valoracion'] . "</td>
+        <td><span class='badge " . $valoracionClass . "'>" . $row['valoracion'] . "</span></td>
         </tr>
         <tr>
         <td>Disponibilidad</td>
-        <td>" . $row['estado'] . "</td>
+        <td><span class='badge " . $estadoClass . "'>" . $row['estado'] . "</span></td>
         </tr>
         <tr>
         <td>Observación</td>
         <td>" . $row['observacion'] . "</td>
         </tr>
         </table>
-        </table>
         </div>
         </div>
         </details>";
 
-        $resultado .= '<tr style="cursor:pointer">
+        $resultado .= '<tr>
         <td>' . $otro . '</td>
         <td>' . ($row['bienDetalle'] ?? "Sin definir") . '</td>
         <td>' . $row['producto'] . '</td>
         <td>' . $row['codigoBarras'] . '</td>
         <td>' . $fechaIngreso . '</td>
-        <td>' . $row['valoracion'] . '</td>
-        <td>' . $row['estado'] . '</td>
-        <td>';
-        // <button class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_producto" data-id="' . $row['idProducto'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
-        $resultado .= '<button class="btn btn-primary" onclick="edit_producto(\'' . $row['idProducto'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
-        <button class="btn btn-info" title="Cambiar disponibilidad" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"><i class="fas fa-lock"></i></button>
-        '.($esDispositivoMovil ? '' : '<button class="btn btn-warning" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"> <i class="fas fa-file-pdf"></i></button>').'
-        '.($esDispositivoMovil ? '<button class="btn btn-success" type="button" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\')" title="Asignar código NFC" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"> <i class="fas fa-microchip"></i></button>' : '').'
+        <td><span class="badge ' . $valoracionClass . '">' . $row['valoracion'] . '</span></td>
+        <td><span class="badge ' . $estadoClass . '">' . $row['estado'] . '</span></td>
+        <td>
+        <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_producto(\'' . $row['idProducto'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
+        <button class="btn btn-outline-info btn-icon" title="Cambiar disponibilidad" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"><i class="ti ti-lock icon"></i></button>
+        '.($esDispositivoMovil ? '' : '<button class="btn btn-outline-warning btn-icon" title="Reporte PDF" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"> <i class="ti ti-file-pdf icon"></i></button>').'
+        '.($esDispositivoMovil ? '<button class="btn btn-outline-success btn-icon" type="button" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\')" title="Asignar código NFC" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"> <i class="ti ti-cpu icon"></i></button>' : '').'
         </td>
         </tr>';
     }
 
     $resultado .= "
+    </tbody>
     </table>
     </div>";
 

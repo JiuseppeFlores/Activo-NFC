@@ -1,7 +1,10 @@
-        
-                                        <div class="modal fade" id="modal_reporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                                            <div class="modal-dialog modal-xl" role="document">
+<div class="modal modal-blur fade" id="modal_reporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                                                 <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Generador de Reportes</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Cerrar"></button>
+                                                    </div>
     
                                                     <div class="uk-child-width-1-2@s" uk-grid style="display:contents">
                                                         <div style="width: 100%;">
@@ -42,11 +45,9 @@
     
     
                                                     <div class="modal-footer">                                    
-                                                        <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Cerrar</button>
-                                                    </div>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Cerrar</button>
+                                                     </div>
     
                                                 </div>
                                             </div>
                                         </div>
-    
-                                

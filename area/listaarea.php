@@ -21,23 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $query = sqlsrv_query($con, $sql);
     $count_row = sqlsrv_has_rows($query);
     if ($count_row === false) {
-        echo "<div style='text-align:center'><h2>¡Lista de Area vacía!</h2></div>";
+        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Área vacía!</p></div>";
     } else {
 
         $resultado = '
         <div class="table-responsive">
-        <table style="text-align:center" class="table table-hover">
+        <table class="table table-vcenter card-table table-hover text-center">
+        <thead>
         <tr>
-        <th>
-        Información
-        </th>
-        <th>
-        Área
-        </th>
-        <th>
-        Opciones
-        </th>
-        </tr>';
+        <th>Información</th>
+        <th>Área</th>
+        <th class="w-1">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>';
 
         while ($row = sqlsrv_fetch_array($query)) {
             $otro = "
@@ -55,18 +52,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
             </details>";
 
-            $resultado .= '<tr style="cursor:pointer">
+            $resultado .= '<tr>
             <td>' . $otro . '</td>
             <td>' . $row['area'] . '</td>
             <td>
-            <button class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_area" data-id="' . $row['idArea'] . '"> <i class="fas fa-trash"></i></button>
-            <button class="btn btn-primary" onclick="edit_area(\'' . $row['idArea'] . '\')"> <i class="fas fa-edit"></i></button>
+            <button class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_area" data-bs-toggle="modal" data-bs-target="#modal_eliminar_area" data-id="' . $row['idArea'] . '"> <i class="ti ti-trash icon"></i></button>
+            <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_area(\'' . $row['idArea'] . '\')"> <i class="ti ti-pencil icon"></i></button>
             </td>
             </tr>
             ';
         }
 
         $resultado .= "
+        </tbody>
         </table>
         </div>
         ";

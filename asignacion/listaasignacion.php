@@ -37,14 +37,15 @@ $sql = " SELECT ta.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.prod
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div style='text-align:center'><h2>¡Lista de Asignacion vacía!</h2></div>";
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Asignación vacía!</p></div>";
 } else {
     $resultado = '<div class="table-responsive">
-    <table style="text-align:center" class="table table-hover table-align-center">
+    <table class="table table-vcenter card-table table-hover text-center">
+    <thead>
     <tr>
-    <th>
+    <th class="w-1">
     <div class="checkbox-container">
-    <input type="checkbox" id="selectAll" class="checkbox-lg" onclick="toggleAllCheckboxes(this)">
+    <input type="checkbox" id="selectAll" class="form-check-input" onclick="toggleAllCheckboxes(this)">
     </div></th>
     <th>Información</th>
     <th>Activo</th>
@@ -53,8 +54,10 @@ if ($count_row === false) {
     <th>Fecha Inicial</th>
     <th>Fecha Final</th>
     <th>Estado</th>
-    '.(($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th>Opciones</th>').'
-    </tr>';
+    '.(($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th class="w-1">Opciones</th>').'
+    </tr>
+    </thead>
+    <tbody>';
 
     $t = time();
     if ($idRol == 3) {
@@ -63,7 +66,7 @@ if ($count_row === false) {
             if ($idUsuario === $idUsuarioAsignacion) {
                 $fechaFinalFormato = formato_fechas_server($row['fechaFinal'], 'd/m/Y H:i');
                 if ($row['estadoAsignacion'] == 'VENCIDO' && $row['estado'] == 'ASIGNADO') {
-                    $claseEstado = "alerta-tabla";
+                    $claseEstado = "table-danger";
                     $estadoAsignacion = 'VENCIDO';
                 } else {
                     $claseEstado = "";
@@ -71,9 +74,9 @@ if ($count_row === false) {
                 }
                 $estado = $row['estado'];
                 if ($estado == "DEVUELTO") {
-                    $estado = "<span class='badge badge-warning'>DEVUELTO</span>";
+                    $estado = "<span class='badge bg-warning-subtle text-warning'>DEVUELTO</span>";
                 } else {
-                    $estado = "<span class='badge badge-success'>ASIGNADO</span>";
+                    $estado = "<span class='badge bg-success-subtle text-success'>ASIGNADO</span>";
                 }
                 $nombreUsuario = $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'];
                 $id = $row['idAsignacion'];
@@ -109,16 +112,15 @@ if ($count_row === false) {
             <td >" . $estado . "</td>
             </tr>
             </table>
-            </table>
             </div>
             </div>
             </details>";
 
 
-                $resultado .= '<tr style="cursor:pointer" class="' . $claseEstado . '">
+                $resultado .= '<tr class="' . $claseEstado . '">
             <td>
                 <div class="checkbox-container">
-                    <input type="checkbox" class="selectItem checkbox-lg" value="' . $id . '" onclick="updateSelectedCount()">
+                    <input type="checkbox" class="selectItem form-check-input" value="' . $id . '" onclick="updateSelectedCount()">
                 </div>
             </td>
             <td>' . $otro . '</td>
@@ -129,11 +131,11 @@ if ($count_row === false) {
             <td>' . $fechaFinalFormato . '</td>
             <td>' . $estado . '</td>
             <td>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
-                    <i class="fas fa-trash"></i>
+                <button type="button" class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
+                    <i class="ti ti-trash icon"></i>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
-                    <i class="fas fa-edit"></i>
+                <button type="button" class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
+                    <i class="ti ti-pencil icon"></i>
                 </button>';
 
                 $resultado .= '
@@ -145,7 +147,7 @@ if ($count_row === false) {
         while ($row = sqlsrv_fetch_array($query)) {
             $fechaFinalFormato = formato_fechas_server($row['fechaFinal'], 'd/m/Y H:i');
             if ($row['estadoAsignacion'] == 'VENCIDO' && $row['estado'] == 'ASIGNADO') {
-                $claseEstado = "alerta-tabla";
+                $claseEstado = "table-danger";
                 $estadoAsignacion = 'VENCIDO';
             } else {
                 $claseEstado = "";
@@ -153,9 +155,9 @@ if ($count_row === false) {
             }
             $estado = $row['estado'];
             if ($estado == "DEVUELTO") {
-                $estado = "<span class='badge badge-warning'>DEVUELTO</span>";
+                $estado = "<span class='badge bg-warning-subtle text-warning'>DEVUELTO</span>";
             } else {
-                $estado = "<span class='badge badge-success'>ASIGNADO</span>";
+                $estado = "<span class='badge bg-success-subtle text-success'>ASIGNADO</span>";
             }
             $nombreUsuario = $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'];
             $id = $row['idAsignacion'];
@@ -191,16 +193,15 @@ if ($count_row === false) {
             <td >" . $estado . "</td>
             </tr>
             </table>
-            </table>
             </div>
             </div>
             </details>";
 
 
-            $resultado .= '<tr style="cursor:pointer" class="' . $claseEstado . '">
+            $resultado .= '<tr class="' . $claseEstado . '">
             <td>
                 <div class="checkbox-container">
-                    <input type="checkbox" class="selectItem checkbox-lg" value="' . $id . '" onclick="updateSelectedCount()">
+                    <input type="checkbox" class="selectItem form-check-input" value="' . $id . '" onclick="updateSelectedCount()">
                 </div>
             </td>
             <td>' . $otro . '</td>
@@ -211,11 +212,11 @@ if ($count_row === false) {
             <td>' . $fechaFinalFormato . '</td>
             <td>' . $estado . '</td>
             <td>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
-                    <i class="fas fa-trash"></i>
+                <button type="button" class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
+                    <i class="ti ti-trash icon"></i>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
-                    <i class="fas fa-edit"></i>
+                <button type="button" class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
+                    <i class="ti ti-pencil icon"></i>
                 </button>';
 
             $resultado .= '
@@ -225,6 +226,7 @@ if ($count_row === false) {
     }
 
     $resultado .= "
+    </tbody>
     </table>
     </div>
     ";

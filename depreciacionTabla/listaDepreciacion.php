@@ -34,33 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     // $count_row = sqlsrv_has_rows($query);
     if (count($listaDepreciacion) === 0) {
-        echo "<div style='text-align:center'><h2>¡Lista de Depreciación vacía!</h2></div>";
+        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Depreciación vacía!</p></div>";
     } else {
         $resultado = '
         <div class="table-responsive">
-        <table style="text-align:center" class="table table-hover">
+        <table class="table table-vcenter card-table table-hover text-center">
+        <thead>
         <tr>
-        <th>
-        Información
-        </th>
-        <th>
-        Activo
-        </th>
-        <th>
-        Vida útil (años)
-        </th>
-        <th>
-        Coeficiente (%)
-        </th>
-        <th>
-        Estado
-        </th>
-        <th>
-        Opciones
-        </th>
-        </tr>';
+        <th>Información</th>
+        <th>Activo</th>
+        <th>Vida útil (años)</th>
+        <th>Coeficiente (%)</th>
+        <th>Estado</th>
+        <th class="w-1">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>';
         $t = time();
-        // print_r($listaDepreciacion);
         foreach ($listaDepreciacion as $row) {
             $id = $row['idDepreciacion'];
             $estado = $row['estado'];
@@ -88,24 +78,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <td >" . $row["coeficiente"] . "</td>
             </tr>
             </table>
-            </table>
             </div>
             </div>
             </details>";
 
-            $resultado .= '<tr style="cursor:pointer" onclick="listarDetalleDepreciacion(' . $id . ')">
+            $resultado .= '<tr onclick="listarDetalleDepreciacion(' . $id . ')">
             <td>' . $otro . '</td>
             <td>' . $row['bien'] . '</td>
             <td>' . $row['vidaUtil'] . '</td>
             <td>' . $row['coeficiente'] * 100 . '</td>';
             if ($row['estado'] == 'Activo') {
-                $resultado .= '<td><label class="bg-success text-white p-1 rounded">' . $row['estado'] . '</label></td>';
+                $resultado .= '<td><span class="badge bg-success-subtle text-success">' . $row['estado'] . '</span></td>';
             } else {
-                $resultado .= '<td> ' . $row['estado'] . '</td>';
+                $resultado .= '<td><span class="badge bg-secondary-subtle text-secondary">' . $row['estado'] . '</span></td>';
             }
             $resultado .= '
             <td>
-            <button class="btn btn-primary" onclick="edit_depreciacion(\'' . $row['idDepreciacion'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
+            <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_depreciacion(\'' . $row['idDepreciacion'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
             </td>
             </tr>';
 
@@ -114,17 +103,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <td></td>
             <td colspan="2">
             <div class="card" style="max-height: 150px; overflow-y: auto;">
-            <div class="card-body">
-            <table border="0" cellpadding="0" cellspacing="0" class="table">';
+            <div class="card-body p-2">
+            <table border="0" cellpadding="0" cellspacing="0" class="table table-sm mb-0">';
             if (isset($row['detalle'])) {
                 foreach ($row['detalle'] as $detalle) {
                     $resultado .= '<tr>
-                    <td style="text-align:left; padding-top:0.25rem !important; padding-bottom:0.25rem !important; padding-left:1.25rem !important; padding-right:0.5rem !important;" colspan="6">' . $detalle['bienDetalle'] . '</td>
+                    <td class="text-start py-1 px-3" colspan="6">' . $detalle['bienDetalle'] . '</td>
                     </tr>';
                 }
             } else {
                 $resultado .= '<tr>
-                <td colspan="6">No hay detalles</td>
+                <td colspan="6" class="text-secondary">No hay detalles</td>
                 </tr>';
             }
             $resultado .= '</table>
@@ -134,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <td colspan="3"></td>
             </tr>';
         }
-        $resultado .= "</table></div>";
+        $resultado .= "</tbody></table></div>";
         echo $resultado;
     }
 } else {

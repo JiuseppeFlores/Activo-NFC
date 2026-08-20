@@ -15,63 +15,48 @@ while($row = sqlsrv_fetch_array($queryProductos, SQLSRV_FETCH_ASSOC)){
 }
 ?>
 
-<form style="padding:10px" id="add_inventario">
-    <div class="row g-3 align-items-center">
-        <div class="" style="margin:30px auto">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" onclick="listar_inventario(1)" class="btn btn-danger">Volver</button>
+<form id="add_inventario" class="card">
+    <div class="card-header">
+        <h3 class="card-title">Nueva Inspección</h3>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Bien Asignado</label>
+                <select id="idAsignacion" name="idAsignacion" required autocomplete="off" class="form-select" onchange="getUsuario()">
+                    <option value="">Seleccione un bien asignado</option>
+                    <?php foreach($listaProductos as $id => $value){ ?>
+                        <option value="<?php echo $id ?>" title="<?php echo $value ?>"><?php echo $value ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Usuario Asignado</label>
+                <input type="text" id="usuario" name="usuario" required autocomplete="off" class="form-control" value="" readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Revisor</label>
+                <select id="revisor" name="revisor" required autocomplete="off" class="form-select">
+                    <option value="">Seleccione un revisor</option>
+                    <?php foreach($listaUsuarios as $id => $value){ ?>
+                        <option value="<?php echo $id ?>"><?php echo $value ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Fecha</label>
+                <input type="datetime-local" id="fecha" name="fecha" required autocomplete="off" class="form-control" value="<?php echo date('Y-m-d H:i') ?>">
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Observación</label>
+                <input type="text" id="observacion" name="observacion" autocomplete="off" class="form-control" placeholder="Escriba...">
+            </div>
         </div>
     </div>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Bien Asignado</label>
-        </div>
-        <div class="col-9">
-            <select id="idAsignacion" name="idAsignacion" required autocomplete="off" class="form-control" onchange="getUsuario()">
-                <option value="">Seleccione un bien asignado</option>
-                <?php foreach($listaProductos as $id => $value){ ?>
-                    <option value="<?php echo $id ?>" title="<?php echo $value ?>"><?php echo $value ?></option>
-                <?php } ?>
-            </select>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Usuario Asignado</label>
-        </div>
-        <div class="col-9">
-            <input type="text" id="usuario" name="usuario" required autocomplete="off" class="form-control" value="" readonly>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Revisor</label>
-        </div>
-        <div class="col-9">
-            <select id="revisor" name="revisor" required autocomplete="off" class="form-control">
-                <option value="">Seleccione un revisor</option>
-                <?php foreach($listaUsuarios as $id => $value){ ?>
-                    <option value="<?php echo $id ?>"><?php echo $value ?></option>
-                <?php } ?>
-            </select>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Fecha</label>
-        </div>
-        <div class="col-9">
-            <input type="datetime-local" id="fecha" name="fecha" required autocomplete="off" class="form-control" value="<?php echo date('Y-m-d H:i') ?>">
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Observación</label>
-        </div>
-        <div class="col-9">
-            <input type="text" id="observacion" name="observacion" autocomplete="off" class="form-control" placeholder="Escriba...">
-        </div>
-    </div><br>
+    <div class="card-footer text-end">
+        <button type="button" onclick="listar_inventario(1)" class="btn btn-secondary me-2">Volver</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
 </form>
 
 <script>

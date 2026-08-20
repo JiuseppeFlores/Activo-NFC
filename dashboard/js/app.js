@@ -76,37 +76,25 @@ function dashboard() {
                     let listaTiempoRestante = json.listaTiempoRestante;
                     listaTiempoRestante.sort((a, b) => b.porcentajeUtilRestante - a.porcentajeUtilRestante);
                     listaTiempoRestante.forEach(element => {
+                        let barColor = "bg-success";
                         if (element.porcentajeUtilRestante > 75) {
-                            $("#tiempo-restante").append(`
-                            <div class="progress-group">
-                                <span class="progress-text">${element.producto}</span>
-                                <span class="float-right"><b>${element.porcentajeUtilRestante.toFixed(2)} %</b></span>
-                                <small>(${element.tiempoRestante} años restantes)</small>
-                                <div class="progress sm">
-                                    <div class="progress-bar bg-danger" style="width: ${element.porcentajeUtilRestante.toFixed(2)}%; border-radius: 5px;"></div>
-                                </div>
-                            </div>`);
+                            barColor = "bg-danger";
                         } else if (element.porcentajeUtilRestante > 50) {
-                            $("#tiempo-restante").append(`
-                            <div class="progress-group">
-                                <span class="progress-text">${element.producto}</span>
-                                <span class="float-right"><b>${element.porcentajeUtilRestante.toFixed(2)} %</b></span>
-                                <small>(${element.tiempoRestante} años restantes)</small>
-                                <div class="progress sm">
-                                    <div class="progress-bar bg-warning" style="width: ${element.porcentajeUtilRestante.toFixed(2)}%; border-radius: 5px;"></div>
-                                </div>
-                            </div>`);
-                        } else {
-                            $("#tiempo-restante").append(`
-                            <div class="progress-group">
-                                <span class="progress-text">${element.producto}</span>
-                                <span class="float-right"><b>${element.porcentajeUtilRestante.toFixed(2)} %</b></span>
-                                <small>(${element.tiempoRestante} años restantes)</small>
-                                <div class="progress sm">
-                                    <div class="progress-bar bg-success" style="width: ${element.porcentajeUtilRestante.toFixed(2)}%; border-radius: 5px;"></div>
-                                </div>
-                            </div>`);
+                            barColor = "bg-warning";
                         }
+                        $("#tiempo-restante").append(`
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div>
+                                    <span class="font-weight-medium">${element.producto}</span>
+                                    <small class="text-secondary ms-1">(${element.tiempoRestante} años restantes)</small>
+                                </div>
+                                <span class="fw-bold">${element.porcentajeUtilRestante.toFixed(2)} %</span>
+                            </div>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar ${barColor}" style="width: ${element.porcentajeUtilRestante.toFixed(2)}%;"></div>
+                            </div>
+                        </div>`);
                     });
                     
                 },

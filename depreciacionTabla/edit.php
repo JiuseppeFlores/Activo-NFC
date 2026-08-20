@@ -12,40 +12,32 @@ $t = time();
 
 ?>
 
-<form style="padding:10px" id="edit_depreciacion">
+<form id="edit_depreciacion" class="card">
     <input type="hidden" name="idDepreciacion" value="<?php echo $id; ?>">
-    <div class="row g-3 align-items-center">
-        <div class="" style="margin:30px auto">
-            <button type="submit" class="btn btn-success">Actualizar</button>
-            <button type="button" onclick="listar_depreciacion(1)" class="btn btn-danger">Volver</button>
+    <div class="card-header">
+        <h3 class="card-title">Editar Depreciación</h3>
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Bien</label>
+                <input type="text" name="bien" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $bien ?>" readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Vida útil (años)</label>
+                <input type="number" name="vidaUtil" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $vidaUtil ?>" min="1" max="100" readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Estado</label>
+                <select name="estado" class="form-select" required>
+                    <option value="1" <?php if ($estado == 1) echo 'selected'; ?>>Activo</option>
+                    <option value="0" <?php if ($estado == 0) echo 'selected'; ?>>Inactivo</option>
+                </select>
+            </div>
         </div>
     </div>
-
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Bien</label>
-        </div>
-        <div class="col-9">
-            <input type="text" name="bien" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $bien ?>" readonly>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Vida útil (años)</label>
-        </div>
-        <div class="col-9">
-            <input type="number" name="vidaUtil" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $vidaUtil ?>" min="1" max="100" readonly>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Estado</label>
-        </div>
-        <div class="col-9">
-            <select name="estado" class="form-select form-control" required>
-                <option value="1" <?php if ($estado == 1) echo 'selected'; ?>>Activo</option>
-                <option value="0" <?php if ($estado == 0) echo 'selected'; ?>>Inactivo</option>
-            </select>
-        </div>
-    </div><br>
+    <div class="card-footer text-end">
+        <button type="button" onclick="listar_depreciacion(1)" class="btn btn-secondary me-2">Volver</button>
+        <button type="submit" class="btn btn-success">Actualizar</button>
+    </div>
 </form>

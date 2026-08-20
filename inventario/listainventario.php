@@ -19,23 +19,24 @@ $sql = "SELECT ti.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.produ
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div style='text-align:center'><h2>¡Lista de inspecciones vacía!</h2></div>";
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de inspecciones vacía!</p></div>";
 } else {
 
     $resultado = '
     <div class="table-responsive">
-    <table style="text-align:center" class="table table-hover">
+    <table class="table table-vcenter card-table table-hover text-center">
+    <thead>
+    <tr>
     <th>Información</th>
     <th>Usuario</th>
     <th>Activo</th>
     <th>Código</th>
     <th>Revisor</th>
     <th>Observación</th>
-    <th>Fecha</th>';
-    // $resultado .= '
-    // <th>Opciones</th>';
-    $resultado .= '
-    </tr>';
+    <th>Fecha</th>
+    </tr>
+    </thead>
+    <tbody>';
 
     $t = time();
     while ($row = sqlsrv_fetch_array($query)) {
@@ -72,31 +73,25 @@ if ($count_row === false) {
         <td>" . $fechaFormato . "</td>
         </tr>
         </table>
-        </table>
         </div>
         </div>
         </details>";
 
 
         $resultado .= '
-        <tr style="cursor:pointer">
+        <tr>
         <td>' . $otro . '</td>
         <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
         <td>' . $row['producto'] . '</td>
         <td>' . $row['codigoBarras'] . '</td>
         <td>' . $row['nombreCreador'] . ' ' . $row['apellidoPaternoCreador'] . ' ' . $row['apellidoMaternoCreador'] . '</td>
         <td>' . $row['observacion'] . '</td>
-        <td>' . $fechaFormato . '</td>';
-        // $resultado .= '
-        // <td>
-        // <button class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_inventario" data-id="' . $id . '"><i class="fas fa-trash"></i></button>
-        // <button class="btn btn-primary" onclick="edit_inventario(' . $id . ')"><i class="fas fa-edit"></i></button>
-        // </td>';
-        $resultado .= '
+        <td>' . $fechaFormato . '</td>
         </tr>';
     }
 
     $resultado .= "
+    </tbody>
     </table>
     </div>
     ";

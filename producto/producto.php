@@ -2,64 +2,39 @@
 session_start();
 $idRol = $_SESSION['idRol'];
 ?>
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-12">
-                <input type="hidden" class="form-control" id="pagina" value="1">
-                <h1 class="m-0" style="display:inline-block">Activos</h1>
-                <?php if ($idRol == 1) { ?>
-                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_producto()"> <i class="fas fa-plus"></i> Añadir Activo</button>
-                <!-- <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="reporteProductos()"><i class="fas fa-file"></i> Generar reporte</button> -->
-                <?php } ?>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<input type="hidden" class="form-control" id="pagina" value="1">
+<div class="page-header d-print-none mb-3">
+    <div class="row align-items-center">
+        <div class="col">
+            <h2 class="page-title">Activos</h2>
+        </div>
+        <?php if ($idRol == 1) { ?>
+        <div class="col-auto ms-auto d-print-none">
+            <button class="btn btn-primary" onclick="add_producto()">
+                <i class="ti ti-plus icon me-1"></i> Añadir Activo
+            </button>
+        </div>
+        <?php } ?>
+    </div>
 </div>
-<!-- /.content-header -->
 
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-
+<div class="card">
+    <div class="card-header" id="buscador-general">
+        <div class="input-icon">
+            <input class="form-control" id="busqueda_producto" onkeyup="listar_producto(1)" type="search" placeholder="Buscar..." aria-label="Search">
+            <span class="input-icon-addon">
+                <i class="ti ti-search icon"></i>
+            </span>
         </div>
-        <div class="row">
-
-            <section class="col-lg-12 connectedSortable" style="overflo">
-                <div class="card direct-chat direct-chat-primary">
-                    <div class="card-header" id="buscador-general">
-
-                        <div class="form-inline" style="float:left">
-                            <div class="input-group" data-widget="sidebar-search">
-                                <input class="form-control" id="busqueda_producto" onkeyup="listar_producto(1)" type="search" placeholder="Buscar" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-sidebar">
-                                        <i class="fas fa-search fa-fw"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="for-pagination1" style="text-align:center"></div>
-                        <div id="producto-result"></div>
-                        <div id="for-pagination2" style="text-align:center"></div>
-                    </div>
-                    <div class="card-footer">
-                    </div>
-                </div>
-
-            </section>
-
+        <div class="card-actions ms-auto">
+            <button type="button" class="btn-action" data-card-widget="collapse">
+                <i class="ti ti-minus"></i>
+            </button>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-</section>
+    </div>
+    <div class="card-body p-0">
+        <div id="for-pagination1" class="text-center py-2"></div>
+        <div id="producto-result"></div>
+        <div id="for-pagination2" class="text-center py-2"></div>
+    </div>
+</div>

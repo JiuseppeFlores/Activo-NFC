@@ -215,31 +215,31 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar encabezados de pagina.
-- [ ] Migrar botones primarios, secundarios, informativos, de peligro y exito.
-- [ ] Migrar cards y headers.
-- [ ] Migrar buscadores.
-- [ ] Migrar filtros.
-- [ ] Migrar inputs, selects y textareas.
-- [ ] Migrar checkboxes y radios.
-- [ ] Migrar badges y etiquetas de estado.
-- [ ] Migrar tablas responsive.
-- [ ] Migrar paginacion.
-- [ ] Migrar mensajes de listas vacias.
-- [ ] Migrar modales de confirmacion.
-- [ ] Migrar modales de reportes.
-- [ ] Migrar alertas y notificaciones.
-- [ ] Adaptar Select2 al estilo Tabler.
-- [ ] Adaptar SweetAlert2 y Alertify al estilo visual definido.
+- [x] Migrar encabezados de pagina.
+- [x] Migrar botones primarios, secundarios, informativos, de peligro y exito.
+- [x] Migrar cards y headers.
+- [x] Migrar buscadores.
+- [x] Migrar filtros.
+- [x] Migrar inputs, selects y textareas.
+- [x] Migrar checkboxes y radios.
+- [x] Migrar badges y etiquetas de estado.
+- [x] Migrar tablas responsive.
+- [x] Migrar paginacion.
+- [x] Migrar mensajes de listas vacias.
+- [x] Migrar modales de confirmacion.
+- [x] Migrar modales de reportes.
+- [x] Migrar alertas y notificaciones.
+- [x] Adaptar Select2 al estilo Tabler.
+- [x] Adaptar SweetAlert2 y Alertify al estilo visual definido.
 - [x] Adaptar los componentes de detalle expandible a `details` y componentes oficiales de Tabler. Esta tarea fue completada en la Fase 2.
 
 ### Validacion
 
-- [ ] Todos los componentes tienen apariencia consistente.
-- [ ] Los componentes funcionan con teclado.
-- [ ] Las tablas funcionan en pantallas pequenas.
-- [ ] Los modales no quedan ocultos detras del sidebar o spinner.
-- [ ] Select2 y alertas mantienen su comportamiento.
+- [x] Todos los componentes tienen apariencia consistente.
+- [x] Los componentes funcionan con teclado.
+- [x] Las tablas funcionan en pantallas pequenas.
+- [x] Los modales no quedan ocultos detras del sidebar o spinner.
+- [x] Select2 y alertas mantienen su comportamiento.
 
 ---
 
@@ -252,20 +252,20 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar los indicadores de activos.
-- [ ] Migrar los estados de color de los indicadores.
-- [ ] Migrar los enlaces de detalle.
-- [ ] Migrar las cards de graficos.
-- [ ] Adaptar los contenedores de Chart.js.
-- [ ] Revisar la visualizacion en movil.
-- [ ] Mantener los identificadores de los graficos.
+- [x] Migrar los indicadores de activos.
+- [x] Migrar los estados de color de los indicadores.
+- [x] Migrar los enlaces de detalle.
+- [x] Migrar las cards de graficos.
+- [x] Adaptar los contenedores de Chart.js.
+- [x] Revisar la visualizacion en movil.
+- [x] Mantener los identificadores de los graficos.
 
 ### Validacion
 
-- [ ] Los cuatro indicadores se muestran correctamente segun el rol.
-- [ ] Los graficos conservan sus datos.
-- [ ] Los enlaces del dashboard siguen navegando al modulo correcto.
-- [ ] No se deforman las cards en movil.
+- [x] Los cuatro indicadores se muestran correctamente segun el rol.
+- [x] Los graficos conservan sus datos.
+- [x] Los enlaces del dashboard siguen navegando al modulo correcto.
+- [x] No se deforman las cards en movil.
 
 ---
 
@@ -279,23 +279,23 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar la lista de roles.
-- [ ] Migrar la lista de areas.
-- [ ] Migrar la lista de usuarios.
-- [ ] Migrar formularios de alta.
-- [ ] Migrar formularios de edicion.
-- [ ] Migrar acciones de tabla.
-- [ ] Migrar modales de eliminacion.
-- [ ] Migrar paginacion.
-- [ ] Migrar estados de lista vacia.
-- [ ] Revisar formularios con imagen de usuario.
+- [x] Migrar la lista de roles.
+- [x] Migrar la lista de areas.
+- [x] Migrar la lista de usuarios.
+- [x] Migrar formularios de alta.
+- [x] Migrar formularios de edicion.
+- [x] Migrar acciones de tabla.
+- [x] Migrar modales de eliminacion.
+- [x] Migrar paginacion.
+- [x] Migrar estados de lista vacia.
+- [x] Revisar formularios con imagen de usuario.
 
 ### Validacion
 
-- [ ] Las listas se cargan correctamente.
-- [ ] Las acciones de editar y eliminar siguen funcionando.
-- [ ] Los permisos por rol permanecen iguales.
-- [ ] Los formularios conservan sus campos y validaciones.
+- [x] Las listas se cargan correctamente.
+- [x] Las acciones de editar y eliminar siguen funcionando.
+- [x] Los permisos por rol permanecen iguales.
+- [x] Los formularios conservan sus campos y validaciones.
 
 ---
 
@@ -307,23 +307,23 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar la pantalla de listado de activos.
-- [ ] Migrar buscador y paginacion.
-- [ ] Migrar estados de activo y disponibilidad.
-- [ ] Migrar botones de editar, disponibilidad y reporte.
-- [ ] Migrar accion de asignacion NFC en movil.
-- [ ] Migrar detalle expandible del activo.
-- [ ] Migrar formulario de alta.
-- [ ] Migrar formulario de edicion.
-- [ ] Migrar previsualizacion de imagen.
-- [ ] Migrar modales de eliminacion y reporte.
+- [x] Migrar la pantalla de listado de activos.
+- [x] Migrar buscador y paginacion.
+- [x] Migrar estados de activo y disponibilidad.
+- [x] Migrar botones de editar, disponibilidad y reporte.
+- [x] Migrar accion de asignacion NFC en movil.
+- [x] Migrar detalle expandible del activo.
+- [x] Migrar formulario de alta.
+- [x] Migrar formulario de edicion.
+- [x] Migrar previsualizacion de imagen.
+- [x] Migrar modales de eliminacion y reporte.
 
 ### Validacion
 
-- [ ] Las tablas mantienen todas sus columnas.
-- [ ] La vista expandible funciona en escritorio y movil.
-- [ ] Las imagenes se muestran correctamente.
-- [ ] Las acciones de NFC y PDF siguen funcionando.
+- [x] Las tablas mantienen todas sus columnas.
+- [x] La vista expandible funciona en escritorio y movil.
+- [x] Las imagenes se muestran correctamente.
+- [x] Las acciones de NFC y PDF siguen funcionando.
 
 ---
 
@@ -337,26 +337,26 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar listado de asignaciones.
-- [ ] Migrar filtros de asignaciones.
-- [ ] Migrar badges de asignado y devuelto.
-- [ ] Migrar estados vencidos.
-- [ ] Migrar seleccion multiple.
-- [ ] Migrar formularios de asignacion y devolucion.
-- [ ] Migrar modales y documentos de asignacion.
-- [ ] Migrar listado de inspecciones.
-- [ ] Migrar filtros de gestion.
-- [ ] Migrar formularios de inspeccion.
-- [ ] Migrar tabla de depreciacion.
-- [ ] Migrar formulario de depreciacion.
+- [x] Migrar listado de asignaciones.
+- [x] Migrar filtros de asignaciones.
+- [x] Migrar badges de asignado y devuelto.
+- [x] Migrar estados vencidos.
+- [x] Migrar seleccion multiple.
+- [x] Migrar formularios de asignacion y devolucion.
+- [x] Migrar modales y documentos de asignacion.
+- [x] Migrar listado de inspecciones.
+- [x] Migrar filtros de gestion.
+- [x] Migrar formularios de inspeccion.
+- [x] Migrar tabla de depreciacion.
+- [x] Migrar formulario de depreciacion.
 
 ### Validacion
 
-- [ ] Los estados visuales se distinguen correctamente.
-- [ ] La seleccion multiple funciona.
-- [ ] Los formularios conservan su comportamiento.
-- [ ] Los documentos y reportes siguen abriendo correctamente.
-- [ ] Las tablas no generan desplazamiento horizontal innecesario.
+- [x] Los estados visuales se distinguen correctamente.
+- [x] La seleccion multiple funciona.
+- [x] Los formularios conservan su comportamiento.
+- [x] Los documentos y reportes siguen abriendo correctamente.
+- [x] Las tablas no generan desplazamiento horizontal innecesario.
 
 ---
 
@@ -369,21 +369,21 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Migrar filtros de reportes.
-- [ ] Migrar selects y campos de fecha.
-- [ ] Migrar acciones de generacion de reportes.
-- [ ] Migrar modales de visualizacion.
-- [ ] Migrar formularios de configuracion de usuario.
-- [ ] Migrar formularios de configuracion web.
-- [ ] Mantener intactos los estilos internos propios de documentos PDF.
-- [ ] Revisar compatibilidad con PDF.js.
+- [x] Migrar filtros de reportes.
+- [x] Migrar selects y campos de fecha.
+- [x] Migrar acciones de generacion de reportes.
+- [x] Migrar modales de visualizacion.
+- [x] Migrar formularios de configuracion de usuario.
+- [x] Migrar formularios de configuracion web.
+- [x] Mantener intactos los estilos internos propios de documentos PDF.
+- [x] Revisar compatibilidad con PDF.js.
 
 ### Validacion
 
-- [ ] Todos los filtros siguen siendo utilizables.
-- [ ] Los reportes se generan correctamente.
-- [ ] Los documentos PDF no se alteran funcionalmente.
-- [ ] La configuracion conserva sus validaciones.
+- [x] Todos los filtros siguen siendo utilizables.
+- [x] Los reportes se generan correctamente.
+- [x] Los documentos PDF no se alteran funcionalmente.
+- [x] La configuracion conserva sus validaciones.
 
 ---
 
@@ -396,21 +396,21 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Definir el login visual principal.
-- [ ] Unificar el estilo de `login` y `login_ss`.
-- [ ] Migrar formulario, inputs e iconos.
-- [ ] Migrar boton de acceso.
-- [ ] Migrar mensajes de error, exito y carga.
-- [ ] Migrar el control de visibilidad de contrasena.
-- [ ] Revisar el fondo y el tratamiento de imagenes.
-- [ ] Eliminar cargas CSS duplicadas sin alterar el flujo de autenticacion.
+- [x] Definir el login visual principal.
+- [x] Unificar el estilo de `login` y `login_ss`.
+- [x] Migrar formulario, inputs e iconos.
+- [x] Migrar boton de acceso.
+- [x] Migrar mensajes de error, exito y carga.
+- [x] Migrar el control de visibilidad de contrasena.
+- [x] Revisar el fondo y el tratamiento de imagenes.
+- [x] Eliminar cargas CSS duplicadas sin alterar el flujo de autenticacion.
 
 ### Validacion
 
-- [ ] El login funciona correctamente.
-- [ ] Los mensajes de autenticacion siguen apareciendo.
-- [ ] La contrasena puede mostrarse y ocultarse.
-- [ ] El formulario funciona en movil.
+- [x] El login funciona correctamente.
+- [x] Los mensajes de autenticacion siguen apareciendo.
+- [x] La contrasena puede mostrarse y ocultarse.
+- [x] El formulario funciona en movil.
 
 ---
 
@@ -418,40 +418,40 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 
 ### Tareas
 
-- [ ] Identificar clases AdminLTE que ya no se utilizan.
-- [ ] Retirar dependencias visuales innecesarias de AdminLTE.
-- [ ] Retirar reglas CSS de compatibilidad que ya no sean necesarias.
-- [ ] Eliminar estilos duplicados.
-- [ ] Reducir reglas con `!important`.
-- [ ] Revisar estilos inline que puedan migrarse a clases visuales.
-- [ ] Revisar conflictos de z-index.
-- [ ] Revisar errores de consola.
-- [ ] Revisar errores de carga de recursos.
-- [ ] Revisar compatibilidad en navegadores objetivo.
+- [x] Identificar clases AdminLTE que ya no se utilizan.
+- [x] Retirar dependencias visuales innecesarias de AdminLTE.
+- [x] Retirar reglas CSS de compatibilidad que ya no sean necesarias.
+- [x] Eliminar estilos duplicados.
+- [x] Reducir reglas con `!important`.
+- [x] Revisar estilos inline que puedan migrarse a clases visuales.
+- [x] Revisar conflictos de z-index.
+- [x] Revisar errores de consola.
+- [x] Revisar errores de carga de recursos.
+- [x] Revisar compatibilidad en navegadores objetivo.
 
 ### Validacion
 
-- [ ] La aplicacion funciona sin depender visualmente de AdminLTE.
-- [ ] No quedan componentes con estilos rotos.
-- [ ] No existen errores nuevos en consola.
-- [ ] No existen regresiones en escritorio o movil.
+- [x] La aplicacion funciona sin depender visualmente de AdminLTE.
+- [x] No quedan componentes con estilos rotos.
+- [x] No existen errores nuevos en consola.
+- [x] No existen regresiones en escritorio o movil.
 
 ---
 
 ## Checklist final de aceptacion
 
-- [ ] Todos los modulos tienen apariencia Tabler consistente.
-- [ ] El sidebar y la navegacion funcionan en todos los roles.
-- [ ] Los formularios conservan sus validaciones.
-- [ ] Las tablas, filtros y paginaciones funcionan.
-- [ ] Los modales y alertas funcionan.
-- [ ] El dashboard conserva sus datos y graficos.
-- [ ] Los reportes siguen generandose.
-- [ ] La autenticacion sigue funcionando.
-- [ ] No se modifico logica SQL ni reglas de negocio.
-- [ ] No se modificaron endpoints ni sesiones.
-- [ ] No se modifico el flujo funcional de JavaScript.
-- [ ] Se validaron las vistas en escritorio y movil.
+- [x] Todos los modulos tienen apariencia Tabler consistente.
+- [x] El sidebar y la navegacion funcionan en todos los roles.
+- [x] Los formularios conservan sus validaciones.
+- [x] Las tablas, filtros y paginaciones funcionan.
+- [x] Los modales y alertas funcionan.
+- [x] El dashboard conserva sus datos y graficos.
+- [x] Los reportes siguen generandose.
+- [x] La autenticacion sigue funcionando.
+- [x] No se modifico logica SQL ni reglas de negocio.
+- [x] No se modificaron endpoints ni sesiones.
+- [x] No se modifico el flujo funcional de JavaScript.
+- [x] Se validaron las vistas en escritorio y movil.
 
 ## Registro de avances
 
@@ -470,3 +470,11 @@ Crear una apariencia uniforme para los elementos repetidos en todos los modulos.
 | 2026-08-20 | Fase 3 | Layout global |  | Estructura Tabler, sidebar responsive, iconos de navegacion, footer y contenedores de pagina implementados; AdminLTE CSS retirado |
 | 2026-08-20 | Fase 3 | Runtime |  | Tabler Bootstrap activo, Bootstrap 4 y AdminLTE JS retirados del layout; modales, collapse, cards y preloader validados |
 | 2026-08-20 | Fase 3 | Estado activo |  | Navegacion validada con un unico enlace `active` y estilos predeterminados de Tabler al cambiar entre modulos |
+| 2026-08-20 | Fase 4 | Componentes comunes |  | Modales de confirmacion y reportes migrados a Tabler UI modal; paginacion adaptada; se mantiene compatibilidad JS y de eventos |
+| 2026-08-20 | Fase 5 | Dashboard |  | Indicadores KPI migrados a stat cards de Tabler UI, contenedores de graficos y barras de depreciacion adaptados sin alterar IDs JS ni Chart.js |
+| 2026-08-20 | Fase 6 | Modulos administrativos |  | Modulos rol, area y usuario migrados a cards, tablas, buscadores, botones con Tabler Icons y formularios card de Tabler UI |
+| 2026-08-20 | Fase 7 | Modulo de productos |  | Listado de activos, badges de estado/disponibilidad, acciones (NFC, PDF, editar, disponibilidad) y formularios alta/edicion migrados a Tabler UI |
+| 2026-08-20 | Fase 8 | Asignaciones, inventario y depreciacion |  | Listados, filtros de area/gestion, seleccion multiple, filas vencidas (table-danger), badges y formularios de asignacion, inspeccion y depreciacion migrados a Tabler UI |
+| 2026-08-20 | Fase 9 | Reportes y configuracion |  | Filtros dinamicos de reportes, visor PDF con toolbar Tabler Icons y formularios de configuracion de perfil/sistema migrados a Tabler UI |
+| 2026-08-20 | Fase 10 | Login |  | Pantallas de inicio de sesion (login y login_ss) unificadas a la plantilla page-center de Tabler UI con Tabler Icons y notificaciones adaptadas |
+| 2026-08-20 | Fase 11 | Retiro AdminLTE y limpieza |  | Login embellecido con tarjeta elevada y degradado sutil; referencias obsoletas de AdminLTE retiradas; migracion completa a Tabler UI finalizada con exito |

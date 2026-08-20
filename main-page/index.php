@@ -18,8 +18,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="../js_lib/dist/css/adminlte.min.css"> -->
-    <!-- Tabler local: base visual preparada para la migracion progresiva. -->
+    <!-- Tabler local: base visual de Tabler UI. -->
     <link rel="stylesheet" href="../js_lib/plugins/tabler/css/tabler.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/tabler/icons/css/tabler-icons.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">

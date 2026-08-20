@@ -1,46 +1,29 @@
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-12">
-                <input type="hidden" class="form-control" id="pagina" value="1">
-                <h1 class="m-0" style="display:inline-block">Tabla de Depreciación</h1>
-            </div>
+<input type="hidden" class="form-control" id="pagina" value="1">
+<div class="page-header d-print-none mb-3">
+    <div class="row align-items-center">
+        <div class="col">
+            <h2 class="page-title">Tabla de Depreciación</h2>
         </div>
     </div>
 </div>
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
+
+<div class="card">
+    <div class="card-header" id="buscador-general">
+        <div class="input-icon">
+            <input class="form-control" id="busqueda_depreciacion" onkeyup="listar_depreciacion(1)" type="search" placeholder="Buscar..." aria-label="Search">
+            <span class="input-icon-addon">
+                <i class="ti ti-search icon"></i>
+            </span>
         </div>
-        <div class="row">
-            <section class="col-lg-12 connectedSortable" style="overflo">
-                <div class="card direct-chat direct-chat-primary">
-                    <div class="card-header" id="buscador-general">
-                        <div class="form-inline" style="float:left">
-                            <div class="input-group" data-widget="sidebar-search">
-                                <input class="form-control" id="busqueda_depreciacion" onkeyup="listar_depreciacion(1)" type="search" placeholder="Buscar" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-sidebar">
-                                        <i class="fas fa-search fa-fw"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="for-pagination1" style="text-align:center"></div>
-                        <div id="depreciacion-result"></div>
-                        <div id="for-pagination2" style="text-align:center"></div>
-                    </div>
-                    <div class="card-footer">
-                    </div>
-                </div>
-            </section>
+        <div class="card-actions ms-auto">
+            <button type="button" class="btn-action" data-card-widget="collapse">
+                <i class="ti ti-minus"></i>
+            </button>
         </div>
     </div>
-</section>
+    <div class="card-body p-0">
+        <div id="for-pagination1" class="text-center py-2"></div>
+        <div id="depreciacion-result"></div>
+        <div id="for-pagination2" class="text-center py-2"></div>
+    </div>
+</div>

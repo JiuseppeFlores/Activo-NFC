@@ -10,21 +10,23 @@
 
     ?>
 
- <form style="padding:10px" id="edit_rol">
+ <form id="edit_rol" class="card">
      <input type="hidden" name="idRol" value="<?php echo $id; ?>">
-     <div class="row g-3 align-items-center">
-         <div class="" style="margin:30px auto">
-             <button type="submit" class="btn btn-success">Actualizar</button>
-             <button type="button" onclick="listar_rol(1)" class="btn btn-danger">Volver</button>
+     <div class="card-header">
+         <h3 class="card-title">Editar Rol</h3>
+     </div>
+     <div class="card-body">
+         <div class="row g-3 align-items-center mb-3">
+             <div class="col-md-3 col-lg-2">
+                 <label class="form-label mb-0">Rol</label>
+             </div>
+             <div class="col-md-9 col-lg-10">
+                 <input type="text" name="rol" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $rol ?>">
+             </div>
          </div>
      </div>
-
-     <div class="row g-3 align-items-center">
-         <div class="col-2">
-             <label class="col-form-label">Rol</label>
-         </div>
-         <div class="col-9">
-             <input type="text" name="rol" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $rol ?>">
-         </div>
-     </div><br>
+     <div class="card-footer text-end">
+         <button type="button" onclick="listar_rol(1)" class="btn btn-secondary me-2">Volver</button>
+         <button type="submit" class="btn btn-success">Actualizar</button>
+     </div>
  </form>

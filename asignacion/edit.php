@@ -36,109 +36,103 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
 }
 ?>
 
-<form style="padding:10px" id="edit_asignacion">
+<form id="edit_asignacion" class="card mb-3">
     <input type="hidden" name="idAsignacion" value="<?php echo $id; ?>">
-    <div class="row g-3 align-items-center">
-        <div class="" style="margin:30px auto">
-            <button type="button" class="btn btn-success" id="btnActualizar">Actualizar</button>
-            <button type="button" onclick="listar_asignacion(1)" class="btn btn-danger">Volver</button>
-        </div>
+    <div class="card-header">
+        <h3 class="card-title">Editar Asignación</h3>
     </div>
-    <!-- para la adventencia cuando la fecha final es menor a la fecha actual -->
-    <?php if ($estadoAsignacion == 'VENCIDO') { ?>
-        <div class="alert bg-warning" role="alert">
-            <strong>¡Advertencia!</strong> La asignación ya ha expirado. Actualice la fecha final o realice la devolución del bien.
-        </div>
-    <?php } ?>
+    <div class="card-body">
+        <?php if ($estadoAsignacion == 'VENCIDO') { ?>
+            <div class="alert alert-warning mb-3" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <i class="ti ti-alert-triangle icon alert-icon"></i>
+                    </div>
+                    <div>
+                        <h4 class="alert-title">¡Advertencia!</h4>
+                        <div class="text-secondary">La asignación ya ha expirado. Actualice la fecha final o realice la devolución del bien.</div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
 
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Usuario</label>
-        </div>
-        <div class="col-9">
-            <select class="form-control" name="idUsuario" id="selectUsuario" required>
-                <?php
-                $sql = "SELECT * FROM tblUsuario ORDER BY apellidoPaterno ASC";
-                $query = sqlsrv_query($con, $sql);
-                while ($row = sqlsrv_fetch_array($query)) {
-                    $value = $row["idUsuario"];
-                    $texto = $row["apellidoPaterno"] . " " . $row["apellidoMaterno"] . ' ' . $row["nombre"];
-                    if ($idUsuario == $value) {
-                        echo ' <option value="' . $value . '" selected="selected">' . $texto . '</option> ';
-                    } else {
-                        echo ' <option value="' . $value . '" >' . $texto . '</option> ';
-                    }
-                }
-                ?>
-            </select>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Producto</label>
-        </div>
-        <div class="col-6">
-            <select class="form-control" name="idProducto" id="selectProducto" required onchange="vidaRestante()">
-                <?php
-                if (count($listaProductos) == 0) {
-                    echo  " <option value='-1'>No hay productos disponibles</option> ";
-                } else {
-                    foreach ($listaProductos as $producto) {
-                        $value = $producto["idProducto"];
-                        echo "<option value=''>Seleccione un producto</option>";
-                        if ($idProducto == $value) {
-                            echo  " <option value='" . $producto["idProducto"] . "' selected='selected' data-vida='" . $producto["restanteVida"] . "'>" . $producto["producto"] . " (Cód. Barras: " . $producto["codigoBarras"] . ")</option> ";
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Usuario</label>
+                <select class="form-select" name="idUsuario" id="selectUsuario" required>
+                    <?php
+                    $sql = "SELECT * FROM tblUsuario ORDER BY apellidoPaterno ASC";
+                    $query = sqlsrv_query($con, $sql);
+                    while ($row = sqlsrv_fetch_array($query)) {
+                        $value = $row["idUsuario"];
+                        $texto = $row["apellidoPaterno"] . " " . $row["apellidoMaterno"] . ' ' . $row["nombre"];
+                        if ($idUsuario == $value) {
+                            echo ' <option value="' . $value . '" selected="selected">' . $texto . '</option> ';
                         } else {
-                            echo  " <option value='" . $producto["idProducto"] . "' data-vida='" . $producto["restanteVida"] . "'>" . $producto["producto"] . " (Cód. Barras: " . $producto["codigoBarras"] . ")</option> ";
+                            echo ' <option value="' . $value . '" >' . $texto . '</option> ';
                         }
                     }
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Producto</label>
+                <div class="input-group">
+                    <select class="form-select" name="idProducto" id="selectProducto" required onchange="vidaRestante()">
+                        <?php
+                        if (count($listaProductos) == 0) {
+                            echo  " <option value='-1'>No hay productos disponibles</option> ";
+                        } else {
+                            foreach ($listaProductos as $producto) {
+                                $value = $producto["idProducto"];
+                                echo "<option value=''>Seleccione un producto</option>";
+                                if ($idProducto == $value) {
+                                    echo  " <option value='" . $producto["idProducto"] . "' selected='selected' data-vida='" . $producto["restanteVida"] . "'>" . $producto["producto"] . " (Cód. Barras: " . $producto["codigoBarras"] . ")</option> ";
+                                } else {
+                                    echo  " <option value='" . $producto["idProducto"] . "' data-vida='" . $producto["restanteVida"] . "'>" . $producto["producto"] . " (Cód. Barras: " . $producto["codigoBarras"] . ")</option> ";
+                                }
+                            }
+                        }
+                        ?>
+                    </select>
+                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#modalVerProducto" data-bs-toggle="modal" data-bs-target="#modalVerProducto" onclick="verProducto()">
+                        <i class="ti ti-eye icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Vida Útil Restante</label>
+                <input type="text" name="vidaUtilRestante" id="vidaUtilRestante" readonly class="form-control" value="Vida útil restante: ">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Fecha Inicial</label>
+                <input type="datetime-local" name="fechaInicial" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaInicial, 'Y-m-d H:i'); ?>">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Fecha Final</label>
+                <input type="datetime-local" name="fechaFinal" autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaFinal, 'Y-m-d H:i'); ?>">
+            </div>
         </div>
-        <div class="col-3">
-            <input type="text" name="vidaUtilRestante" id="vidaUtilRestante" readonly class="form-control" value="Vida útil restante: ">
-        </div>
-        <div class="col-1">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVerProducto" onclick="verProducto()">
-                <i class="fas fa-eye"></i>
-            </button>
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Fecha Inicial</label>
-        </div>
-        <div class="col-9">
-            <input type="datetime-local" name="fechaInicial" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaInicial, 'Y-m-d H:i'); ?>">
-        </div>
-    </div><br>
-    <div class="row g-3 align-items-center">
-        <div class="col-2">
-            <label class="col-form-label">Fecha Final</label>
-        </div>
-        <div class="col-9">
-            <input type="datetime-local" name="fechaFinal" autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaFinal, 'Y-m-d H:i'); ?>">
-        </div>
-    </div><br>
+    </div>
+    <div class="card-footer text-end">
+        <button type="button" onclick="listar_asignacion(1)" class="btn btn-secondary me-2">Volver</button>
+        <button type="button" class="btn btn-success" id="btnActualizar">Actualizar</button>
+    </div>
 </form>
 
 <!-- Modal -->
-<div class="modal fade" id="modalVerProducto" tabindex="-1" role="dialog" aria-labelledby="modalVerProductoLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal modal-blur fade" id="modalVerProducto" tabindex="-1" role="dialog" aria-labelledby="modalVerProductoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalVerProductoLabel">Visualización del producto</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center" id="contenedorImagen">
-                <!-- Contenido de la modal -->
                 <img src="../images/empty.jpg" class="img-fluid rounded" alt="Producto">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

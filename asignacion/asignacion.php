@@ -9,71 +9,59 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $listaArea[] = $row;
 }
 ?>
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-12">
-                <input type="hidden" class="form-control" id="pagina" value="1">
-                <h1 class="m-0" style="display:inline-block">Asignación</h1>
-                <?php if ($idRol == 1) { ?>
-                <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="add_asignacion()"> <i class="fas fa-plus"></i> Añadir asignación</button>
-                <button style="display:inline-block;margin-left:100px" class="btn btn-info btn-lg" onclick="devolucion()"> <i class="fas fa-undo"></i>
-                 Realizar Devolución</button>
-                <!-- <button style="display:inline-block;margin-left:100px" class="btn btn-primary btn-lg" onclick="reporteAsignaciones()"><i class="fas fa-file"></i> Generar reporte</button> -->
-                <?php } ?>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<input type="hidden" class="form-control" id="pagina" value="1">
+<div class="page-header d-print-none mb-3">
+    <div class="row align-items-center">
+        <div class="col">
+            <h2 class="page-title">Asignación</h2>
+        </div>
+        <?php if ($idRol == 1) { ?>
+        <div class="col-auto ms-auto d-print-none d-flex gap-2">
+            <button class="btn btn-primary" onclick="add_asignacion()">
+                <i class="ti ti-plus icon me-1"></i> Añadir asignación
+            </button>
+            <button class="btn btn-info" onclick="devolucion()">
+                <i class="ti ti-arrow-back-up icon me-1"></i> Realizar Devolución
+            </button>
+        </div>
+        <?php } ?>
+    </div>
 </div>
-<!-- /.content-header -->
 
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-        </div>
-        <div class="row">
-            <section class="col-lg-12 connectedSortable" style="overflo">
-                <div class="card direct-chat direct-chat-primary">
-                    <div class="card-header" id="buscador-general">
-                        <div class="form-inline" style="float:left">
-                            <div class="input-group" data-widget="sidebar-search">
-                                <?php if ($idRol != 3) { ?>
-                                <label style="margin-right:10px">Buscar:</label>    
-                                <input class="form-control" id="busqueda_asignacion" onkeyup="listar_asignacion(1)" type="search" placeholder="Buscar" aria-label="Search">
-                                <!-- <div class="input-group-append">
-                                    <button class="btn btn-sidebar">
-                                        <i class="fas fa-search fa-fw"></i>
-                                    </button>
-                                </div> -->
-                                <label style="margin-right:10px;margin-left:10px">Área:</label>
-                                <select id="area_filter" style="display:inline-block;margin-left:10px" class="form-control" onchange="listar_asignacion(1)">
-                                    <option value="">Todas las áreas</option>
-                                    <?php foreach ($listaArea as $area) { ?>
-                                        <option value="<?php echo $area['idArea']; ?>"><?php echo $area['area']; ?></option>
-                                    <?php } ?>
-                                </select>
-                                <?php } ?>
-                            </div>
-                        </div>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="for-pagination1" style="text-align:center"></div>
-                        <div id="asignacion-result"></div>
-                        <div id="for-pagination2" style="text-align:center"></div>
-                    </div>
-                    <div class="card-footer">
-                    </div>
+<div class="card">
+    <div class="card-header" id="buscador-general">
+        <?php if ($idRol != 3) { ?>
+        <div class="row g-2 align-items-center w-100 me-2">
+            <div class="col-md-5 col-lg-4">
+                <div class="input-icon">
+                    <input class="form-control" id="busqueda_asignacion" onkeyup="listar_asignacion(1)" type="search" placeholder="Buscar por usuario, bien o código..." aria-label="Search">
+                    <span class="input-icon-addon">
+                        <i class="ti ti-search icon"></i>
+                    </span>
                 </div>
-            </section>
+            </div>
+            <div class="col-md-5 col-lg-4">
+                <div class="d-flex align-items-center">
+                    <label class="form-label mb-0 me-2 text-nowrap">Área:</label>
+                    <select id="area_filter" class="form-select" onchange="listar_asignacion(1)">
+                        <option value="">Todas las áreas</option>
+                        <?php foreach ($listaArea as $area) { ?>
+                            <option value="<?php echo $area['idArea']; ?>"><?php echo $area['area']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
         </div>
-        <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-</section>
+        <?php } ?>
+        <div class="card-actions ms-auto">
+            <button type="button" class="btn-action" data-card-widget="collapse">
+                <i class="ti ti-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div id="for-pagination1" class="text-center py-2"></div>
+        <div id="asignacion-result"></div>
+        <div id="for-pagination2" class="text-center py-2"></div>
+    </div>
+</div>

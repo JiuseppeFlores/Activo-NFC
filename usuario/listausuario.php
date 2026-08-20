@@ -23,7 +23,7 @@ $sql = " SELECT * FROM tblUsuario tu LEFT JOIN tblArea ta ON tu.idArea = ta.idAr
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div style='text-align:center'><h2>¡Lista de Usuario vacía!</h2></div>";
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Usuario vacía!</p></div>";
 } else {
     // Verificar que el cliente utiliza un dispositivo móvil
     $agente = $_SERVER['HTTP_USER_AGENT'];
@@ -31,7 +31,8 @@ if ($count_row === false) {
 
     $resultado = '
     <div class="table-responsive">
-    <table style="text-align:center" class="table table-hover">
+    <table class="table table-vcenter card-table table-hover text-center">
+    <thead>
     <tr>
     <th>Información</th>
     <th>Usuario</th>
@@ -40,9 +41,11 @@ if ($count_row === false) {
     <th>Rol</th>
     <th>Cargo</th>
     <th>Área</th>'.(
-        ($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th>Opciones</th>'
+        ($esDispositivoMovil && ($idRol == 3 || $idRol == 2)) ? '' : '<th class="w-1">Opciones</th>'
     ).'
-    </tr>';
+    </tr>
+    </thead>
+    <tbody>';
 
     $t = time();
     if ($idRol == 3) {
@@ -96,12 +99,11 @@ if ($count_row === false) {
             <td >" . $row["area"] . "</td>
             </tr>
             </table>
-            </table>
             </div>
             </div>
             </details>";
                 $resultado .= '
-            <tr style="cursor:pointer">
+            <tr>
             <td>' . $otro . '</td>
             <td>' . $row['usuario'] . '</td>
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
@@ -110,9 +112,9 @@ if ($count_row === false) {
             <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
             <td>
-            <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
-            <button title="Editar Usuario" class="btn btn-primary" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
-            '.($esDispositivoMovil ? '': '<button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>').'
+            <button title="Eliminar Usuario" class="btn btn-outline-danger btn-icon" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="ti ti-trash icon"></i></button>
+            <button title="Editar Usuario" class="btn btn-outline-primary btn-icon" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
+            '.($esDispositivoMovil ? '': '<button title="Reporte Asignaciones" class="btn btn-outline-warning btn-icon" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="ti ti-file-text icon"></i></button>').'
             </td>
             </tr>';
             }
@@ -167,12 +169,11 @@ if ($count_row === false) {
             <td >" . $row["area"] . "</td>
             </tr>
             </table>
-            </table>
             </div>
             </div>
             </details>";
             $resultado .= '
-            <tr style="cursor:pointer">
+            <tr>
             <td>' . $otro . '</td>
             <td>' . $row['usuario'] . '</td>
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
@@ -181,15 +182,16 @@ if ($count_row === false) {
             <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
             <td>
-            <button title="Eliminar Usuario" class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="fas fa-trash"></i></button>
-            <button title="Editar Usuario" class="btn btn-primary" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="fas fa-edit"></i></button>
-            '.($esDispositivoMovil ? '' : '<button title="Reporte Asignaciones" class="btn btn-warning" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="fas fa-file"></i></button>').'
+            <button title="Eliminar Usuario" class="btn btn-outline-danger btn-icon" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="ti ti-trash icon"></i></button>
+            <button title="Editar Usuario" class="btn btn-outline-primary btn-icon" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
+            '.($esDispositivoMovil ? '' : '<button title="Reporte Asignaciones" class="btn btn-outline-warning btn-icon" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="ti ti-file-text icon"></i></button>').'
             </td>
             </tr>';
         }
     }
 
     $resultado .= "
+    </tbody>
     </table>
     </div>";
     echo $resultado;
