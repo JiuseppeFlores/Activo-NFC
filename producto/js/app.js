@@ -1,4 +1,6 @@
 function listar_producto(pag) {
+  $("#producto-table").removeClass("d-none");
+  $("#producto-form").addClass("d-none").empty();
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
   var start = (pag - 1) * 10;
@@ -79,16 +81,18 @@ function producto() {
 }
 
 function add_producto() {
+  $("#producto-table").addClass("d-none");
+  $("#producto-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#producto-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#producto-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../producto/add.php",
     type: "post",
     success: function (response) {
-      $("#producto-result")
+      $("#producto-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#producto-result").html(response);
+      $("#producto-form").html(response);
 
       let form = document.getElementById("add_producto");
       form.addEventListener("submit", function (event) {
@@ -101,8 +105,10 @@ function add_producto() {
 }
 
 function edit_producto(id) {
+  $("#producto-table").addClass("d-none");
+  $("#producto-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#producto-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#producto-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -113,10 +119,10 @@ function edit_producto(id) {
     url: "../producto/edit.php",
     type: "post",
     success: function (response) {
-      $("#producto-result")
+      $("#producto-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#producto-result").html(response);
+      $("#producto-form").html(response);
 
       let form = document.getElementById("edit_producto");
       form.addEventListener("submit", function (event) {

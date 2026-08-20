@@ -17,6 +17,7 @@ include("../conexion.php");
             </div>
         </div>
 
+        <div class="hr-text">Datos personales y acceso</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Nombre</label>
@@ -42,6 +43,7 @@ include("../conexion.php");
             <div class="col-md-6">
                 <label class="form-label">Contraseña</label>
                 <input type="text" name="password" required autocomplete="off" class="form-control" placeholder="Escriba...">
+                <small class="form-hint">Use una contraseña segura para la cuenta.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">CI</label>
@@ -87,7 +89,7 @@ include("../conexion.php");
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_usuario(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary"><i class="ti ti-device-floppy me-1"></i>Guardar</button>
     </div>
 </form>
 

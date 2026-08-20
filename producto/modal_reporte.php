@@ -3,7 +3,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Generador de Reportes</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Cerrar"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                                     </div>
     
                                                     <div class="uk-child-width-1-2@s" uk-grid style="display:contents">
@@ -33,10 +33,10 @@
                                                         <div style="width:100%">
                                                             <div class="uk-text-center uk-text-uppercase uk-background-default uk-padding-small uk-margin-remove-bottom h4">LISTA
                                                                 
-                                                                <a class="uk-button uk-button-primary uk-float-right" onclick="reporte_pdf('areaImprimir')">
-                                <span uk-icon="print"></span>REPORTE PDF
+                                                                                                                                <a href="#" class="btn btn-primary float-end" onclick="reporte_pdf('areaImprimir'); return false;">
+                                                                <i class="ti ti-file-analytics me-1"></i>REPORTE PDF
                               </a>
-                                                                <a id="btnBorrar" href="#" class="uk-button uk-button-danger uk-float-right" >Limpiar</a>
+                                                                                                                                <a id="btnBorrar" href="#" class="btn btn-danger float-end me-2" >Limpiar</a>
                                                             </div>
                                                             <div style="padding:10px;background-color:#1e87f03d" id="areaImprimir" class="uk-card uk-card-primary uk-card-body uk-maring-right" uk-sortable="group: sortable-group">
                                                             </div>
@@ -45,7 +45,7 @@
     
     
                                                     <div class="modal-footer">                                    
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-dismiss="modal">Cerrar</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                                      </div>
     
                                                 </div>

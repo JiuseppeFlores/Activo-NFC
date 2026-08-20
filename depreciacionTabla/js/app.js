@@ -19,6 +19,8 @@ function depreciacion() {
     });
 }
 function listar_depreciacion(pag) {
+    $("#depreciacion-table").removeClass("d-none");
+    $("#depreciacion-form").addClass("d-none").empty();
     $("buscador-general").show().animate({ opacity: "1" }, 1000);    
     var start = (pag - 1) * 10;
     var texto = $("#busqueda_depreciacion").val();
@@ -77,8 +79,10 @@ function listar_depreciacion(pag) {
 }
 
 function edit_depreciacion(id) {
+    $("#depreciacion-table").addClass("d-none");
+    $("#depreciacion-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#depreciacion-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+    $("#depreciacion-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -89,8 +93,8 @@ function edit_depreciacion(id) {
     url: "../depreciacionTabla/edit.php",
     type: "post",
     success: function (response) {
-      $("#depreciacion-result").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#depreciacion-result").html(response);
+    $("#depreciacion-form").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
+    $("#depreciacion-form").html(response);
 
       let form = document.getElementById("edit_depreciacion");
       form.addEventListener("submit", function (event) {

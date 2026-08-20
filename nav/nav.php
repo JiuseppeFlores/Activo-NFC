@@ -26,7 +26,7 @@ $url_avatar_nav .= "?r=" . $t;
     </button>
     <div class="d-flex align-items-center me-auto">
       <i class="ti ti-nfc text-white me-2 fs-4"></i>
-      <h1 class="navbar-brand navbar-brand-autodark d-none d-md-block mb-0 fs-4 fw-bold text-white">Activo NFC</h1>
+      <h1 class="navbar-brand navbar-brand-autodark d-none d-md-block mb-0 fs-5 fw-bold text-white">Sistema de Gestión de Activos</h1>
     </div>
     <!-- Dropdown de usuario en el navbar -->
     <div class="navbar-nav ms-auto">
@@ -80,42 +80,30 @@ $url_avatar_nav .= "?r=" . $t;
   </div>
 </header>
 
-<aside class="navbar navbar-vertical navbar-expand-lg collapse d-lg-block" id="sidebar-menu" data-bs-theme="dark">
+<aside class="navbar navbar-dark navbar-vertical navbar-expand-lg collapse d-lg-block" id="sidebar-menu" data-bs-theme="dark">
   <div class="container-fluid">
     <div class="d-flex align-items-center d-lg-none py-2">
       <i class="ti ti-nfc text-white me-2 fs-4"></i>
-      <h1 class="navbar-brand navbar-brand-autodark mb-0 fs-5 fw-bold text-white">Activo NFC</h1>
+      <h1 class="navbar-brand navbar-brand-autodark mb-0 fs-5 fw-bold text-white">T.S.J.M.</h1>
       <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-label="Cerrar menu">
         <i class="ti ti-x"></i>
       </button>
     </div>
 
-    <div class="collapse navbar-collapse show" id="sidebar-navigation">
+    <div class="navbar-collapse overflow-auto" id="sidebar-navigation">
       <div class="navbar-nav pt-lg-3">
 
-        <!-- Información del usuario en el sidebar (simplificada, el dropdown está en el navbar) -->
         <div class="nav-item pb-2 border-bottom border-secondary border-opacity-25 mb-2">
-          <div class="d-flex align-items-center px-2 py-2">
-            <span class="avatar avatar-sm rounded-circle me-2" style="background-image: url(<?php echo $url_avatar_nav; ?>)"></span>
-            <div class="flex-fill overflow-hidden">
-              <div class="fw-medium text-white small text-truncate"><?php echo $_SESSION['nombre']; ?></div>
-              <div class="text-white-50" style="font-size: 0.7rem;">
-                <?php
-                  if ($idRol == 1) echo 'Administrador';
-                  elseif ($idRol == 2) echo 'Responsable';
-                  else echo 'Usuario';
-                ?>
-              </div>
-            </div>
+          <div class="nav-link px-2 py-2 text-white">
+            <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-building-bank"></i></span>
+            <span class="nav-link-title fw-bold">T.S.J.M.</span>
           </div>
         </div>
 
         <!-- Separador de sección: Administración -->
         <?php if ($idRol == 1) { ?>
           <div class="nav-item">
-            <div class="nav-link text-uppercase fw-bold" style="font-size: 0.65rem; letter-spacing: 0.08em; opacity: 0.5; cursor: default; pointer-events: none;">
-              Administración
-            </div>
+            <div class="subheader px-2">Administración</div>
           </div>
           <div class="nav-item">
             <a href="#rol" onclick="rol(1)" id="nav_rol" class="nav-link">
@@ -126,9 +114,7 @@ $url_avatar_nav .= "?r=" . $t;
 
         <!-- Separador de sección: Personal -->
         <div class="nav-item mt-2">
-          <div class="nav-link text-uppercase fw-bold" style="font-size: 0.65rem; letter-spacing: 0.08em; opacity: 0.5; cursor: default; pointer-events: none;">
-            Personal
-          </div>
+          <div class="subheader px-2">Personal</div>
         </div>
         <?php if ($idRol == 1) { ?>
           <div class="nav-item">
@@ -145,9 +131,7 @@ $url_avatar_nav .= "?r=" . $t;
 
         <!-- Separador de sección: Activos -->
         <div class="nav-item mt-2">
-          <div class="nav-link text-uppercase fw-bold" style="font-size: 0.65rem; letter-spacing: 0.08em; opacity: 0.5; cursor: default; pointer-events: none;">
-            Activos
-          </div>
+          <div class="subheader px-2">Activos</div>
         </div>
         <?php if ($idRol != 3) { ?>
           <div class="nav-item">
@@ -165,9 +149,7 @@ $url_avatar_nav .= "?r=" . $t;
         <!-- Separador de sección: Gestión -->
         <?php if ($idRol != 3) { ?>
           <div class="nav-item mt-2">
-            <div class="nav-link text-uppercase fw-bold" style="font-size: 0.65rem; letter-spacing: 0.08em; opacity: 0.5; cursor: default; pointer-events: none;">
-              Gestión
-            </div>
+            <div class="subheader px-2">Gestión</div>
           </div>
           <div class="nav-item">
             <a href="#reportes" onclick="reportes(1)" id="nav_reportes" class="nav-link">
@@ -186,14 +168,7 @@ $url_avatar_nav .= "?r=" . $t;
           </div>
         <?php } ?>
 
-        <!-- Cierre de sesión al pie -->
-        <div class="nav-item mt-auto pt-3 border-top border-secondary border-opacity-25">
-          <a href="../login/logout.php" class="nav-link text-danger-emphasis">
-            <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-logout"></i></span><span class="nav-link-title">Cerrar sesión</span>
-          </a>
-        </div>
-
       </div>
     </div>
   </div>
-</aside>
+</aside>

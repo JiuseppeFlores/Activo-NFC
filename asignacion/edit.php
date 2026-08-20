@@ -43,7 +43,7 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
     </div>
     <div class="card-body">
         <?php if ($estadoAsignacion == 'VENCIDO') { ?>
-            <div class="alert alert-warning mb-3" role="alert">
+            <div class="alert alert-warning alert-important mb-3" role="alert">
                 <div class="d-flex">
                     <div>
                         <i class="ti ti-alert-triangle icon alert-icon"></i>
@@ -56,6 +56,7 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
             </div>
         <?php } ?>
 
+        <div class="hr-text">Datos de la asignación</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Usuario</label>
@@ -107,16 +108,18 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
             <div class="col-md-6">
                 <label class="form-label">Fecha Inicial</label>
                 <input type="datetime-local" name="fechaInicial" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaInicial, 'Y-m-d H:i'); ?>">
+                <small class="form-hint">Indique cuándo comienza la asignación.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Fecha Final</label>
                 <input type="datetime-local" name="fechaFinal" autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo formato_fechas_server($fechaFinal, 'Y-m-d H:i'); ?>">
+                <small class="form-hint">Actualice esta fecha para extender una asignación vencida.</small>
             </div>
         </div>
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_asignacion(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="button" class="btn btn-success" id="btnActualizar">Actualizar</button>
+        <button type="button" class="btn btn-success" id="btnActualizar"><i class="ti ti-device-floppy me-1"></i>Actualizar</button>
     </div>
 </form>
 
@@ -142,12 +145,14 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
     $(document).ready(function() {
         const selectUsuario = $("#selectUsuario").select2({
             placeholder: "Seleccione un usuario",
-            allowClear: true
+            allowClear: true,
+            theme: "bootstrap-5"
         });
 
         const selectProducto = $("#selectProducto").select2({
             placeholder: "Seleccione un producto",
-            allowClear: true
+            allowClear: true,
+            theme: "bootstrap-5"
         });
         vidaRestante();
     });

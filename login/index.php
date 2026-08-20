@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Activo NFC</title>
+    <title>Iniciar Sesión - Sistema de Gestión de Activos</title>
     <link rel="stylesheet" href="../js_lib/plugins/tabler/css/tabler.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/tabler/icons/css/tabler-icons.min.css">
 </head>
@@ -16,7 +16,7 @@
                 <div class="avatar avatar-xl bg-primary-subtle text-primary rounded-circle mb-2">
                     <i class="ti ti-nfc fs-1"></i>
                 </div>
-                <h1 class="h2 m-0 fw-bold">Activo NFC</h1>
+                <h1 class="h2 m-0 fw-bold">Sistema de Gestión de Activos</h1>
                 <div class="text-secondary small">Sistema de Control e Inventario de Activos</div>
             </div>
             
@@ -60,7 +60,7 @@
             </form>
             
             <div class="text-center text-secondary mt-3 small">
-                &copy; <?php echo date('Y'); ?> Activo NFC &bull; Todos los derechos reservados.
+                &copy; <?php echo date('Y'); ?> Sistema de Gestión de Activos &bull; Todos los derechos reservados.
             </div>
         </div>
     </div>

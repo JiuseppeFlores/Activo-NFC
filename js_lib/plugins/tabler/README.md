@@ -1,6 +1,6 @@
 # Tabler UI local
 
-Recursos locales de Tabler UI para Activos NFC.
+Recursos locales de Tabler UI para el Sistema de Gestión de Activos.
 
 - Paquete de origen: `@tabler/core`
 - Version: `1.4.0`

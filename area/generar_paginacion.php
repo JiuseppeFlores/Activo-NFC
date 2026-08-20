@@ -19,7 +19,7 @@ while ($row = sqlsrv_fetch_array($ejecutar)) {
 
 $total_pages = ceil($total_records / 10);
 
-$table = "<nav style='display: inline-block; list-style-type: none;margin:10px'><ul class='pagination' style='margin:0px'>";
+$table = "<nav class='d-flex justify-content-center py-2' aria-label='Paginación'><ul class='pagination mb-0'>";
 
 for ($i = 1; $i <= $total_pages; $i++) {
 

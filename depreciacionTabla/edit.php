@@ -18,6 +18,7 @@ $t = time();
         <h3 class="card-title">Editar Depreciación</h3>
     </div>
     <div class="card-body">
+        <div class="hr-text">Parámetros de depreciación</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Bien</label>
@@ -38,6 +39,6 @@ $t = time();
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_depreciacion(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="submit" class="btn btn-success">Actualizar</button>
+        <button type="submit" class="btn btn-success"><i class="ti ti-device-floppy me-1"></i>Actualizar</button>
     </div>
 </form>

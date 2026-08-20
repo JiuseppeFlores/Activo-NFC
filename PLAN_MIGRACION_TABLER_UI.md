@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Migrar progresivamente la interfaz visual de Activos NFC desde AdminLTE 3 y Bootstrap 4 hacia Tabler UI, conservando el funcionamiento actual de la aplicacion.
+Migrar progresivamente la interfaz visual del Sistema de Gestión de Activos desde AdminLTE 3 y Bootstrap 4 hacia Tabler UI, conservando el funcionamiento actual de la aplicacion.
 
 La migracion se realizara por fases para poder validar cada modulo antes de continuar con el siguiente.
 

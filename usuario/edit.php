@@ -45,6 +45,7 @@ $t = time();
             </div>
         </div>
 
+        <div class="hr-text">Datos personales y acceso</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Usuario</label>
@@ -53,6 +54,7 @@ $t = time();
             <div class="col-md-6">
                 <label class="form-label">Contraseña</label>
                 <input type="text" name="password" required autocomplete="off" class="form-control" placeholder="Escriba..." value="<?php echo $password ?>">
+                <small class="form-hint">Actualice la contraseña solo cuando sea necesario.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Nombre</label>
@@ -118,6 +120,6 @@ $t = time();
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_usuario(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="submit" class="btn btn-success">Actualizar</button>
+        <button type="submit" class="btn btn-success"><i class="ti ti-device-floppy me-1"></i>Actualizar</button>
     </div>
 </form>

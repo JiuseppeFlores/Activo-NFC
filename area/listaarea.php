@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $query = sqlsrv_query($con, $sql);
     $count_row = sqlsrv_has_rows($query);
     if ($count_row === false) {
-        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Área vacía!</p></div>";
+        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-building-community icon-lg text-secondary'></i></div><p class='empty-title'>No hay áreas registradas</p><p class='empty-subtitle text-secondary'>No se encontraron resultados para esta búsqueda.</p><div class='empty-action'><a href='#' class='btn btn-primary' onclick='add_area(); return false;'><i class='ti ti-plus me-2'></i>Añadir área</a></div></div>";
     } else {
 
         $resultado = '
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <table class="table table-vcenter card-table table-hover text-center">
         <thead>
         <tr>
-        <th>Información</th>
+        <th class="w-1">ID</th>
         <th>Área</th>
         <th class="w-1">Opciones</th>
         </tr>
@@ -37,27 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tbody>';
 
         while ($row = sqlsrv_fetch_array($query)) {
-            $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['area'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Area</td>
-            <td >" . $row["area"] . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
-
             $resultado .= '<tr>
-            <td>' . $otro . '</td>
+            <td><span class="text-secondary fw-medium">#' . $row['idArea'] . '</span></td>
             <td>' . $row['area'] . '</td>
             <td>
-            <button class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_area" data-bs-toggle="modal" data-bs-target="#modal_eliminar_area" data-id="' . $row['idArea'] . '"> <i class="ti ti-trash icon"></i></button>
-            <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_area(\'' . $row['idArea'] . '\')"> <i class="ti ti-pencil icon"></i></button>
+            <div class="dropdown">
+            <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+            <i class="ti ti-settings-2 me-2"></i>Acciones
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_area" data-bs-toggle="modal" data-bs-target="#modal_eliminar_area" data-id="' . $row['idArea'] . '"><i class="ti ti-trash me-2"></i>Eliminar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="edit_area(\'' . $row['idArea'] . '\'); return false;"><i class="ti ti-pencil me-2"></i>Editar</a>
+            </div>
+            </div>
             </td>
             </tr>
             ';

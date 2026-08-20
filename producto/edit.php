@@ -58,6 +58,7 @@ $t = time();
             </div>
         </div>
 
+        <div class="hr-text">Información del activo</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tipo de Activo</label>
@@ -96,6 +97,7 @@ $t = time();
             <div class="col-md-6">
                 <label class="form-label">UID NFC</label>
                 <input type="text" id="uidTag" name="uidTag" autocomplete="off" class="form-control" placeholder="Escriba el UID NFC..." value="<?php echo isset($row['uidTag']) ? $row['uidTag'] : '' ?>">
+                <small class="form-hint">Ingrese el código NFC únicamente si el activo tiene una etiqueta asignada.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Marca</label>
@@ -120,6 +122,7 @@ $t = time();
             <div class="col-md-6">
                 <label class="form-label">Fecha de Ingreso</label>
                 <input type="date" name="fechaIngreso" required autocomplete="off" class="form-control" value="<?php echo $row['fechaIngreso']->format('Y-m-d') ?>" max="<?php echo date('Y-m-d') ?>">
+                <small class="form-hint">La fecha no puede ser posterior a hoy.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Usuario Responsable</label>
@@ -140,6 +143,6 @@ $t = time();
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_producto(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="submit" class="btn btn-success">Actualizar</button>
+        <button type="submit" class="btn btn-success"><i class="ti ti-device-floppy me-1"></i>Actualizar</button>
     </div>
 </form>

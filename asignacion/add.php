@@ -29,6 +29,7 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
         <h3 class="card-title">Añadir Asignación</h3>
     </div>
     <div class="card-body">
+        <div class="hr-text">Datos de la asignación</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Usuario</label>
@@ -73,16 +74,18 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
             <div class="col-md-6">
                 <label class="form-label">Fecha Inicial</label>
                 <input type="datetime-local" name="fechaInicial" required autocomplete="off" class="form-control" value="<?php echo $fechaActual; ?>">
+                <small class="form-hint">Indique cuándo comienza la asignación.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Fecha Final</label>
                 <input type="datetime-local" name="fechaFinal" autocomplete="off" class="form-control">
+                <small class="form-hint">Opcional. Defina la fecha límite de devolución.</small>
             </div>
         </div>
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_asignacion(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+        <button type="button" class="btn btn-primary" id="btnGuardar"><i class="ti ti-device-floppy me-1"></i>Guardar</button>
     </div>
 </form>
 
@@ -133,12 +136,14 @@ while ($row = sqlsrv_fetch_array($queryProductos)) {
     $(document).ready(function() {
         const selectUsuario = $("#selectUsuario").select2({
             placeholder: "Seleccione un usuario",
-            allowClear: true
+            allowClear: true,
+            theme: "bootstrap-5"
         });
 
         const selectProducto = $("#selectProducto").select2({
             placeholder: "Seleccione un producto",
-            allowClear: true
+            allowClear: true,
+            theme: "bootstrap-5"
         });
         vidaRestante();
     });

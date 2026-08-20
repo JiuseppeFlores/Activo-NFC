@@ -1,6 +1,8 @@
 let selecciones = [];
 let devoluciones = [];
 function listar_asignacion(pag) {
+  $("#asignacion-table").removeClass("d-none");
+  $("#asignacion-form").addClass("d-none").empty();
   selecciones = [];
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
@@ -84,16 +86,18 @@ function asignacion() {
 }
 
 function add_asignacion() {
+  $("#asignacion-table").addClass("d-none");
+  $("#asignacion-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#asignacion-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#asignacion-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../asignacion/add.php",
     type: "post",
     success: function (response) {
-      $("#asignacion-result")
+      $("#asignacion-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#asignacion-result").html(response);
+      $("#asignacion-form").html(response);
 
       let btnGuardar = document.getElementById("btnGuardar");
       btnGuardar.addEventListener("click", function (event) {
@@ -137,8 +141,10 @@ function add_asignacion() {
 }
 
 function edit_asignacion(id, estadoAsignacion = 'VIGENTE') {
+  $("#asignacion-table").addClass("d-none");
+  $("#asignacion-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#asignacion-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#asignacion-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -150,10 +156,10 @@ function edit_asignacion(id, estadoAsignacion = 'VIGENTE') {
     url: "../asignacion/edit.php",
     type: "post",
     success: function (response) {
-      $("#asignacion-result")
+      $("#asignacion-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#asignacion-result").html(response);
+      $("#asignacion-form").html(response);
 
       let btnActualizar = document.getElementById("btnActualizar");
       btnActualizar.addEventListener("click", function (event) {

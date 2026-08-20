@@ -1,4 +1,6 @@
 function listar_usuario(pag) {
+  $("#usuario-table").removeClass("d-none");
+  $("#usuario-form").addClass("d-none").empty();
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
   var start = (pag - 1) * 10;
@@ -79,16 +81,18 @@ function usuario() {
 }
 
 function add_usuario() {
+  $("#usuario-table").addClass("d-none");
+  $("#usuario-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#usuario-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#usuario-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../usuario/add.php",
     type: "post",
     success: function (response) {
-      $("#usuario-result")
+      $("#usuario-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#usuario-result").html(response);
+      $("#usuario-form").html(response);
 
       let form = document.getElementById("add_usuario");
       form.addEventListener("submit", function (event) {
@@ -101,8 +105,10 @@ function add_usuario() {
 }
 
 function edit_usuario(id) {
+  $("#usuario-table").addClass("d-none");
+  $("#usuario-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#usuario-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#usuario-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -113,10 +119,10 @@ function edit_usuario(id) {
     url: "../usuario/edit.php",
     type: "post",
     success: function (response) {
-      $("#usuario-result")
+      $("#usuario-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#usuario-result").html(response);
+      $("#usuario-form").html(response);
 
       let form = document.getElementById("edit_usuario");
       form.addEventListener("submit", function (event) {

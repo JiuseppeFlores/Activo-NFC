@@ -22,10 +22,16 @@ while ($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
 }
 ?>
 <input type="hidden" class="form-control" id="pagina" value="1">
-<div class="page-header d-print-none mb-3">
+<div class="page-header d-print-none mb-2 pb-3">
     <div class="row align-items-center">
         <div class="col">
-            <h2 class="page-title">Reportes</h2>
+            <div class="page-pretitle">Gestión y análisis</div>
+            <h2 class="page-title page-title-lg">Reportes de activos</h2>
+            <div class="page-subtitle">Genera informes operativos y consulta sus documentos.</div>
+            <ol class="breadcrumb breadcrumb-arrows mt-2 mb-0">
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+            </ol>
         </div>
     </div>
 </div>

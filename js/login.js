@@ -4,10 +4,10 @@ function togglePasswordVisibility() {
 
   if (passwordInput.attr("type") === "password") {
     passwordInput.attr("type", "text");
-    toggleButton.removeClass("fa-eye").addClass("fa-eye-slash");
+        toggleButton.removeClass("ti-eye").addClass("ti-eye-off");
   } else {
     passwordInput.attr("type", "password");
-    toggleButton.removeClass("fa-eye-slash").addClass("fa-eye");
+        toggleButton.removeClass("ti-eye-off").addClass("ti-eye");
   }
 }
 
@@ -76,7 +76,7 @@ $(".login").submit(function (e) {
 
   const $submitButton = $(".submit");
   const originalText = $submitButton.html();
-  $submitButton.html('<i class="fas fa-spinner fa-spin"></i> Verificando...');
+    $submitButton.html('<i class="ti ti-loader-2"></i> Verificando...');
   $submitButton.prop('disabled', true);
 
   $.ajax({

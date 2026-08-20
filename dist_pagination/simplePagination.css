@@ -183,3 +183,69 @@ ul.simple-pagination {
 	font-weight: bold;
 	cursor: default;
 }
+
+/* Tabler UI pagination override */
+.simple-pagination {
+	display: flex;
+	overflow: visible;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+}
+
+.simple-pagination ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.25rem;
+	margin: 0;
+}
+
+.simple-pagination li {
+	display: block;
+	float: none;
+}
+
+.simple-pagination.light-theme a,
+.simple-pagination.light-theme span {
+	display: block;
+	float: none;
+	min-width: 2.25rem;
+	padding: 0.375rem 0.75rem;
+	margin: 0;
+	border: 1px solid var(--tblr-border-color, #d9e1e8);
+	border-radius: var(--tblr-border-radius, 4px);
+	color: var(--tblr-body-color, #182433);
+	background: var(--tblr-bg-surface, #ffffff);
+	box-shadow: none;
+	text-decoration: none;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.simple-pagination.light-theme a:hover {
+	color: var(--tblr-primary, #206bc4);
+	background: var(--tblr-bg-surface-secondary, #f6f8fb);
+	border-color: var(--tblr-primary, #206bc4);
+}
+
+.simple-pagination.light-theme .current {
+	color: var(--tblr-primary-fg, #ffffff);
+	background: var(--tblr-primary, #206bc4);
+	border-color: var(--tblr-primary, #206bc4);
+	cursor: default;
+}
+
+.simple-pagination.light-theme li.disabled .current {
+	color: var(--tblr-secondary, #626976);
+	background: var(--tblr-bg-surface-secondary, #f6f8fb);
+	border-color: var(--tblr-border-color, #d9e1e8);
+	opacity: 0.65;
+}
+
+.simple-pagination.light-theme .ellipse {
+	min-width: auto;
+	padding-right: 0.25rem;
+	padding-left: 0.25rem;
+	border-color: transparent;
+	background: transparent;
+}

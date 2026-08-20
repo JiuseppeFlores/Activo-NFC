@@ -36,6 +36,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
 
     <link rel="stylesheet" href="../css/select2.css" />
+    <link rel="stylesheet" href="../css/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="../css/sweetalert2.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf_viewer.css">
 
@@ -63,7 +64,9 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
 
         <!-- INICIO TODO Content Wrapper. Contains page content -->
         <div class="page-wrapper">
-            <div class="page-body" id="all-body">
+            <div class="page-body mt-0 mb-0">
+                <div class="container-fluid" id="all-body">
+                </div>
             </div>
         </div>
         <!-- FINAL -->
@@ -73,7 +76,9 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
         <!-- /.content-wrapper -->
         <footer class="footer footer-transparent d-print-none">
             <div class="container-fluid">
-                <div class="text-center"></div>
+                <div class="text-secondary text-center">
+                    T.S.J.M. · Sistema de Gestión de Activos · <?php echo date('Y'); ?>
+                </div>
             </div>
         </footer>
     </div>

@@ -6,18 +6,12 @@ $agente = $_SERVER['HTTP_USER_AGENT'];
 $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
 
 ?>
-<?php
-session_start();
-$idRol = $_SESSION['idRol'];
-
-$agente = $_SERVER['HTTP_USER_AGENT'];
-$esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
-
-?>
-<div class="page-header d-print-none mb-3">
+<div class="page-header d-print-none mb-2 pb-3">
     <div class="row align-items-center">
         <div class="col">
-            <h2 class="page-title">Inicio</h2>
+            <div class="page-pretitle">Panel principal</div>
+            <h2 class="page-title page-title-lg">Resumen de gestión</h2>
+            <div class="page-subtitle">Consulta el estado general de los activos y sus indicadores.</div>
         </div>
     </div>
 </div>
@@ -28,7 +22,7 @@ $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $a
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <span class="bg-blue text-white avatar">
+                        <span class="bg-blue-lt text-blue avatar">
                             <i class="ti ti-box"></i>
                         </span>
                     </div>
@@ -55,7 +49,7 @@ $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $a
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <span class="bg-green text-white avatar">
+                        <span class="bg-green-lt text-green avatar">
                             <i class="ti ti-circle-check"></i>
                         </span>
                     </div>
@@ -82,7 +76,7 @@ $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $a
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <span class="bg-warning text-white avatar">
+                        <span class="bg-yellow-lt text-yellow avatar">
                             <i class="ti ti-tools"></i>
                         </span>
                     </div>
@@ -109,7 +103,7 @@ $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $a
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <span class="bg-red text-white avatar">
+                        <span class="bg-red-lt text-red avatar">
                             <i class="ti ti-alert-triangle"></i>
                         </span>
                     </div>
@@ -131,7 +125,7 @@ $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $a
     </div>
 </div>
 
-<div class="row g-3 mt-1">
+<div class="row g-3 mt-0">
     <?php if (!$esDispositivoMovil) { ?>
         <div class="col-lg-6">
             <div class="card">

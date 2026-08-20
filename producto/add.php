@@ -22,30 +22,6 @@ while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
 
 ?>
 
-<?php
-include("../conexion.php");
-$sql = "SELECT * FROM tblDepreciacion WHERE estado=1 ORDER BY bien ASC;";
-$query = sqlsrv_query($con, $sql);
-$listaDepreciacion = array();
-$listaDepreciacionDetalle = array();
-while($row = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)){
-    $listaDepreciacion[$row['idDepreciacion']] = $row;
-}
-$sqlDetalle = "SELECT * FROM tblDepreciacionDetalle";
-$queryDetalle = sqlsrv_query($con, $sqlDetalle);
-while($rowDetalle = sqlsrv_fetch_array($queryDetalle, SQLSRV_FETCH_ASSOC)) {
-    $listaDepreciacionDetalle[$rowDetalle['idDepreciacion']][] = $rowDetalle;
-}
-
-$sqlUsuarios = "SELECT * FROM tblUsuario ORDER BY apellidoPaterno, apellidoMaterno, nombre ASC;";
-$queryUsuarios = sqlsrv_query($con, $sqlUsuarios);
-$listaUsuarios = array();
-while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
-    $listaUsuarios[$rowUsuarios['idUsuario']] = $rowUsuarios;
-}
-
-?>
-
 <form id="add_producto" class="card">
     <div class="card-header">
         <h3 class="card-title">Añadir Activo</h3>
@@ -61,6 +37,7 @@ while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
             </div>
         </div>
 
+        <div class="hr-text">Información del activo</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Tipo de Activo</label>
@@ -86,6 +63,7 @@ while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
             <div class="col-md-6">
                 <label class="form-label">UID NFC</label>
                 <input type="text" id="uidTag" name="uidTag" autocomplete="off" class="form-control" placeholder="Escriba el UID NFC...">
+                <small class="form-hint">Ingrese el código NFC únicamente si el activo tiene una etiqueta asignada.</small>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Marca</label>
@@ -110,6 +88,7 @@ while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
             <div class="col-md-6">
                 <label class="form-label">Fecha de Ingreso</label>
                 <input type="date" name="fechaIngreso" required autocomplete="off" class="form-control" value="<?php echo date('Y-m-d') ?>" max="<?php echo date('Y-m-d') ?>">
+                <small class="form-hint">La fecha no puede ser posterior a hoy.</small>
             </div>
             <div class="col-md-12">
                 <label class="form-label">Usuario Responsable</label>
@@ -123,7 +102,7 @@ while($rowUsuarios = sqlsrv_fetch_array($queryUsuarios, SQLSRV_FETCH_ASSOC)){
     </div>
     <div class="card-footer text-end">
         <button type="button" onclick="listar_producto(1)" class="btn btn-secondary me-2">Volver</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary"><i class="ti ti-device-floppy me-1"></i>Guardar</button>
     </div>
 </form>
 

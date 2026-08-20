@@ -1,4 +1,6 @@
 function listar_rol(pag) {
+  $("#rol-table").removeClass("d-none");
+  $("#rol-form").addClass("d-none").empty();
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
   var start = (pag - 1) * 10;
@@ -79,14 +81,16 @@ function rol() {
 }
 
 function add_rol() {
+  $("#rol-table").addClass("d-none");
+  $("#rol-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#rol-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#rol-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../rol/add.php",
     type: "post",
     success: function (response) {
-      $("#rol-result").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#rol-result").html(response);
+      $("#rol-form").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
+      $("#rol-form").html(response);
 
       let form = document.getElementById("add_rol");
       form.addEventListener("submit", function (event) {
@@ -99,8 +103,10 @@ function add_rol() {
 }
 
 function edit_rol(id) {
+  $("#rol-table").addClass("d-none");
+  $("#rol-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#rol-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#rol-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -111,8 +117,8 @@ function edit_rol(id) {
     url: "../rol/edit.php",
     type: "post",
     success: function (response) {
-      $("#rol-result").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#rol-result").html(response);
+      $("#rol-form").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
+      $("#rol-form").html(response);
 
       let form = document.getElementById("edit_rol");
       form.addEventListener("submit", function (event) {

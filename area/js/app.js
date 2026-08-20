@@ -1,4 +1,6 @@
 function listar_area(pag) {
+  $("#area-table").removeClass("d-none");
+  $("#area-form").addClass("d-none").empty();
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
   var start = (pag - 1) * 10;
@@ -79,14 +81,16 @@ function area() {
 }
 
 function add_area() {
+  $("#area-table").addClass("d-none");
+  $("#area-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#area-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#area-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../area/add.php",
     type: "post",
     success: function (response) {
-      $("#area-result").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#area-result").html(response);
+      $("#area-form").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
+      $("#area-form").html(response);
 
       let form = document.getElementById("add_area");
       form.addEventListener("submit", function (event) {
@@ -99,8 +103,10 @@ function add_area() {
 }
 
 function edit_area(id) {
+  $("#area-table").addClass("d-none");
+  $("#area-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#area-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#area-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -111,8 +117,8 @@ function edit_area(id) {
     url: "../area/edit.php",
     type: "post",
     success: function (response) {
-      $("#area-result").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#area-result").html(response);
+      $("#area-form").show().animate({ opacity: "1", bottom: "-80px" }, 1000);
+      $("#area-form").html(response);
 
       let form = document.getElementById("edit_area");
       form.addEventListener("submit", function (event) {

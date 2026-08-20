@@ -23,18 +23,20 @@ $sql = " SELECT * FROM tblUsuario tu LEFT JOIN tblArea ta ON tu.idArea = ta.idAr
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Usuario vacía!</p></div>";
+    $accionVacia = $idRol == 1 ? "<div class='empty-action'><a href='#' class='btn btn-primary' onclick='add_usuario(); return false;'><i class='ti ti-plus me-2'></i>Añadir usuario</a></div>" : '';
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-users icon-lg text-secondary'></i></div><p class='empty-title'>No hay usuarios registrados</p><p class='empty-subtitle text-secondary'>No se encontraron resultados para esta búsqueda.</p>$accionVacia</div>";
 } else {
     // Verificar que el cliente utiliza un dispositivo móvil
     $agente = $_SERVER['HTTP_USER_AGENT'];
     $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
+    $mostrarOpciones = !($esDispositivoMovil && ($idRol == 3 || $idRol == 2));
 
     $resultado = '
     <div class="table-responsive">
     <table class="table table-vcenter card-table table-hover text-center">
     <thead>
     <tr>
-    <th>Información</th>
+    <th class="w-1">Imagen</th>
     <th>Usuario</th>
     <th>Nombre</th>
     <th>CI</th>
@@ -61,61 +63,28 @@ if ($count_row === false) {
                 }
                 $url .= "?r=" . $t;
 
-                $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['usuario'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='text-center mb-3'>
-            <img class='avatar avatar-xl' src='" . $url . "' alt='" . $row['usuario'] . "'>
-            </div>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Usuario</td>
-            <td >" . $row["usuario"] . "</td>
-            </tr>
-            <tr>
-            <td >Nombre</td>
-            <td >" . $row["nombre"] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'] . "</td>
-            </tr>
-            <tr>
-            <td >CI</td>
-            <td >" . $row["ci"] . "</td>
-            </tr>
-            <tr>
-            <td >Correo</td>
-            <td >" . $row["correo"] . "</td>
-            </tr>
-            <tr>
-            <td >Rol</td>
-            <td >" . $row["rol"] . "</td>
-            </tr>
-            <tr>
-            <td >Cargo</td>
-            <td >" . $row["cargo"] . "</td>
-            </tr>
-            <tr>
-            <td >Area</td>
-            <td >" . $row["area"] . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
                 $resultado .= '
             <tr>
-            <td>' . $otro . '</td>
+            <td><img class="avatar avatar-sm rounded-circle" src="' . $url . '" alt="' . $row['usuario'] . '"></td>
             <td>' . $row['usuario'] . '</td>
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
             <td>' . $row['ci'] . '</td>
             <td>' . $row['rol'] . '</td>
             <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
-            <td>
-            <button title="Eliminar Usuario" class="btn btn-outline-danger btn-icon" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="ti ti-trash icon"></i></button>
-            <button title="Editar Usuario" class="btn btn-outline-primary btn-icon" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
-            '.($esDispositivoMovil ? '': '<button title="Reporte Asignaciones" class="btn btn-outline-warning btn-icon" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="ti ti-file-text icon"></i></button>').'
-            </td>
+            '.($mostrarOpciones ? '<td>
+            <div class="dropdown">
+            <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+            <i class="ti ti-settings-2 me-2"></i>Acciones
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '><i class="ti ti-trash me-2"></i>Eliminar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="edit_usuario(\'' . $row['idUsuario'] . '\'); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+            '.($esDispositivoMovil ? '': '<a class="dropdown-item" href="#" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\'); return false;"><i class="ti ti-file-text me-2"></i>Reporte Asignaciones</a>').'
+            </div>
+            </div>
+            </td>' : '').'
             </tr>';
             }
         }
@@ -131,61 +100,28 @@ if ($count_row === false) {
             }
             $url .= "?r=" . $t;
 
-            $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['usuario'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='text-center mb-3'>
-            <img class='avatar avatar-xl' src='" . $url . "' alt='" . $row['usuario'] . "'>
-            </div>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Usuario</td>
-            <td >" . $row["usuario"] . "</td>
-            </tr>
-            <tr>
-            <td >Nombre</td>
-            <td >" . $row["nombre"] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'] . "</td>
-            </tr>
-            <tr>
-            <td >CI</td>
-            <td >" . $row["ci"] . "</td>
-            </tr>
-            <tr>
-            <td >Correo</td>
-            <td >" . $row["correo"] . "</td>
-            </tr>
-            <tr>
-            <td >Rol</td>
-            <td >" . $row["rol"] . "</td>
-            </tr>
-            <tr>
-            <td >Cargo</td>
-            <td >" . $row["cargo"] . "</td>
-            </tr>
-            <tr>
-            <td >Area</td>
-            <td >" . $row["area"] . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
             $resultado .= '
             <tr>
-            <td>' . $otro . '</td>
+            <td><img class="avatar avatar-sm rounded-circle" src="' . $url . '" alt="' . $row['usuario'] . '"></td>
             <td>' . $row['usuario'] . '</td>
             <td>' . $row['nombre'] . ' ' . $row['apellidoPaterno'] . ' ' . $row['apellidoMaterno'] . '</td>
             <td>' . $row['ci'] . '</td>
             <td>' . $row['rol'] . '</td>
             <td>' . $row['cargo'] . '</td>
             <td>' . $row['area'] . '</td>
-            <td>
-            <button title="Eliminar Usuario" class="btn btn-outline-danger btn-icon" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '> <i class="ti ti-trash icon"></i></button>
-            <button title="Editar Usuario" class="btn btn-outline-primary btn-icon" onclick="edit_usuario(\'' . $row['idUsuario'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
-            '.($esDispositivoMovil ? '' : '<button title="Reporte Asignaciones" class="btn btn-outline-warning btn-icon" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\')"> <i class="ti ti-file-text icon"></i></button>').'
-            </td>
+            '.($mostrarOpciones ? '<td>
+            <div class="dropdown">
+            <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+            <i class="ti ti-settings-2 me-2"></i>Acciones
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_usuario" data-bs-toggle="modal" data-bs-target="#modal_eliminar_usuario" data-id="' . $row['idUsuario'] . '" ' . $hide . '><i class="ti ti-trash me-2"></i>Eliminar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" onclick="edit_usuario(\'' . $row['idUsuario'] . '\'); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+            '.($esDispositivoMovil ? '' : '<a class="dropdown-item" href="#" onclick="asignaciones_usuario(\'' . $row['idUsuario'] . '\'); return false;"><i class="ti ti-file-text me-2"></i>Reporte Asignaciones</a>').'
+            </div>
+            </div>
+            </td>' : '').'
             </tr>';
         }
     }

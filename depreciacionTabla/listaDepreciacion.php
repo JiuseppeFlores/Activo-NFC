@@ -34,14 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     // $count_row = sqlsrv_has_rows($query);
     if (count($listaDepreciacion) === 0) {
-        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Depreciación vacía!</p></div>";
+        echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-chart-line icon-lg text-secondary'></i></div><p class='empty-title'>No hay parámetros de depreciación</p><p class='empty-subtitle text-secondary'>No se encontraron resultados para esta búsqueda.</p></div>";
     } else {
         $resultado = '
         <div class="table-responsive">
         <table class="table table-vcenter card-table table-hover text-center">
         <thead>
         <tr>
-        <th>Información</th>
+        <th class="w-1">ID</th>
         <th>Activo</th>
         <th>Vida útil (años)</th>
         <th>Coeficiente (%)</th>
@@ -59,31 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             } else {
                 $row['estado'] = "Inactivo";
             }
-            $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['bien'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Activo</td>
-            <td >" . $row["bien"] . "</td>
-            </tr>
-            <tr>
-            <td >Vida útil</td>
-            <td >" . $row["vidaUtil"] . "</td>
-            </tr>
-            <tr>
-            <td >Coeficiente</td>
-            <td >" . $row["coeficiente"] . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
-
             $resultado .= '<tr onclick="listarDetalleDepreciacion(' . $id . ')">
-            <td>' . $otro . '</td>
+            <td><span class="text-secondary fw-medium">#' . $id . '</span></td>
             <td>' . $row['bien'] . '</td>
             <td>' . $row['vidaUtil'] . '</td>
             <td>' . $row['coeficiente'] * 100 . '</td>';
@@ -94,7 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             $resultado .= '
             <td>
-            <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_depreciacion(\'' . $row['idDepreciacion'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
+            <div class="dropdown">
+            <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+            <i class="ti ti-settings-2 me-2"></i>Acciones
+            </button>
+            <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item" href="#" onclick="edit_depreciacion(\'' . $row['idDepreciacion'] . '\'); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+            </div>
+            </div>
             </td>
             </tr>';
 

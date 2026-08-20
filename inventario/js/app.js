@@ -1,4 +1,6 @@
 function listar_inventario(pag) {
+  $("#inventario-table").removeClass("d-none");
+  $("#inventario-form").addClass("d-none").empty();
   $("#buscador-general").show().animate({ opacity: "1" }, 1000);
 
   var start = (pag - 1) * 10;
@@ -82,16 +84,18 @@ function inventario() {
 }
 
 function add_inventario() {
+  $("#inventario-table").addClass("d-none");
+  $("#inventario-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#inventario-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#inventario-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
   $.ajax({
     url: "../inventario/add.php",
     type: "post",
     success: function (response) {
-      $("#inventario-result")
+      $("#inventario-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#inventario-result").html(response);
+      $("#inventario-form").html(response);
 
       let form = document.getElementById("add_inventario");
       form.addEventListener("submit", function (event) {
@@ -104,8 +108,10 @@ function add_inventario() {
 }
 
 function edit_inventario(id) {
+  $("#inventario-table").addClass("d-none");
+  $("#inventario-form").removeClass("d-none");
   $("#buscador-general").hide().animate({ opacity: "0" }, 0);
-  $("#inventario-result").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
+  $("#inventario-form").hide().animate({ opacity: "0", bottom: "-80px" }, 0);
 
   var parametros = {
     id: id,
@@ -116,10 +122,10 @@ function edit_inventario(id) {
     url: "../inventario/edit.php",
     type: "post",
     success: function (response) {
-      $("#inventario-result")
+      $("#inventario-form")
         .show()
         .animate({ opacity: "1", bottom: "-80px" }, 1000);
-      $("#inventario-result").html(response);
+      $("#inventario-form").html(response);
 
       let form = document.getElementById("edit_inventario");
       form.addEventListener("submit", function (event) {

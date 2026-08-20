@@ -23,7 +23,8 @@ $sql = " SELECT * FROM tblProducto tp LEFT JOIN tblDepreciacionDetalle tdd ON tp
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Productos vacía!</p></div>";
+    $accionVacia = $idRol == 1 ? "<div class='empty-action'><a href='#' class='btn btn-primary' onclick='add_producto(); return false;'><i class='ti ti-plus me-2'></i>Añadir activo</a></div>" : '';
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-device-desktop icon-lg text-secondary'></i></div><p class='empty-title'>No hay activos registrados</p><p class='empty-subtitle text-secondary'>No se encontraron resultados para esta búsqueda.</p>$accionVacia</div>";
 } else {
     // Verificar que el cliente utiliza un dispositivo móvil
     $agente = $_SERVER['HTTP_USER_AGENT'];
@@ -33,7 +34,7 @@ if ($count_row === false) {
     <table class="table table-vcenter card-table table-hover text-center">
     <thead>
     <tr>
-    <th>Información</th>
+    <th class="w-1">Imagen</th>
     <th>Activo</th>
     <th>Descripción</th>
     <th>Código</th>
@@ -62,50 +63,8 @@ if ($count_row === false) {
 
         $estadoClass = $row['estado'] === 'ACTIVO' ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary';
 
-        $otro = "
-        <details class='card border-0 shadow-none mb-0'>
-        <summary class='card-header py-2 px-3'>" . $row['producto'] . "</summary>
-        <div class='card-body p-3'>
-        <div class='text-center mb-3'>
-        <img class='avatar avatar-xl' src='" . $url . "' alt='" . $row['producto'] . "'>
-        </div>
-        <div class='table-responsive'>
-        <table class='table table-sm table-vcenter mb-0'>
-        <tr>
-        <td >Activo</td>
-        <td >" . ($row['bienDetalle'] ?? "Sin definir") . "</td>
-        </tr>
-        <tr>
-        <td >Descripción</td>
-        <td >" . $row["producto"] . "</td>
-        </tr>
-        <tr>
-        <td >Código</td>
-        <td >" . $row["codigoBarras"] . "</td>
-        </tr>
-        <tr>
-        <td >Fecha de Ingreso</td>
-        <td >" . $fechaIngreso . "</td>
-        </tr>
-        <tr>
-        <td>Estado</td>
-        <td><span class='badge " . $valoracionClass . "'>" . $row['valoracion'] . "</span></td>
-        </tr>
-        <tr>
-        <td>Disponibilidad</td>
-        <td><span class='badge " . $estadoClass . "'>" . $row['estado'] . "</span></td>
-        </tr>
-        <tr>
-        <td>Observación</td>
-        <td>" . $row['observacion'] . "</td>
-        </tr>
-        </table>
-        </div>
-        </div>
-        </details>";
-
         $resultado .= '<tr>
-        <td>' . $otro . '</td>
+        <td><img class="avatar avatar-sm rounded" src="' . $url . '" alt="' . $row['producto'] . '"></td>
         <td>' . ($row['bienDetalle'] ?? "Sin definir") . '</td>
         <td>' . $row['producto'] . '</td>
         <td>' . $row['codigoBarras'] . '</td>
@@ -113,10 +72,17 @@ if ($count_row === false) {
         <td><span class="badge ' . $valoracionClass . '">' . $row['valoracion'] . '</span></td>
         <td><span class="badge ' . $estadoClass . '">' . $row['estado'] . '</span></td>
         <td>
-        <button class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_producto(\'' . $row['idProducto'] . '\')" ' . $hide . '> <i class="ti ti-pencil icon"></i></button>
-        <button class="btn btn-outline-info btn-icon" title="Cambiar disponibilidad" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"><i class="ti ti-lock icon"></i></button>
-        '.($esDispositivoMovil ? '' : '<button class="btn btn-outline-warning btn-icon" title="Reporte PDF" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\')"> <i class="ti ti-file-pdf icon"></i></button>').'
-        '.($esDispositivoMovil ? '<button class="btn btn-outline-success btn-icon" type="button" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\')" title="Asignar código NFC" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"> <i class="ti ti-cpu icon"></i></button>' : '').'
+        <div class="dropdown">
+        <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+        <i class="ti ti-settings-2 me-2"></i>Acciones
+        </button>
+        <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="#" onclick="edit_producto(\'' . $row['idProducto'] . '\'); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+        <a class="dropdown-item" href="#" onclick="cambiarEstado(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\'); return false;"><i class="ti ti-lock me-2"></i>Cambiar disponibilidad</a>
+        '.($esDispositivoMovil ? '' : '<a class="dropdown-item" href="#" onclick="generarReporteBien(\'' . $row['idProducto'] . '\', \'' . $row['estado'] . '\'); return false;"><i class="ti ti-file-pdf me-2"></i>Reporte PDF</a>').'
+        '.($esDispositivoMovil ? '<a class="dropdown-item" href="#" onclick="AndroidRegisterNFCCode.postMessage(\'' . $row['idProducto'] . '\'); return false;" id="btn-registrar-codigo" data-id="' . $row['idProducto'] . '"><i class="ti ti-cpu me-2"></i>Asignar código NFC</a>' : '').'
+        </div>
+        </div>
         </td>
         </tr>';
     }

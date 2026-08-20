@@ -31,13 +31,15 @@ if (isset($_POST['area']) && !empty($_POST['area'])) {
 // Verificar que el cliente utiliza un dispositivo móvil
 $agente = $_SERVER['HTTP_USER_AGENT'];
 $esDispositivoMovil = preg_match('/android|blackberry|iemobile|opera mini/i', $agente);
+$mostrarOpciones = !($esDispositivoMovil && ($idRol == 3 || $idRol == 2));
 
 $sql = " SELECT ta.*, tu.nombre, tu.apellidoPaterno, tu.apellidoMaterno, tp.producto, tp.codigoBarras, CASE WHEN ta.fechaFinal < GETDATE() THEN 'VENCIDO' ELSE 'VIGENTE' END AS estadoAsignacion FROM tblAsignacion ta LEFT JOIN tblUsuario tu ON tu.idUsuario = ta.idUsuario LEFT JOIN tblProducto tp ON tp.idProducto = ta.idProducto $search_in_sql ORDER BY ta.idAsignacion DESC offset $start_from ROWS FETCH NEXT 10 ROWS ONLY;";
 // echo $sql;
 $query = sqlsrv_query($con, $sql);
 $count_row = sqlsrv_has_rows($query);
 if ($count_row === false) {
-    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-alert-circle icon-lg text-secondary'></i></div><p class='empty-title'>¡Lista de Asignación vacía!</p></div>";
+    $accionVacia = $idRol == 1 ? "<div class='empty-action'><a href='#' class='btn btn-primary' onclick='add_asignacion(); return false;'><i class='ti ti-plus me-2'></i>Añadir asignación</a></div>" : '';
+    echo "<div class='empty py-4'><div class='empty-icon'><i class='ti ti-arrows-exchange icon-lg text-secondary'></i></div><p class='empty-title'>No hay asignaciones registradas</p><p class='empty-subtitle text-secondary'>No se encontraron resultados para esta búsqueda.</p>$accionVacia</div>";
 } else {
     $resultado = '<div class="table-responsive">
     <table class="table table-vcenter card-table table-hover text-center">
@@ -47,7 +49,7 @@ if ($count_row === false) {
     <div class="checkbox-container">
     <input type="checkbox" id="selectAll" class="form-check-input" onclick="toggleAllCheckboxes(this)">
     </div></th>
-    <th>Información</th>
+    <th class="w-1">ID</th>
     <th>Activo</th>
     <th>Código</th>
     <th>Usuario</th>
@@ -62,7 +64,6 @@ if ($count_row === false) {
     $t = time();
     if ($idRol == 3) {
         while ($row = sqlsrv_fetch_array($query)) {
-            $idUsuarioAsignacion = $row['idUsuario'];
             if ($idUsuario === $idUsuarioAsignacion) {
                 $fechaFinalFormato = formato_fechas_server($row['fechaFinal'], 'd/m/Y H:i');
                 if ($row['estadoAsignacion'] == 'VENCIDO' && $row['estado'] == 'ASIGNADO') {
@@ -81,65 +82,31 @@ if ($count_row === false) {
                 $nombreUsuario = $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'];
                 $id = $row['idAsignacion'];
                 $url = "";
-                $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['producto'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Activo</td>
-            <td >" . $row["producto"] . "</td>
-            </tr>
-            <tr>
-            <td >Cód. Barras</td>
-            <td >" . $row["codigoBarras"] . "</td>
-            </tr>
-            <tr>
-            <td >Usuario</td>
-            <td >" . $nombreUsuario . "</td>
-            </tr>
-            <tr>
-            <td >Fecha Inicial</td>
-            <td >" . formato_fechas_server($row["fechaInicial"], 'd/m/Y H:i') . "</td>
-            </tr>
-            <tr>
-            <td >Fecha Final</td>
-            <td >" . $fechaFinalFormato . "</td>
-            </tr>
-            <tr>
-            <td >Estado</td>
-            <td >" . $estado . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
-
-
-                $resultado .= '<tr class="' . $claseEstado . '">
+                    $resultado .= '<tr class="' . $claseEstado . '">
             <td>
                 <div class="checkbox-container">
                     <input type="checkbox" class="selectItem form-check-input" value="' . $id . '" onclick="updateSelectedCount()">
                 </div>
             </td>
-            <td>' . $otro . '</td>
+            <td><span class="text-secondary fw-medium">#' . $id . '</span></td>
             <td>' . $row['producto'] . '</td>
             <td>' . $row['codigoBarras'] . '</td>
             <td>' . $nombreUsuario . '</td>
             <td>' . formato_fechas_server($row["fechaInicial"], 'd/m/Y H:i') . '</td>
             <td>' . $fechaFinalFormato . '</td>
             <td>' . $estado . '</td>
-            <td>
-                <button type="button" class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
-                    <i class="ti ti-trash icon"></i>
+            '.($mostrarOpciones ? '<td>
+                <div class="dropdown">
+                <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+                <i class="ti ti-settings-2 me-2"></i>Acciones
                 </button>
-                <button type="button" class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
-                    <i class="ti ti-pencil icon"></i>
-                </button>';
-
-                $resultado .= '
-            </td>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '><i class="ti ti-trash me-2"></i>Eliminar</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+                </div>
+                </div>
+                </td>' : '') . '
             </tr>';
             }
         }
@@ -162,65 +129,31 @@ if ($count_row === false) {
             $nombreUsuario = $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'];
             $id = $row['idAsignacion'];
             $url = "";
-            $otro = "
-            <details class='card border-0 shadow-none mb-0'>
-            <summary class='card-header py-2 px-3'>" . $row['producto'] . "</summary>
-            <div class='card-body p-3'>
-            <div class='table-responsive'>
-            <table class='table table-sm table-vcenter mb-0'>
-            <tr>
-            <td >Activo</td>
-            <td >" . $row["producto"] . "</td>
-            </tr>
-            <tr>
-            <td >Cód. Barras</td>
-            <td >" . $row["codigoBarras"] . "</td>
-            </tr>
-            <tr>
-            <td >Usuario</td>
-            <td >" . $nombreUsuario . "</td>
-            </tr>
-            <tr>
-            <td >Fecha Inicial</td>
-            <td >" . formato_fechas_server($row["fechaInicial"], 'd/m/Y H:i') . "</td>
-            </tr>
-            <tr>
-            <td >Fecha Final</td>
-            <td >" . $fechaFinalFormato . "</td>
-            </tr>
-            <tr>
-            <td >Estado</td>
-            <td >" . $estado . "</td>
-            </tr>
-            </table>
-            </div>
-            </div>
-            </details>";
-
-
             $resultado .= '<tr class="' . $claseEstado . '">
             <td>
                 <div class="checkbox-container">
                     <input type="checkbox" class="selectItem form-check-input" value="' . $id . '" onclick="updateSelectedCount()">
                 </div>
             </td>
-            <td>' . $otro . '</td>
+            <td><span class="text-secondary fw-medium">#' . $id . '</span></td>
             <td>' . $row['producto'] . '</td>
             <td>' . $row['codigoBarras'] . '</td>
             <td>' . $nombreUsuario . '</td>
             <td>' . formato_fechas_server($row["fechaInicial"], 'd/m/Y H:i') . '</td>
             <td>' . $fechaFinalFormato . '</td>
             <td>' . $estado . '</td>
-            <td>
-                <button type="button" class="btn btn-outline-danger btn-icon" title="Eliminar" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '>
-                    <i class="ti ti-trash icon"></i>
+            '.($mostrarOpciones ? '<td>
+                <div class="dropdown">
+                <button type="button" class="btn btn-ghost-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Acciones">
+                <i class="ti ti-settings-2 me-2"></i>Acciones
                 </button>
-                <button type="button" class="btn btn-outline-primary btn-icon" title="Editar" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`)" ' . $hide . '>
-                    <i class="ti ti-pencil icon"></i>
-                </button>';
-
-            $resultado .= '
-            </td>
+                <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item text-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_asignacion" data-bs-toggle="modal" data-bs-target="#modal_eliminar_asignacion" data-id="' . $id . '" ' . $hide . '><i class="ti ti-trash me-2"></i>Eliminar</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" onclick="edit_asignacion(' . $id . ', `' . $estadoAsignacion . '`); return false;" ' . $hide . '><i class="ti ti-pencil me-2"></i>Editar</a>
+                </div>
+                </div>
+                </td>' : '') . '
             </tr>';
         }
     }
