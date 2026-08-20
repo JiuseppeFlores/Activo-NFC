@@ -59,17 +59,12 @@ function listar_area(pag) {
 
 function area() {
   remove();
-  document.getElementById("nav_area").className += " active";
+  document.getElementById("nav_area").classList.add("active");
+  document.getElementById("nav_area").setAttribute("aria-current", "page");
   document.getElementById("carpeta-activa").value = "area";
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="container">
-    <div class="loader-container">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
     </div>`);
   $.ajax({
     url: "../area/area.php",
@@ -129,19 +124,14 @@ function edit_area(id) {
 }
 
 $("#modal_eliminar_area").on("show.bs.modal", function (e) {
-  var id = $(e.relatedTarget).data().id;
+  var id = $(e.relatedTarget || document.activeElement).data("id");
   $("#id_area").val(id);
 });
 
 function borrar_area(id) {
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="spinner-container">
-                                                    <div class="spinner-path">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                                    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                                 </div>`);
 
   var parametros = {

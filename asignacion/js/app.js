@@ -64,17 +64,12 @@ function listar_asignacion(pag) {
 
 function asignacion() {
   remove();
-  document.getElementById("nav_asignacion").className += " active";
+  document.getElementById("nav_asignacion").classList.add("active");
+  document.getElementById("nav_asignacion").setAttribute("aria-current", "page");
   document.getElementById("carpeta-activa").value = "asignacion";
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="container">
-                                                    <div class="loader-container">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                                    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                                 </div>`);
   $.ajax({
     url: "../asignacion/asignacion.php",
@@ -189,19 +184,14 @@ function edit_asignacion(id, estadoAsignacion = 'VIGENTE') {
 }
 
 $("#modal_eliminar_asignacion").on("show.bs.modal", function (e) {
-  var id = $(e.relatedTarget).data().id;
+  var id = $(e.relatedTarget || document.activeElement).data("id");
   $("#id_asignacion").val(id);
 });
 
 function borrar_asignacion(id) {
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="spinner-container">
-                                                    <div class="spinner-path">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                                    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                                 </div>`);
 
   var parametros = {
@@ -246,7 +236,7 @@ function verProducto() {
 // Funcionalidad del modal de documentos
 $(document).ready(function () {
   $('#modal_documento').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
+    var button = $(event.relatedTarget || document.activeElement);
     var idAsignacion = button.data('id');
     $('#modal_documento').data('id', idAsignacion);
   });

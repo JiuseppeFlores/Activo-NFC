@@ -41,33 +41,12 @@ if ($count_row === false) {
     while ($row = sqlsrv_fetch_array($query)) {
         $id = $row['idInventario'];
         $fechaFormato = date_format($row['fecha'], 'd/m/Y H:i');
-        $expand = "expand";
-        $sector = "sector" . $id;
-        $url = "";
         $otro = "
-        <div id='sector" . $id . "' class='email' onclick='this.classList.add(\"$expand\")'>
-        <div class='from'>
-        <div class='from-contents'>
-        <div class='avatar me' style='background-image: url($url)'></div>
-        <div class='name'>" . $row['producto'] . "</div>
-        </div>
-        </div>
-        <div class='to'>
-        <div class='to-contents'>
-        <div class='top'>
-        <div class='avatar-large me' style='background-image: url()'></div>
-        <div class='name-large'>" . $row['producto'] . "</div>
-        <div class='x-touch' onclick='document.getElementById(\"$sector\").classList.remove(\"$expand\");event.stopPropagation();'>
-        <div class='x'>
-        <div class='line1'></div>
-        <div class='line2'></div>
-        </div>
-        </div>
-        </div>
-        <div class='bottom'>
-        <div class='row2'>
+        <details class='card border-0 shadow-none mb-0'>
+        <summary class='card-header py-2 px-3'>" . $row['producto'] . "</summary>
+        <div class='card-body p-3'>
         <div class='table-responsive'>
-        <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
+        <table class='table table-sm table-vcenter mb-0'>
         <tr>
         <td>Usuario</td>
         <td>" . $row['nombre'] . " " . $row['apellidoPaterno'] . " " . $row['apellidoMaterno'] . "</td>
@@ -93,13 +72,10 @@ if ($count_row === false) {
         <td>" . $fechaFormato . "</td>
         </tr>
         </table>
+        </table>
         </div>
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        ";
+        </details>";
 
 
         $resultado .= '

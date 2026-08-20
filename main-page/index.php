@@ -19,19 +19,12 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     <link rel="stylesheet" href="../js_lib/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- <link rel="stylesheet" href="../js_lib/dist/css/adminlte.min.css"> -->
-    <!-- Variables CSS (primero) -->
-    <link rel="stylesheet" href="../css/variables.css">
-    <!-- AdminLTE (segundo) -->
-    <link rel="stylesheet" href="../js_lib/dist/css/adminlte.min.css">
-    <!-- Overrides (tercero y último) -->
-    <link rel="stylesheet" href="../css/overrides.css">
+    <!-- Tabler local: base visual preparada para la migracion progresiva. -->
+    <link rel="stylesheet" href="../js_lib/plugins/tabler/css/tabler.min.css">
+    <link rel="stylesheet" href="../js_lib/plugins/tabler/icons/css/tabler-icons.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="../js_lib/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="../js_lib/plugins/summernote/summernote-bs4.min.css">
-    <link rel="stylesheet" href="../css/spinner.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/config.css">
-    <link rel="stylesheet" href="../css/text_area.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
@@ -49,19 +42,19 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
     <script src="../js_lib/plugins/jquery/jquery.min.js"></script>
-    <script src="../js_lib/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js_lib/plugins/tabler/js/tabler.min.js"></script>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body>
     <input type="hidden" id="carpeta-activa">
     <input type="hidden" id="pagina-activa">
-    <div class="wrapper">
+    <div class="page">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <div class="animation__shake">
-                <img src="../js_lib/dist/img/engranaje.png" alt="engranaje" height="80" width="80">
-                <div class="loading-text">Cargando...</div>
+        <div class="preloader position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-body z-3">
+            <div class="text-center">
+                <img src="../js_lib/dist/img/engranaje.png" class="avatar avatar-xl mb-3" alt="Cargando">
+                <div class="text-secondary">Cargando...</div>
             </div>
         </div>
 
@@ -70,20 +63,20 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
         ?>
 
         <!-- INICIO TODO Content Wrapper. Contains page content -->
-        <div class="content-wrapper" id="all-body">
+        <div class="page-wrapper">
+            <div class="page-body" id="all-body">
+            </div>
         </div>
         <!-- FINAL -->
         <div id="spinner">
         </div>
 
         <!-- /.content-wrapper -->
-        <footer class="main-footer" style="text-align:center">
-            <strong></strong>
-            <div class="float-right d-none d-sm-inline-block">
+        <footer class="footer footer-transparent d-print-none">
+            <div class="container-fluid">
+                <div class="text-center"></div>
             </div>
         </footer>
-        <aside class="control-sidebar control-sidebar-dark">
-        </aside>
     </div>
 
 
@@ -101,7 +94,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     include("../inventario/modal_reporte.php");
     ?>
 
-    <div id="shadow" class="popup"></div>
+    <div id="shadow" class="position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 z-3"></div>
 
     <script src="../js_lib/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script>
@@ -114,8 +107,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
     <script src="../js_lib/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="../js_lib/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="../js_lib/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <script src="../js_lib/dist/js/adminlte.js"></script>
-    <script src="../js_lib/dist/js/demo.js"></script>
+    <script src="../js_lib/plugins/tabler/tabler-compat.js"></script>
     <script src="../js_lib/dist/js/app_text.js"></script>
     <script src="js/app.js"></script>
     <script src="js/abm.js"></script>

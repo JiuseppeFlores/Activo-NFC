@@ -1,12 +1,7 @@
 function send_data(carpeta, msg, tipo, nombre_form, selecciones = [], accion = "", idBien = 0) {
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class='spinner-container'>
-                                        <div class="spinner-path">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                        <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                     </div>`);
   const peticion = new XMLHttpRequest();
   var data = new FormData();

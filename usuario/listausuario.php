@@ -52,9 +52,6 @@ if ($count_row === false) {
             if ($id == $idUsuario) {
 
 
-                $expand = "expand";
-                $sector = "sector" . $id;
-
                 $url = "../Images/usuario/" . $id . ".png";
                 if (!file_exists($url)) {
                     $url = "../Images/empty.jpg";
@@ -62,32 +59,14 @@ if ($count_row === false) {
                 $url .= "?r=" . $t;
 
                 $otro = "
-            <div id='sector" . $id . "' class='email' onclick='this.classList.add(\"$expand\")'>
-            <div class='from'>
-            <div class='from-contents'>
-            <div class='avatar me' style='background-image: url($url)'></div>
-            <div class='name'>" . $row['usuario'] . "</div>
-            </div>
-            </div>
-            <div class='to'>
-            <div class='to-contents'>
-            <div class='top'>
-            <div class='avatar-large me' style='background-image: url()'></div>
-            <div class='name-large'>" . $row['usuario'] . "</div>
-            <div class='x-touch' onclick='document.getElementById(\"$sector\").classList.remove(\"$expand\");event.stopPropagation();'>
-            <div class='x'>
-            <div class='line1'></div>
-            <div class='line2'></div>
-            </div>
-            </div>
-            </div>
-            <div class='bottom'>
-            <div class='row2'>
-            <div style='text-align:center'>
-            <img style='width:200px;height:200px' src='" . $url . "'>
+            <details class='card border-0 shadow-none mb-0'>
+            <summary class='card-header py-2 px-3'>" . $row['usuario'] . "</summary>
+            <div class='card-body p-3'>
+            <div class='text-center mb-3'>
+            <img class='avatar avatar-xl' src='" . $url . "' alt='" . $row['usuario'] . "'>
             </div>
             <div class='table-responsive'>
-            <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
+            <table class='table table-sm table-vcenter mb-0'>
             <tr>
             <td >Usuario</td>
             <td >" . $row["usuario"] . "</td>
@@ -117,12 +96,10 @@ if ($count_row === false) {
             <td >" . $row["area"] . "</td>
             </tr>
             </table>
+            </table>
             </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>";
+            </details>";
                 $resultado .= '
             <tr style="cursor:pointer">
             <td>' . $otro . '</td>
@@ -144,7 +121,6 @@ if ($count_row === false) {
         while ($row = sqlsrv_fetch_array($query)) {
 
             $id = $row['idUsuario'];
-            $expand = "expand";
             $sector = "sector" . $id;
 
             $url = "../Images/usuario/" . $id . ".png";
@@ -154,32 +130,14 @@ if ($count_row === false) {
             $url .= "?r=" . $t;
 
             $otro = "
-            <div id='sector" . $id . "' class='email' onclick='this.classList.add(\"$expand\")'>
-            <div class='from'>
-            <div class='from-contents'>
-            <div class='avatar me' style='background-image: url($url)'></div>
-            <div class='name'>" . $row['usuario'] . "</div>
-            </div>
-            </div>
-            <div class='to'>
-            <div class='to-contents'>
-            <div class='top'>
-            <div class='avatar-large me' style='background-image: url()'></div>
-            <div class='name-large'>" . $row['usuario'] . "</div>
-            <div class='x-touch' onclick='document.getElementById(\"$sector\").classList.remove(\"$expand\");event.stopPropagation();'>
-            <div class='x'>
-            <div class='line1'></div>
-            <div class='line2'></div>
-            </div>
-            </div>
-            </div>
-            <div class='bottom'>
-            <div class='row2'>
-            <div style='text-align:center'>
-            <img style='width:200px;height:200px' src='" . $url . "'>
+            <details class='card border-0 shadow-none mb-0'>
+            <summary class='card-header py-2 px-3'>" . $row['usuario'] . "</summary>
+            <div class='card-body p-3'>
+            <div class='text-center mb-3'>
+            <img class='avatar avatar-xl' src='" . $url . "' alt='" . $row['usuario'] . "'>
             </div>
             <div class='table-responsive'>
-            <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
+            <table class='table table-sm table-vcenter mb-0'>
             <tr>
             <td >Usuario</td>
             <td >" . $row["usuario"] . "</td>
@@ -209,12 +167,10 @@ if ($count_row === false) {
             <td >" . $row["area"] . "</td>
             </tr>
             </table>
+            </table>
             </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>";
+            </details>";
             $resultado .= '
             <tr style="cursor:pointer">
             <td>' . $otro . '</td>

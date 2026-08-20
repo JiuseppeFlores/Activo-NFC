@@ -1,16 +1,11 @@
 function reportes(page) {
     remove();
-    document.getElementById("nav_reportes").className += " active";
+    document.getElementById("nav_reportes").classList.add("active");
+    document.getElementById("nav_reportes").setAttribute("aria-current", "page");
     document.getElementById("carpeta-activa").value = "reportes";
     $("#shadow").fadeIn("normal");
-    $("#spinner").html(`<div class="container">
-        <div class="loader-container">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        </div>
+    $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+        <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
         </div>`);
     $.ajax({
         url: "../reportes/reportes.php",

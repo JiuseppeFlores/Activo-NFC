@@ -46,6 +46,11 @@ function prueba(pag) {
 function remove() {
   document.getElementById("pagina-activa").value = 1;
 
+  document.querySelectorAll("#sidebar-menu .nav-link").forEach(function (link) {
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+  });
+
   if (document.getElementById("nav_area")) {
     document.getElementById("nav_area").className = "nav-link";
   }

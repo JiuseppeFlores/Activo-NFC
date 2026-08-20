@@ -39,39 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </th>
         </tr>';
 
-        $t = time();
         while ($row = sqlsrv_fetch_array($query)) {
-            $id = $row['idArea'];
-            $expand = "expand";
-            $sector = "sector" . $id;
-            $url = "";
             $otro = "
-            <div id='sector" . $id . "' class='email' onclick='this.classList.add(\"$expand\")'>
-            <div class='from'>
-            <div class='from-contents'>
-            <div class='avatar me' style='background-image: url($url)'></div>
-            <div class='name'>" . $row['area'] . "
-            </div>
-            </div>
-            </div>
-            <div class='to'>
-            <div class='to-contents'>
-            <div class='top'>
-            <div class='avatar-large me' style='background-image: url()'>
-            </div>
-            <div class='name-large'>" . $row['area'] . "
-            </div>
-            <div class='x-touch' onclick='document.getElementById(\"$sector\").classList.remove(\"$expand\");event.stopPropagation();'>
-            <div class='x'>
-            <div class='line1'></div>
-            <div class='line2'></div>
-            </div>
-            </div>
-            </div>
-            <div class='bottom'>
-            <div class='row2'>
+            <details class='card border-0 shadow-none mb-0'>
+            <summary class='card-header py-2 px-3'>" . $row['area'] . "</summary>
+            <div class='card-body p-3'>
             <div class='table-responsive'>
-            <table style='margin:5px auto; width: 85%; border-collapse: separate;border:hidden;' class='table tdstyle' border='1' >
+            <table class='table table-sm table-vcenter mb-0'>
             <tr>
             <td >Area</td>
             <td >" . $row["area"] . "</td>
@@ -79,10 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </table>
             </div>
             </div>
-            </div>
-            </div>
-            </div>
-            </div>";
+            </details>";
 
             $resultado .= '<tr style="cursor:pointer">
             <td>' . $otro . '</td>

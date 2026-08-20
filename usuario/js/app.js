@@ -59,17 +59,12 @@ function listar_usuario(pag) {
 
 function usuario() {
   remove();
-  document.getElementById("nav_usuario").className += " active";
+  document.getElementById("nav_usuario").classList.add("active");
+  document.getElementById("nav_usuario").setAttribute("aria-current", "page");
   document.getElementById("carpeta-activa").value = "usuario";
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="container">
-                                                    <div class="loader-container">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                                    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                                 </div>`);
   $.ajax({
     url: "../usuario/usuario.php",
@@ -133,19 +128,14 @@ function edit_usuario(id) {
 }
 
 $("#modal_eliminar_usuario").on("show.bs.modal", function (e) {
-  var id = $(e.relatedTarget).data().id;
+  var id = $(e.relatedTarget || document.activeElement).data("id");
   $("#id_usuario").val(id);
 });
 
 function borrar_usuario(id) {
   $("#shadow").fadeIn("normal");
-  $("#spinner").html(`<div class="spinner-container">
-                                                    <div class="spinner-path">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    </div>
+  $("#spinner").html(`<div class="position-fixed top-50 start-50 translate-middle z-3">
+                                                    <div class="spinner-border text-primary" role="status" aria-label="Cargando"></div>
                                                 </div>`);
 
   var parametros = {
