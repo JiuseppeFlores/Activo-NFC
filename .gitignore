@@ -2,4 +2,5 @@
 tcpdf/
 images/
 
+.vscode
 /conexion.php
