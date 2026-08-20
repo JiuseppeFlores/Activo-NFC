@@ -49,6 +49,7 @@ if (isset($_SESSION['idUsuario']) && intval($_SESSION['idUsuario']) > 0) {
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
     <script src="../js_lib/plugins/jquery/jquery.min.js"></script>
+    <script src="../js_lib/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
